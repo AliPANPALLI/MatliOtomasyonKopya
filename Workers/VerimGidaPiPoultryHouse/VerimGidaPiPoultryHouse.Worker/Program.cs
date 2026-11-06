@@ -4,7 +4,7 @@ using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using System.Data.SqlClient;
 using VerimGidaPiPoultryHouse.Worker;
-using VerimGidaPiPoultryHouse.Worker.Core;
+using VerimGidaPiPoultryHouse.Infrastructure.Caching;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureLogging(logging =>

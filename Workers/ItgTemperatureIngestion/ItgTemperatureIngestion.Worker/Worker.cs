@@ -1,9 +1,11 @@
 using System.Text;
 using System.Text.Json;
-using ItgTemperatureIngestion.Worker.Models;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using ItgTemperatureIngestion.Application.Models;
+using ItgTemperatureIngestion.Infrastructure.Caching;
+using ItgTemperatureIngestion.Infrastructure.Persistence;
 
 namespace ItgTemperatureIngestion.Worker;
 

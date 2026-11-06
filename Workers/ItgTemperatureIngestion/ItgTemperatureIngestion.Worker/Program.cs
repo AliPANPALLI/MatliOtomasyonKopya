@@ -1,6 +1,8 @@
 using System.Text.RegularExpressions;
 using ItgTemperatureIngestion.Worker;
 using Microsoft.Extensions.Hosting.WindowsServices;
+using ItgTemperatureIngestion.Infrastructure.Caching;
+using ItgTemperatureIngestion.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 

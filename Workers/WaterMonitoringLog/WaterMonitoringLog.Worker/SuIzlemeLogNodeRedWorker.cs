@@ -5,10 +5,10 @@ using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
 using WaterLineScada.Domain.Models;
 using WaterLineScada.Infrastructure;
-using WaterMonitoringLog.Worker.Models;
 using System.Data;
 using System.Text.Json;
 using static SharedKernel.ApplicationConstants;
+using WaterMonitoringLog.Application.Models;
 
 namespace WaterMonitoringLog.Worker
 {

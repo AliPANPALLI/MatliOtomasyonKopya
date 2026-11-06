@@ -1,7 +1,5 @@
 using Microsoft.Extensions.Configuration;
 using FastMember;
-using Osmancali1Log.Worker.Core;
-using Osmancali1Log.Worker.Models;
 using PoultryHouseScada.Domain.Models;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +8,8 @@ using SharedApp.Infrastructure;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
+using Osmancali1Log.Application.Models;
+using Osmancali1Log.Infrastructure.Caching;
 
 namespace Osmancali1Log.Worker
 {

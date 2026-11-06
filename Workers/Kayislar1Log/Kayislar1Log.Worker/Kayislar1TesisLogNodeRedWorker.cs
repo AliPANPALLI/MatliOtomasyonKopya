@@ -1,6 +1,4 @@
 using FastMember;
-using Kayislar1Log.Worker.Core;
-using Kayislar1Log.Worker.Models;
 using PoultryHouseScada.Domain.Models;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +7,8 @@ using SharedApp.Infrastructure;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
+using Kayislar1Log.Application.Models;
+using Kayislar1Log.Infrastructure.Caching;
 
 namespace Kayislar1Log.Worker
 {

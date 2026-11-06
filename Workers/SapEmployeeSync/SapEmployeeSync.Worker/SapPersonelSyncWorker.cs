@@ -2,10 +2,10 @@ using Authentication.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using SapEmployeeSync.Worker.Core;
-using SapEmployeeSync.Worker.Models;
 using System.Globalization;
 using System.Text;
+using SapEmployeeSync.Application.Models;
+using SapEmployeeSync.Infrastructure.Sap;
 
 namespace SapEmployeeSync.Worker
 {

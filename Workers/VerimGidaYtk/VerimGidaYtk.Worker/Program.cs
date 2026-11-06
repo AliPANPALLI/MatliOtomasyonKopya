@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure;
 using VerimGidaYtk.Worker;
-using VerimGidaYtk.Worker.Core;
+using VerimGidaYtk.Infrastructure.Caching;
 
 IHost host = Host.CreateDefaultBuilder(args)
       .ConfigureLogging(logging =>

@@ -1,10 +1,10 @@
 using Kayislar1.Worker;
-using Kayislar1.Worker.Core;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using System.Data.SqlClient;
+using Kayislar1.Infrastructure.Caching;
 
 
 IHost host = Host.CreateDefaultBuilder(args)

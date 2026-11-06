@@ -1,11 +1,11 @@
 using PoultryHouseScada.Domain.Models;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using RahmiyeYtk.Worker.Core;
 using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
 using System.Data;
 using static SharedKernel.ApplicationConstants;
+using RahmiyeYtk.Infrastructure.Caching;
 
 namespace RahmiyeYtk.Worker
 {

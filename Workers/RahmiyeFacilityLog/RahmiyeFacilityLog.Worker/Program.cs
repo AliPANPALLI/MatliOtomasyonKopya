@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using RahmiyeFacilityLog.Worker;
-using RahmiyeFacilityLog.Worker.Core;
-using RahmiyeFacilityLog.Worker.Models;
 using SharedApp.Infrastructure;
+using RahmiyeFacilityLog.Application.Models;
+using RahmiyeFacilityLog.Infrastructure.Caching;
+using RahmiyeFacilityLog.Infrastructure.Sap;
 
 IHost host = Host.CreateDefaultBuilder(args)
      //.ConfigureWebHostDefaults(webBuilder =>

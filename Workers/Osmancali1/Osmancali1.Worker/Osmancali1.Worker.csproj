@@ -8,18 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FastMember" Version="1.5.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.17" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.17" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="9.0.17" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.17" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="9.0.17" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.17" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Services\PoultryHouseScada\PoultryHouseScada.Infrastructure\PoultryHouseScada.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\Services\SharedApp\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\Osmancali1.Application\Osmancali1.Application.csproj" />
+    <ProjectReference Include="..\Osmancali1.Infrastructure\Osmancali1.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

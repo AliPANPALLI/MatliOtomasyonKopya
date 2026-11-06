@@ -9,7 +9,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.17" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="9.0.17" />
-    <PackageReference Include="Npgsql" Version="9.0.4" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\HegCoolingAlarm.Application\HegCoolingAlarm.Application.csproj" />
+    <ProjectReference Include="..\HegCoolingAlarm.Infrastructure\HegCoolingAlarm.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>

@@ -2,11 +2,11 @@ using PoultryHouseScada.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RahmiyeFacility.Worker;
-using RahmiyeFacility.Worker.Core;
 using Serilog;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using System.Data.SqlClient;
+using RahmiyeFacility.Infrastructure.Caching;
 
 IHost host = Host.CreateDefaultBuilder(args)
      .ConfigureWebHostDefaults(webBuilder =>

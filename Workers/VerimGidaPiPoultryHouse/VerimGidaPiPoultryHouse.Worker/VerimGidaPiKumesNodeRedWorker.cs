@@ -8,10 +8,10 @@ using SharedKernel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
-using VerimGidaPiPoultryHouse.Worker.Core;
-using VerimGidaPiPoultryHouse.Worker.Models;
 using static SharedKernel.ApplicationConstants;
 using AlarmLog = PoultryHouseScada.Domain.Models.AlarmLog;
+using VerimGidaPiPoultryHouse.Application.Models;
+using VerimGidaPiPoultryHouse.Infrastructure.Caching;
 
 namespace VerimGidaPiPoultryHouse.Worker
 {

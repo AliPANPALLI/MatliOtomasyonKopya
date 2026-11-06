@@ -7,9 +7,9 @@ using SharedApp.Infrastructure;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
-using VerimGidaPiPoultryHouseLog.Worker.Core;
-using VerimGidaPiPoultryHouseLog.Worker.Models;
 using static SharedKernel.ApplicationConstants;
+using VerimGidaPiPoultryHouseLog.Application.Models;
+using VerimGidaPiPoultryHouseLog.Infrastructure.Caching;
 
 namespace VerimGidaPiPoultryHouseLog.Worker
 {

@@ -1,10 +1,10 @@
 using Osmancali1.Worker;
-using Osmancali1.Worker.Core;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using System.Data.SqlClient;
+using Osmancali1.Infrastructure.Caching;
 
 
 IHost host = Host.CreateDefaultBuilder(args)

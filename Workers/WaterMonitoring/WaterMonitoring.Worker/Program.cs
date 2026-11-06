@@ -4,8 +4,8 @@ using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using WaterLineScada.Infrastructure;
 using WaterMonitoring.Worker;
-using WaterMonitoring.Worker.Core;
 using System.Data.SqlClient;
+using WaterMonitoring.Infrastructure.Caching;
 
 IHost host = Host.CreateDefaultBuilder(args)
      .ConfigureWebHostDefaults(webBuilder =>

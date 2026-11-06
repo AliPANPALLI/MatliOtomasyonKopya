@@ -1,6 +1,4 @@
 using FastMember;
-using Kayislar1.Worker.Core;
-using Kayislar1.Worker.Models;
 using PoultryHouseScada.Domain.Models;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +9,8 @@ using System.Data.SqlClient;
 using System.Text.Json;
 using static SharedKernel.ApplicationConstants;
 using AlarmLog = PoultryHouseScada.Domain.Models.AlarmLog;
+using Kayislar1.Application.Models;
+using Kayislar1.Infrastructure.Caching;
 
 namespace Kayislar1.Worker
 {

@@ -1,10 +1,10 @@
 using Kuyucak1.Worker;
-using Kuyucak1.Worker.Core;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using System.Data.SqlClient;
+using Kuyucak1.Infrastructure.Caching;
 
 
 IHost host = Host.CreateDefaultBuilder(args)

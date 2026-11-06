@@ -1,10 +1,10 @@
 using Osmancali1Log.Worker;
-using Osmancali1Log.Worker.Core;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using System.Data.SqlClient;
+using Osmancali1Log.Infrastructure.Caching;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureLogging(logging =>

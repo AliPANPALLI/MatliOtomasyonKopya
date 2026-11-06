@@ -2,14 +2,14 @@ using FastMember;
 using PoultryHouseScada.Domain.Models;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using RahmiyeFacility.Worker.Core;
-using RahmiyeFacility.Worker.Models;
 using SharedKernel;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
 using static SharedKernel.ApplicationConstants;
+using RahmiyeFacility.Application.Models;
+using RahmiyeFacility.Infrastructure.Caching;
 
 namespace RahmiyeFacility.Worker
 {

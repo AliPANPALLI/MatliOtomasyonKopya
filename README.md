@@ -18,11 +18,20 @@ MatliOtomasyon/
 │       ├── <Service>.Application
 │       ├── <Service>.Domain
 │       └── <Service>.Infrastructure
-├── Workers/                  Her arka plan worker'ı kendi klasöründe
+├── Workers/                  Her arka plan worker'ı kendi klasöründe, 3 katmanlı
 │   └── <Name>/
-│       └── <Name>.Worker     (Application/Infrastructure katmanları Adım 1.6'da açılacak)
+│       ├── <Name>.Worker            Host: Program.cs, BackgroundService döngüleri, appsettings
+│       ├── <Name>.Application       Models/ (Node-RED/SAP veri modelleri)
+│       └── <Name>.Infrastructure    Caching/, Sap/, Persistence/; veri erişim paketleri ve diğer servislere referanslar
 └── tests/
 ```
+
+Worker katman kuralları:
+
+- `.Worker` sadece kendi `.Application` ve `.Infrastructure` projelerine referans verir. Veri erişim paketleri (EF Core, SqlClient, FastMember, Npgsql, RabbitMQ, Redis) ve diğer servislerin projelerine giden referanslar `.Infrastructure`'dadır.
+- `.Application` hiçbir projeye referans vermez.
+- Worker'lar birbirine referans vermez.
+- Bazı worker'larda (AlarmNotification, EmailDispatch, SmsDispatch, VoiceCallDispatch, EnergyMonitoringAlarm, HegCoolingAlarm, PoultryHouseEnergyLog, ServiceHealthMonitor) `.Application` ve `.Infrastructure` şimdilik boş iskelet; iş mantığı `BackgroundService` sınıflarından ayrıştırıldıkça dolacak.
 
 Klasör adları, proje adları ve namespace'ler İngilizcedir; özel adlar (Matli, Kayislar1, Rahmiye, VerimGida, SAP, Netgsm, ITG, HEG...) olduğu gibi kalır. Solution klasörleri disk yapısıyla birebir aynıdır.
 
@@ -65,7 +74,7 @@ Gateway route'ları (`/kumesscada/...` gibi) ve veritabanı adları (`OTM_KumesS
 
 Worker'ların DB'ye yazdığı servis durum adları (örneğin `"SuIzlemeWorker"`) ve `UserSecretsId` değerleri bilerek eski haliyle bırakıldı: servis izleme ekranı bu adlara bakıyor, yerel secret'lar da bu kimliklere bağlı.
 
-**Sıradaki taşımalar:** worker'lara Application/Infrastructure katmanları (Adım 1.6), gateway `Gateways/MatliOtomasyon.Gateway`'e (Adım 1.7), `SharedKernel` ise `BuildingBlocks/MatliOtomasyon.Shared` altında 4 katmana (Adım 1.8) taşınacak.
+**Sıradaki taşımalar:** gateway `Gateways/MatliOtomasyon.Gateway`'e (Adım 1.7), `SharedKernel` ise `BuildingBlocks/MatliOtomasyon.Shared` altında 4 katmana (Adım 1.8) taşınacak.
 
 ## Güvenlik notları
 

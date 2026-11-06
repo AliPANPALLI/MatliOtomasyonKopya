@@ -2,8 +2,8 @@ using PoultryHouseScada.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RahmiyeYtk.Worker;
-using RahmiyeYtk.Worker.Core;
 using SharedApp.Infrastructure;
+using RahmiyeYtk.Infrastructure.Caching;
 
 IHost host = Host.CreateDefaultBuilder(args)
       .ConfigureLogging(logging =>

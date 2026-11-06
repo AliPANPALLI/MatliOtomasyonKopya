@@ -5,14 +5,14 @@ using SharedApp.Infrastructure;
 using SharedKernel;
 using WaterLineScada.Domain.Models;
 using WaterLineScada.Infrastructure;
-using WaterMonitoring.Worker.Core;
-using WaterMonitoring.Worker.Models;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
 using static SharedKernel.ApplicationConstants;
 using AlarmLog = WaterLineScada.Domain.Models.AlarmLog;
+using WaterMonitoring.Application.Models;
+using WaterMonitoring.Infrastructure.Caching;
 
 namespace WaterMonitoring.Worker
 {

@@ -1,8 +1,8 @@
 using Authentication.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SapEmployeeSync.Worker;
-using SapEmployeeSync.Worker.Core;
-using SapEmployeeSync.Worker.Models;
+using SapEmployeeSync.Application.Models;
+using SapEmployeeSync.Infrastructure.Sap;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureLogging(logging =>

@@ -7,10 +7,10 @@ using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
 using System.Data;
 using System.Text.Json;
-using VerimGidaYtk.Worker.Core;
-using VerimGidaYtk.Worker.Models;
 using static SharedKernel.ApplicationConstants;
 using AlarmLog = PoultryHouseScada.Domain.Models.AlarmLog;
+using VerimGidaYtk.Application.Models;
+using VerimGidaYtk.Infrastructure.Caching;
 
 namespace VerimGidaYtk.Worker
 {

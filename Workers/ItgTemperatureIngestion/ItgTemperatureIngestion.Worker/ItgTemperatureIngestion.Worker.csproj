@@ -10,12 +10,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.20" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="9.0.20" />
-    <PackageReference Include="Npgsql" Version="9.0.3" />
-    <PackageReference Include="RabbitMQ.Client" Version="7.2.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\ItgTemperatureIngestion.Application\ItgTemperatureIngestion.Application.csproj" />
+    <ProjectReference Include="..\ItgTemperatureIngestion.Infrastructure\ItgTemperatureIngestion.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>

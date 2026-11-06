@@ -1,7 +1,5 @@
 using Microsoft.Extensions.Configuration;
 using FastMember;
-using Osmancali1.Worker.Core;
-using Osmancali1.Worker.Models;
 using PoultryHouseScada.Domain.Models;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +10,8 @@ using System.Data.SqlClient;
 using System.Text.Json;
 using static SharedKernel.ApplicationConstants;
 using AlarmLog = PoultryHouseScada.Domain.Models.AlarmLog;
+using Osmancali1.Application.Models;
+using Osmancali1.Infrastructure.Caching;
 
 namespace Osmancali1.Worker
 {

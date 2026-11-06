@@ -1,6 +1,4 @@
 using FastMember;
-using Kuyucak1Log.Worker.Core;
-using Kuyucak1Log.Worker.Models;
 using PoultryHouseScada.Domain.Models;
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +7,8 @@ using SharedApp.Infrastructure;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
+using Kuyucak1Log.Application.Models;
+using Kuyucak1Log.Infrastructure.Caching;
 
 namespace Kuyucak1Log.Worker
 {
