@@ -1,0 +1,952 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44338
+        }
+      ],
+      "UpstreamPathTemplate": "/authentication/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44316
+        }
+      ],
+      "UpstreamPathTemplate": "/panokimliklendirme/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+      //"DelegatingHandlers": [
+      //  "TokenExchangeDelegateHandler"
+      //],
+
+      //"AddClaimsToRequest": {
+      //  "UserId": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
+      //  "Email": "email",
+      //  "GivenName": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
+      //  "Surname": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
+      //  "Position": "position",
+      //  "UserPermissions": "UserPermissions" // Eğer JSON string olarak yollamak istiyorsanız
+      //},
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44321
+        }
+      ],
+      "UpstreamPathTemplate": "/ticket/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44371
+        }
+      ],
+      "UpstreamPathTemplate": "/nesneizleme/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44340
+        }
+      ],
+      "UpstreamPathTemplate": "/projetakip/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ],
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44346
+        }
+      ],
+      "UpstreamPathTemplate": "/siloscada/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ],
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44347
+        }
+      ],
+      "UpstreamPathTemplate": "/mobilguncelleme/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44341
+        }
+      ],
+      "UpstreamPathTemplate": "/kantartakip/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/Kumes/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/Kumes/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/HegAlarm/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44345
+        }
+      ],
+      "UpstreamPathTemplate": "/hegsogutmascada/HegAlarm/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/HegSogutmaRapor/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44345
+        }
+      ],
+      "UpstreamPathTemplate": "/hegsogutmascada/HegSogutmaRapor/{everything}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Konveyor/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/Konveyor/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/KumesRaporRehber/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/KumesRaporRehber/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/RaporVeri/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/RaporVeri/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/KumesHaftalikCatiKontrol/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/KumesHaftalikCatiKontrol/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/NekropsiRaporu/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/NekropsiRaporu/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/vg/yumurtlama/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/vg/yumurtlama/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Cizim/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suhatscada/Cizim/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/SuKaynak/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suhatscada/SuKaynak/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/NetgsmReport/report",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44339
+        }
+      ],
+      "UpstreamPathTemplate": "/shared/NetgsmReport/report",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/AlarmLog/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44339
+        }
+      ],
+      "UpstreamPathTemplate": "/shared/AlarmLog/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44339
+        }
+      ],
+      "UpstreamPathTemplate": "/shared/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+      //"DelegatingHandlers": [
+      //  "TokenExchangeDelegateHandler"
+      //],
+
+      //"AddClaimsToRequest": {
+      //  "UserId": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
+      //  "Email": "email",
+      //  "GivenName": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
+      //  "Surname": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
+      //  "Position": "position",
+      //  "UserPermissions": "UserPermissions" // Eğer JSON string olarak yollamak istiyorsanız
+      //},
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44343
+        }
+      ],
+      "UpstreamPathTemplate": "/enerjiizleme/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/kumesSignalR",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/signalrHub",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+    },
+    //{
+    //  "DownstreamPathTemplate": "/signalRHub",
+    //  "DownstreamScheme": "https",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "otomasyon.matli.com.tr",
+    //      "Port": 44317
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/kumesSignalR/signalrHub",
+    //  "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+    //  "HttpHandlerOptions": {
+    //    "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+    //  },
+    //  "AuthenticationOptions": {
+    //    "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+    //    "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+    //  },
+    //  "AddHeadersToDownstream": {
+    //    "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+    //  },
+    //  "AddHeadersToRequest": {
+    //    "Authorization": "{Authorization}"
+    //  },
+    //  "AddHeadersToRequestHeaders": {
+    //    "Authorization": "{Authorization}"
+    //  },
+    //  "KeepAlive": true
+    //},
+    //{
+    //  "DownstreamPathTemplate": "/signalRHub",
+    //  "DownstreamScheme": "https",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "otomasyon.matli.com.tr",
+    //      "Port": 44319
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/suHatScadaSignalR/signalrHub",
+    //  "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+    //  "HttpHandlerOptions": {
+    //    "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+    //  },
+    //  "AuthenticationOptions": {
+    //    "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+    //    "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+    //  },
+    //  "AddHeadersToDownstream": {
+    //    "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+    //  },
+    //  "AddHeadersToRequest": {
+    //    "Authorization": "{Authorization}"
+    //  },
+    //  "AddHeadersToRequestHeaders": {
+    //    "Authorization": "{Authorization}"
+    //  },
+    //  "KeepAlive": true
+    //}
+    {
+      "DownstreamPathTemplate": "/signalrHub/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesSignalR/signalrHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true
+    },
+    {
+      "DownstreamPathTemplate": "/kumesRaporHub/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesSignalR/kumesRaporHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true
+    },
+    {
+      "DownstreamPathTemplate": "/testHub/{everything}",
+      "DownstreamScheme": "wss",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/testSignalR/testHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false,
+        "UseCookieContainer": true,
+        "DangerousAcceptAnyServerCertificateValidator": true
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/signalrHub/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suHatScadaSignalR/signalrHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true
+    },
+    {
+      "DownstreamPathTemplate": "/signalrHubExpert/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suHatScadaSignalR/signalrHubExpert/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true
+    },
+    {
+      "DownstreamPathTemplate": "/makineIzlemeHub/{everything}",
+      "DownstreamScheme": "wss",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44325
+        }
+      ],
+      "UpstreamPathTemplate": "/signalR/makineIzlemeHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false,
+        "UseCookieContainer": true,
+        "DangerousAcceptAnyServerCertificateValidator": true
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/kumesEnerjiIzlemeHub/{everything}",
+      "DownstreamScheme": "wss",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "otomasyon.matli.com.tr",
+          "Port": 44343
+        }
+      ],
+      "UpstreamPathTemplate": "/signalR/kumesEnerjiIzlemeHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false,
+        "UseCookieContainer": true,
+        "DangerousAcceptAnyServerCertificateValidator": true
+      }
+    },
+    //{
+    //  "UpstreamPathTemplate": "/ws/deneme",
+    //  "DownstreamPathTemplate": "/ws/deneme",
+    //  "DownstreamScheme": "wss",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "pm-aus-cmcd-15.matli.com.tr",
+    //      "Port": 443
+    //    }
+    //  ]
+    //},
+    {
+      "UpstreamPathTemplate": "/ws/deneme",
+      "DownstreamPathTemplate": "/ws/deneme",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.11",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/frigo",
+      "DownstreamPathTemplate": "/ws/frigo",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.11",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/siloscada/{everything}",
+      "DownstreamPathTemplate": "/ws/siloscada/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 6060
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/tesis-izleme",
+      "DownstreamPathTemplate": "/tesis-izleme",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/tesis-izleme-test",
+      "DownstreamPathTemplate": "/tesis-izleme-test",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws-api/{everything}",
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/deneme2",
+      "DownstreamPathTemplate": "/device-stream",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.12",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/suizleme/{everything}",
+      "DownstreamPathTemplate": "/ws/suizleme/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/osmancali23/{everything}",
+      "DownstreamPathTemplate": "/ws/osmancali23/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/kumesicidashboard/{everything}",
+      "DownstreamPathTemplate": "/ws/kumesicidashboard/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/haritagorunum/{everything}",
+      "DownstreamPathTemplate": "/ws/haritagorunum/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/tablogorunum/{everything}",
+      "DownstreamPathTemplate": "/ws/tablogorunum/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/kartgorunum/{everything}",
+      "DownstreamPathTemplate": "/ws/kartgorunum/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/oda/{everything}",
+      "DownstreamPathTemplate": "/ws/oda/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.160.50.150",
+          "Port": 1880
+        }
+      ]
+    },
+    //{
+    //  "DownstreamPathTemplate": "/{everything}",
+    //  "DownstreamScheme": "http",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "otomasyon.matli.com.tr",
+    //      "Port": 1984
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/{everything}",
+    //  "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
+    //  "UseWebSockets": true,
+    //  "DangerousAcceptAnyServerCertificateValidator": true,
+    //  "AddHeadersToRequest": {
+    //    "X-Forwarded-Proto": "https"
+    //  }
+    //},
+    {
+      "UpstreamPathTemplate": "/webrtc.html",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/webrtc.html",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1984
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/ws",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/ws",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1984
+        }
+      ]
+    }
+    //{
+    //  "UpstreamPathTemplate": "/webrtc.html",
+    //  "UpstreamHttpMethod": [ "GET" ],
+
+    //  "DownstreamPathTemplate": "/webrtc.html",
+    //  "DownstreamScheme": "wss",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "10.4.1.102",
+    //      "Port": 1984
+    //    }
+    //  ]
+    //},
+    //{
+    //  "UpstreamPathTemplate": "/{everything}",
+    //  "UpstreamHttpMethod": [ "GET" ],
+
+    //  "DownstreamPathTemplate": "/{everything}",
+    //  "DownstreamScheme": "wss",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "10.4.1.102",
+    //      "Port": 1984
+    //    }
+    //  ]
+    //}
+    //{
+    //  "DownstreamPathTemplate": "/ws/deneme/{everything}",
+    //  "DownstreamScheme": "wss",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "otomasyon.matli.com.tr",
+    //      "Port": 44317
+    //    }
+    //  ],
+
+    //  "UpstreamPathTemplate": "/ws/deneme/{everything}",
+    //  "UpstreamHttpMethod": [ "GET", "POST" ],
+
+    //  "UpstreamHostAndPorts": [
+    //    {
+    //      "Host": "pm-aus-cmcd-15.matli.com.tr",
+    //      "Port": 1880
+    //    }
+    //  ],
+    //  "UseWebSockets": true,
+    //  "HttpHandlerOptions": {
+    //    "AllowAutoRedirect": false,
+    //    "UseCookieContainer": true,
+    //    "DangerousAcceptAnyServerCertificateValidator": true
+    //  }
+    //}
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://otomasyon.matli.com.tr",
+    "RequestIdKey": "OcRequestId",
+    "Forwarding": {
+      "AllowForwarding": true
+    }
+    //"RequestIdKey": "OcRequestId",
+    //"ServiceDiscoveryProvider": {
+    //  "Host": "localhost",
+    //  "Port": 8500,
+    //  "Type": "Consul"
+    //}
+  }
+}

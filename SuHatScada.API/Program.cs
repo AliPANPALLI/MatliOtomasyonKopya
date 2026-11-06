@@ -1,0 +1,130 @@
+using Mapster;
+using MapsterMapper;
+using Microsoft.EntityFrameworkCore;
+using SharedKernel.Configurations;
+using SharedKernel.Extensions;
+using SharedKernel.Middlewares;
+using SuHatScada.API;
+using SuHatScada.Application.Mapster;
+using SuHatScada.Infrastructure;
+
+var builder = WebApplication.CreateBuilder(args);
+var dbUser = Environment.GetEnvironmentVariable("DB_USER");
+var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+
+var connectionString = builder.Configuration.GetConnectionString("SqlServer")
+    .Replace("{DB_USER}", dbUser)
+    .Replace("{DB_PASSWORD}", dbPassword);
+builder.Services.AddDbContext<SuHatScadaDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"), sqlOptions =>
+    {
+        sqlOptions.MigrationsAssembly("SuHatScada.Infrastructure");
+    });
+});
+
+// Add services to the container.
+builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
+builder.Services.AddHttpContextAccessor();
+
+//authentication
+builder.Services.AddCustomTokenAuth(builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>());
+
+builder.Services.AddAuthorization();
+
+builder.Services.AddSignalR();
+//builder.Services.AddSingleton<VeriGuncellemeBackgroundService>(); // SignalR'da kullanmak için
+//builder.Services.AddHostedService(provider => provider.GetRequiredService<VeriGuncellemeBackgroundService>());
+builder.Services.AddSingleton<VeriGuncellemeExpertBackgroundService>(); 
+builder.Services.AddHostedService(provider => provider.GetRequiredService<VeriGuncellemeExpertBackgroundService>());
+#region DI
+//DI Register
+builder.Services.RegisterServices();
+#region Mapster
+var mapsterConfig = new TypeAdapterConfig();
+mapsterConfig.Scan(typeof(SuHatScadaMappingConfig).Assembly);
+mapsterConfig.Compile();
+builder.Services.AddSingleton(mapsterConfig);
+builder.Services.AddScoped<IMapper, ServiceMapper>();
+#endregion Mapster
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "SuHatScada.API", Version = "v1" })
+);
+#endregion DI
+
+#region
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        name: "AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:44313", "http://localhost:4200", "https://otomasyon.matli.com.tr", "https://otomasyontest.matli.com.tr")
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                   .AllowCredentials();
+        });
+});
+#endregion cors
+
+var app = builder.Build();
+
+using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<SuHatScadaDbContext>();
+    var result = context.Database.EnsureCreated();
+}
+
+// Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseCors("AllowSpecificOrigin");
+//middleware
+app.UseExceptionHandler(appError => appError.UseMiddleware<ExceptionMiddleware>());
+
+app.UseHttpsRedirection();
+app.UseWebSockets();
+// WebSocket desteði ekle
+//var webSocketOptions = new WebSocketOptions
+//{
+//    KeepAliveInterval = TimeSpan.FromSeconds(120),
+//    ReceiveBufferSize = 4 * 1024
+//};
+
+//app.UseWebSockets(webSocketOptions);
+
+//// Devamýnda WebSocket request kontrolü
+//app.Use(async (context, next) =>
+//{
+//    if (context.WebSockets.IsWebSocketRequest)
+//    {
+//        WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
+//        // WebSocket baðlantýsý burada yönetilir
+//    }
+//    else
+//    {
+//        await next();
+//    }
+//});
+
+app.UseRouting();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+//app.UseSession();
+
+// SignalR Hub'ýný API katmanýnda mapleyelim
+//app.MapHub<SuHatScada.API.SignalRHub>("/signalrHub");
+app.MapHub<SuHatScada.API.SignalRHubExpert>("/signalrHubExpert");
+app.Run();

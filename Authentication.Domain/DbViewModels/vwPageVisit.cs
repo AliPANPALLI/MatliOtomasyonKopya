@@ -1,0 +1,36 @@
+﻿namespace Authentication.Domain.DbViewModels
+{
+    public class vwPageVisit
+    {
+        public string? UserId { get; set; }
+        public string? LocalName { get; set; }
+        public string? HostName { get; set; }
+        public string? Browser { get; set; }
+        public string? BrowserVersion { get; set; }
+        public bool? IsMobile { get; set; }
+        public string? NetIp { get; set; }
+        public string? LocalIp { get; set; }
+        public DateTime? LoginTime { get; set; }
+        public string? Aciklama { get; set; }
+
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public string? UserFullName { get; set; }
+        public string? Email { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? UserName { get; set; }
+        public byte[]? ProfilePhoto { get; set; }
+        public string? Position { get; set; }
+        public bool? Silindi { get; set; }
+        public string? LokasyonName { get; set; }
+        public string? SirketName { get; set; }
+
+        public string? PageName { get; set; }
+        public DateTime? ZiyaretZamani { get; set; }
+        public string? FormLink { get; set; }
+        public string? ModulLink { get; set; }
+        public string? ModulName { get; set; }
+        public string? UrlTargetIdName { get; set; }
+        public string? ActivePageName { get; set; }
+    }
+}

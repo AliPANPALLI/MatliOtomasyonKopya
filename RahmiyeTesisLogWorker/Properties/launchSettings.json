@@ -1,0 +1,11 @@
+﻿{
+  "profiles": {
+    "RahmiyeTesisLogWorker": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Production"
+      }
+    }
+  }
+}

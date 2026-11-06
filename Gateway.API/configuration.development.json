@@ -1,0 +1,890 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44338
+        }
+      ],
+      "UpstreamPathTemplate": "/authentication/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44316
+        }
+      ],
+      "UpstreamPathTemplate": "/panokimliklendirme/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44321
+        }
+      ],
+      "UpstreamPathTemplate": "/ticket/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44371
+        }
+      ],
+      "UpstreamPathTemplate": "/nesneizleme/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44340
+        }
+      ],
+      "UpstreamPathTemplate": "/projetakip/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "PATCH"
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44346
+        }
+      ],
+      "UpstreamPathTemplate": "/siloscada/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE",
+        "PATCH"
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44347
+        }
+      ],
+      "UpstreamPathTemplate": "/mobilguncelleme/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT"
+      ],
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Cizim/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/Cizim/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Cizim/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/Cizim/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Kumes/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/Kumes/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/HegAlarm/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44345
+        }
+      ],
+      "UpstreamPathTemplate": "/hegsogutmascada/HegAlarm/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/HegSogutmaRapor/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44345
+        }
+      ],
+      "UpstreamPathTemplate": "/hegsogutmascada/HegSogutmaRapor/{everything}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Konveyor/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/Konveyor/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/KumesRaporRehber/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/KumesRaporRehber/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/RaporVeri/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/RaporVeri/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/KumesHaftalikCatiKontrol/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/KumesHaftalikCatiKontrol/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/NekropsiRaporu/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/NekropsiRaporu/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/vg/yumurtlama/genel-veri",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/vg/yumurtlama/genel-veri",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/vg/yumurtlama/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesscada/vg/yumurtlama/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    ///////////////////////
+    {
+      "DownstreamPathTemplate": "/api/Cizim/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suhatscada/Cizim/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Cizim/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suhatscada/Cizim/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/SuKaynak/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suhatscada/SuKaynak/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Proxy/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suhatscada/Proxy/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Proxy/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suhatscada/Proxy/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Put", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    //////////////
+    {
+      "DownstreamPathTemplate": "/api/NetgsmReport/report",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44339
+        }
+      ],
+      "UpstreamPathTemplate": "/shared/NetgsmReport/report",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/ProductionReport/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44339
+        }
+      ],
+      "UpstreamPathTemplate": "/shared/ProductionReport/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "HttpHandlerOptions": { "AllowAutoRedirect": false },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44339
+        }
+      ],
+      "UpstreamPathTemplate": "/shared/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44343
+        }
+      ],
+      "UpstreamPathTemplate": "/enerjiizleme/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false // Yönlendirmeyi kapatır
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer", // JWT auth provider'ı
+        "AllowedScopes": [] // Bu alanı boş bırakabilirsiniz, ihtiyaç varsa scope ekleyebilirsiniz
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}" // JWT token'ı downstream'e aktarıyoruz
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "KeepAlive": true
+    },
+    {
+      "DownstreamPathTemplate": "/signalrHub/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesSignalR/signalrHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true
+    },
+    {
+      "UpstreamPathTemplate": "/kumesSignalR/kumesRaporHub/{**catchAll}",
+      "UpstreamHttpMethod": [ "GET", "POST", "OPTIONS" ],
+      "DownstreamPathTemplate": "/kumesSignalR/kumesRaporHub/{**catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UseWebSockets": true,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/kumesRaporHub/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesSignalR/kumesRaporHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToDownstream": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequest": {
+        "Authorization": "{Authorization}"
+      },
+      "AddHeadersToRequestHeaders": {
+        "Authorization": "{Authorization}"
+      },
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false,
+        "UseCookieContainer": true,
+        "DangerousAcceptAnyServerCertificateValidator": true
+      }
+    },
+    //{
+    //  "DownstreamPathTemplate": "/kumesRaporHub",
+    //  "UpstreamPathTemplate": "/tesisRaporSignalR/kumesRaporHub",
+    //  "DownstreamScheme": "https",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 44317
+    //    }
+    //  ],
+    //  "UpstreamHttpMethod": [ "GET", "POST" ],
+    //  "UseWebSockets": true,
+    //  "AuthenticationOptions": {
+    //    "AuthenticationProviderKey": "Bearer",
+    //    "AllowedScopes": []
+    //  },
+    //  "AddHeadersToDownstream": {
+    //    "Authorization": "{Authorization}"
+    //  }
+    //},
+    //{
+    //  "DownstreamPathTemplate": "/kumesRaporHub",
+    //  "DownstreamScheme": "https",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 44317
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/tesisRaporSignalR/kumesRaporHub",
+    //  "UpstreamHttpMethod": [ "GET", "POST" ],
+    //  "UseWebSockets": true,
+    //  "HttpHandlerOptions": {
+    //    "AllowAutoRedirect": false,
+    //    "UseCookieContainer": true,
+    //    "DangerousAcceptAnyServerCertificateValidator": true
+    //  }
+    //},
+    {
+      "DownstreamPathTemplate": "/testHub/{everything}",
+      "DownstreamScheme": "wss",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/testSignalR/testHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false,
+        "UseCookieContainer": true,
+        "DangerousAcceptAnyServerCertificateValidator": true
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/kumesAlarmHub",
+      "DownstreamScheme": "wss",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44317
+        }
+      ],
+      "UpstreamPathTemplate": "/kumesAlarmSignalR/kumesAlarmHub",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false,
+        "UseCookieContainer": true,
+        "DangerousAcceptAnyServerCertificateValidator": true
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/signalrHub/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suHatScadaSignalR/signalrHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true
+    },
+    {
+      "DownstreamPathTemplate": "/signalrHubExpert/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44319
+        }
+      ],
+      "UpstreamPathTemplate": "/suHatScadaSignalR/signalrHubExpert/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true
+    },
+    {
+      "DownstreamPathTemplate": "/makineIzlemeHub/{everything}",
+      "DownstreamScheme": "wss",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44325
+        }
+      ],
+      "UpstreamPathTemplate": "/signalR/makineIzlemeHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false,
+        "UseCookieContainer": true,
+        "DangerousAcceptAnyServerCertificateValidator": true
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/kumesEnerjiIzlemeHub/{everything}",
+      "DownstreamScheme": "wss",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44343
+        }
+      ],
+      "UpstreamPathTemplate": "/signalR/kumesEnerjiIzlemeHub/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseWebSockets": true,
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": false,
+        "UseCookieContainer": true,
+        "DangerousAcceptAnyServerCertificateValidator": true
+      }
+    },
+    //{
+    //  "UpstreamPathTemplate": "/ws/deneme",
+    //  "DownstreamPathTemplate": "/ws/deneme",
+    //  "DownstreamScheme": "wss",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "pm-aus-cmcd-15.matli.com.tr",
+    //      "Port": 443
+    //    }
+    //  ]
+    //}
+    {
+      "UpstreamPathTemplate": "/ws/deneme",
+      "DownstreamPathTemplate": "/ws/deneme",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.11",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/frigo",
+      "DownstreamPathTemplate": "/ws/frigo",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.11",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/siloscada/{everything}",
+      "DownstreamPathTemplate": "/ws/siloscada/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 6060
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/tesis-izleme",
+      "DownstreamPathTemplate": "/tesis-izleme",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws-api/{everything}",
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/deneme2",
+      "DownstreamPathTemplate": "/device-stream",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.12",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/osmancali23/{everything}",
+      "DownstreamPathTemplate": "/ws/osmancali23/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/suizleme/{everything}",
+      "DownstreamPathTemplate": "/ws/suizleme/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/kumesicidashboard/{everything}",
+      "DownstreamPathTemplate": "/ws/kumesicidashboard/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/haritagorunum/{everything}",
+      "DownstreamPathTemplate": "/ws/haritagorunum/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/tablogorunum/{everything}",
+      "DownstreamPathTemplate": "/ws/tablogorunum/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/kartgorunum/{everything}",
+      "DownstreamPathTemplate": "/ws/kartgorunum/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.1.180.10",
+          "Port": 1880
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/ws/oda/{everything}",
+      "DownstreamPathTemplate": "/ws/oda/{everything}",
+      "DownstreamScheme": "ws",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "10.160.50.150",
+          "Port": 1880
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:44313",
+    "RequestIdKey": "OcRequestId", //"ServiceDiscoveryProvider": { //  "Host": "localhost", //  "Port": 8500, //  "Type": "Consul" //}
+    "Forwarding": {
+      "AllowForwarding": true
+    }
+  }
+}

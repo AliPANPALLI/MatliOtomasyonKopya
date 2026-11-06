@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-EnerjiIzlemeAlarmWorker-6a94c7b2-d59c-439e-a574-d1bb5c6cb704</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="9.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EnerjiIzleme.Domain\EnerjiIzleme.Domain.csproj" />
+    <ProjectReference Include="..\EnerjiIzleme.Infrastructure\EnerjiIzleme.Infrastructure.csproj" />
+    <ProjectReference Include="..\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

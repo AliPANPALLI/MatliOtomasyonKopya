@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+	  <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExtreme.AspNet.Core" Version="26.1.5" />
+    <PackageReference Include="DevExtreme.AspNet.Data" Version="5.1.0" />
+    <PackageReference Include="Mapster" Version="10.0.9" />
+    <PackageReference Include="Mapster.DependencyInjection" Version="10.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KumesScada.Application\KumesScada.Application.csproj" />
+    <ProjectReference Include="..\KumesScada.Infrastructure\KumesScada.Infrastructure.csproj" />
+    <ProjectReference Include="..\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

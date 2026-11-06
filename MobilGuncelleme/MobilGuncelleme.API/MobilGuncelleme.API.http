@@ -1,0 +1,28 @@
+@host = https://localhost:44347
+@token = <login'den alınan JWT>
+
+### Mobil: sürüm kontrolü (girişten sonra tek istek)
+POST {{host}}/api/Surum/Kontrol
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "cihazId": "8f1c2b9e-0000-4000-8000-000000000001", "versionCode": 12, "cihazModeli": "SM-A325F", "androidSurumu": "13" }
+
+### Mobil: APK indir
+GET {{host}}/api/Surum/7/Indir
+Authorization: Bearer {{token}}
+
+### Admin: sürüm listesi
+GET {{host}}/api/Surum
+Authorization: Bearer {{token}}
+
+### Admin: aktif/pasif
+PUT {{host}}/api/Surum/7/Aktiflik
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "aktif": false }
+
+### Admin: cihaz listesi
+GET {{host}}/api/Cihaz
+Authorization: Bearer {{token}}

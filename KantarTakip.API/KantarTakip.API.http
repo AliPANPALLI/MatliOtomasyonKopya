@@ -1,0 +1,6 @@
+@KantarTakip.API_HostAddress = http://localhost:5027
+
+GET {{KantarTakip.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-Kayislar1Worker-061872c0-0411-4e56-bb48-7e06da7c47b7</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastMember" Version="1.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="9.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="9.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.17" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KumesScada.Infrastructure\KumesScada.Infrastructure.csproj" />
+    <ProjectReference Include="..\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
