@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 
-namespace Gateway.API
+namespace MatliOtomasyon.Gateway
 {
     public class TokenExchangeDelegateHandler : DelegatingHandler
     {

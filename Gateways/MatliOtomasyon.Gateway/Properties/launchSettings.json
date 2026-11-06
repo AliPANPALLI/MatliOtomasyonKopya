@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Gateway.API": {
+    "MatliOtomasyon.Gateway": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

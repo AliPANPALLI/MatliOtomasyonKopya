@@ -1,4 +1,4 @@
-using Gateway.API;
+using MatliOtomasyon.Gateway;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;

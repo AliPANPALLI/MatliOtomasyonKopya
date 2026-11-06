@@ -7,6 +7,8 @@
 ```
 MatliOtomasyon/
 ├── MatliOtomasyon.sln
+├── Gateways/
+│   └── MatliOtomasyon.Gateway   Tek dış giriş noktası (Ocelot); Faz 7'de YARP'a geçecek
 ├── Identity/                 Kimlik doğrulama (Faz 4'te tek proje MatliOtomasyon.Identity olacak)
 │   ├── Authentication.API
 │   ├── Authentication.Application
@@ -74,7 +76,7 @@ Gateway route'ları (`/kumesscada/...` gibi) ve veritabanı adları (`OTM_KumesS
 
 Worker'ların DB'ye yazdığı servis durum adları (örneğin `"SuIzlemeWorker"`) ve `UserSecretsId` değerleri bilerek eski haliyle bırakıldı: servis izleme ekranı bu adlara bakıyor, yerel secret'lar da bu kimliklere bağlı.
 
-**Sıradaki taşımalar:** gateway `Gateways/MatliOtomasyon.Gateway`'e (Adım 1.7), `SharedKernel` ise `BuildingBlocks/MatliOtomasyon.Shared` altında 4 katmana (Adım 1.8) taşınacak.
+**Sıradaki taşıma:** `SharedKernel`, `BuildingBlocks/MatliOtomasyon.Shared` altında 4 katmana (Domain, Application, Infrastructure, Web) bölünecek (Adım 1.8).
 
 ## Güvenlik notları
 

@@ -12,7 +12,7 @@
     <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\SharedKernel\SharedKernel.csproj" />
     <PackageReference Include="DevExtreme.AspNet.Core" Version="24.1.7" />
     <PackageReference Include="DevExtreme.AspNet.Data" Version="4.0.2" />
   </ItemGroup>
