@@ -7,7 +7,7 @@ namespace SiloTemperatureMonitoring.Infrastructure
     // Bu context, ITG tesisiyle paylaşılan ortak TimescaleDB şemasını (FACILITY/DEPOT/
     // SENSOR_CABLE/TEMPERATURE_SENSOR/TEMPERATURE_READING/...) salt okunur ağırlıklı
     // olarak eşler (bkz. HegSogutmaScadaDbContext). Bilerek migration içermiyor - şema
-    // Servisler/ItgTemperatureIngestionWorker tarafındaki DDL ile zaten var; buradan asla
+    // Workers/ItgTemperatureIngestion tarafındaki DDL ile zaten var; buradan asla
     // migrate edilmemeli. İkinci bir (IConfiguration alan) constructor da bilerek yok -
     // iki constructor DI'da "ambiguous" hatasına yol açıyordu (bkz. aynı not Heg'de).
     public class SiloSicaklikIzlemeDbContext : DbContext

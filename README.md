@@ -18,6 +18,9 @@ MatliOtomasyon/
 │       ├── <Service>.Application
 │       ├── <Service>.Domain
 │       └── <Service>.Infrastructure
+├── Workers/                  Her arka plan worker'ı kendi klasöründe
+│   └── <Name>/
+│       └── <Name>.Worker     (Application/Infrastructure katmanları Adım 1.6'da açılacak)
 └── tests/
 ```
 
@@ -43,7 +46,26 @@ Klasör adları, proje adları ve namespace'ler İngilizcedir; özel adlar (Matl
 
 Gateway route'ları (`/kumesscada/...` gibi) ve veritabanı adları (`OTM_KumesScada` gibi) bu adımda değişmedi; frontend etkilenmez.
 
-**Sıradaki taşımalar:** worker'lar `Workers/<Name>/` altına (Adım 1.5–1.6), gateway `Gateways/MatliOtomasyon.Gateway`'e (Adım 1.7), `SharedKernel` ise `BuildingBlocks/MatliOtomasyon.Shared` altında 4 katmana (Adım 1.8) taşınacak.
+| Worker | Eski adı | Görevi |
+|---|---|---|
+| `AlarmNotification` | AlarmWorker | Kümes, su hattı ve enerji alarmlarını değerlendirip bildirir |
+| `EnergyMonitoringAlarm` | EnerjiIzlemeAlarmWorker | Enerji izleme alarmları |
+| `HegCoolingAlarm` | HegSogutmaAlarmWorker | HEG soğutma alarmlarını değerlendirip bildirir |
+| `Kayislar1`, `Kuyucak1`, `Osmancali1` | Kayislar1Worker, Kuyucak1Worker, Osmancali1Worker | Tesis kümeslerinin Node-RED/PLC verisini okur |
+| `Kayislar1Log`, `Kuyucak1Log`, `Osmancali1Log` | Kayislar1LogWorker, Kuyucak1LogWorker, Osmancali1LogWorker | Tesis kümes verisini periyodik log olarak kaydeder |
+| `RahmiyeFacility`, `RahmiyeFacilityLog` | RahmiyeTesisWorker, RahmiyeTesisLogWorker | Rahmiye tesisinin canlı verisi ve log kaydı |
+| `RahmiyeYtk`, `VerimGidaYtk` | RahmiyeYTKWorker, VerimGidaYTKWorker | YTK rapor verisi |
+| `VerimGidaPiPoultryHouse`, `VerimGidaPiPoultryHouseLog` | VerimGidaPiKumesWorker, VerimGidaPiKumesLogWorker | VerimGida kümes verisi ve log kaydı |
+| `WaterMonitoring`, `WaterMonitoringLog` | SuIzlemeWorker, SuIzlemeLogWorker | Su izleme lokasyonlarının canlı verisi ve log kaydı |
+| `PoultryHouseEnergyLog` | KumesEnerjiLogKayitWorker | Kümes enerji tüketimi log kaydı |
+| `EmailDispatch`, `SmsDispatch`, `VoiceCallDispatch` | MailGonderimWorker, SmsGonderimWorker, MesajGonderimWorker | Bekleyen e-posta, SMS ve sesli arama bildirimlerini gönderir |
+| `SapEmployeeSync` | SapPersonelWorker | SAP personel listesinden kullanıcıların sicil numarasını eşler |
+| `ServiceHealthMonitor` | ServisKontrolWorker | Worker'ların çalışma durumunu kontrol eder |
+| `ItgTemperatureIngestion` | Servisler/ItgTemperatureIngestionWorker | ITG sıcaklık telemetrisini RabbitMQ'dan alıp kaydeder |
+
+Worker'ların DB'ye yazdığı servis durum adları (örneğin `"SuIzlemeWorker"`) ve `UserSecretsId` değerleri bilerek eski haliyle bırakıldı: servis izleme ekranı bu adlara bakıyor, yerel secret'lar da bu kimliklere bağlı.
+
+**Sıradaki taşımalar:** worker'lara Application/Infrastructure katmanları (Adım 1.6), gateway `Gateways/MatliOtomasyon.Gateway`'e (Adım 1.7), `SharedKernel` ise `BuildingBlocks/MatliOtomasyon.Shared` altında 4 katmana (Adım 1.8) taşınacak.
 
 ## Güvenlik notları
 

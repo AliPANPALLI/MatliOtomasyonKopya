@@ -183,7 +183,7 @@ namespace SiloTemperatureMonitoring.Infrastructure.Repositories
         }
 
         // DbContext'in yönettiği aynı bağlantı üzerinden, ON CONFLICT ile tek
-        // transaction'da yazılır (bkz. ItgTemperatureIngestionWorker.TemperatureIngestRepository
+        // transaction'da yazılır (bkz. Workers/ItgTemperatureIngestion TemperatureIngestRepository
         // ile aynı desen) - EF Core'un SaveChanges'i native upsert desteklemediği için.
         public async Task InsertReadingsAndUpsertLatestAsync(IReadOnlyCollection<TemperatureReading> readings, CancellationToken cancellationToken = default)
         {
