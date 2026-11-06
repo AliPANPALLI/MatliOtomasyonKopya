@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Web\MatliOtomasyon.Shared.Web.csproj" />
     <ProjectReference Include="..\Ticket.Application\Ticket.Application.csproj" />
     <ProjectReference Include="..\Ticket.Infrastructure\Ticket.Infrastructure.csproj" />
   </ItemGroup>

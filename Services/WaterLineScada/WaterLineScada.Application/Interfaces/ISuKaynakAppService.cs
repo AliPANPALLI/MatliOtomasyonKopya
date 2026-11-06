@@ -1,8 +1,8 @@
-﻿using SharedKernel.Core;
-using WaterLineScada.Application.ViewModels;
+﻿using WaterLineScada.Application.ViewModels;
 using WaterLineScada.Domain.DbViewModels;
 using WaterLineScada.Domain.Models;
 using WaterLineScada.Domain.Models.ReportModels;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace WaterLineScada.Application.Interfaces
 {

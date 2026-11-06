@@ -1,6 +1,6 @@
 ﻿using SharedApp.Domain.DbViewModels;
 using SharedApp.Domain.Models;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace SharedApp.Domain.Interfaces
 {

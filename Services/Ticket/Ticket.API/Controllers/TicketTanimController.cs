@@ -1,7 +1,6 @@
 ﻿using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Extensions;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Security.Cryptography;
@@ -10,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using Ticket.Application.Interfaces;
 using Ticket.Application.ViewModels;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace Ticket.API.Controllers
 {

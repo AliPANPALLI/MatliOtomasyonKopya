@@ -7,8 +7,9 @@ using EnergyMonitoring.Infrastructure.Repositories;
 using EnergyMonitoring.Infrastructure.Repositories.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using SharedKernel.Core;
-using SharedKernel.Extensions;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
+using MatliOtomasyon.Shared.Web.Security;
 
 namespace EnergyMonitoring.Infrastructure
 {

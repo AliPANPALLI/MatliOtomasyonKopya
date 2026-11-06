@@ -23,7 +23,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\EnergyMonitoring.Application\EnergyMonitoring.Application.csproj" />
 		<ProjectReference Include="..\EnergyMonitoring.Infrastructure\EnergyMonitoring.Infrastructure.csproj" />
-		<ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+		<ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Web\MatliOtomasyon.Shared.Web.csproj" />
 	</ItemGroup>
 
 </Project>

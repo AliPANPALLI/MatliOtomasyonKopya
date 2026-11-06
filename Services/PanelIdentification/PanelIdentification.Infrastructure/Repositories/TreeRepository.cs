@@ -6,7 +6,7 @@ using PanelIdentification.Domain.Models;
 using PanelIdentification.Domain.Models.ReportModels;
 using SharedApp.Domain.Models;
 using System.Linq;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 using Bolum = PanelIdentification.Domain.Models.Bolum;
 
 namespace PanelIdentification.Infrastructure.Repositories

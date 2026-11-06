@@ -5,7 +5,7 @@ using PoultryHouseScada.Domain.Interfaces;
 using PoultryHouseScada.Domain.Models;
 using MapsterMapper;
 using PanelIdentification.Application.Services.Core;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace PoultryHouseScada.Application.Services
 {

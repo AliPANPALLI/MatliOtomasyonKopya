@@ -7,7 +7,7 @@ using SharedApp.Infrastructure;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 using VerimGidaPiPoultryHouseLog.Application.Models;
 using VerimGidaPiPoultryHouseLog.Infrastructure.Caching;
 

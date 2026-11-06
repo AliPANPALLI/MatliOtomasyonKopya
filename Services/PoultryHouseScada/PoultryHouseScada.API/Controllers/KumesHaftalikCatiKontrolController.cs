@@ -1,7 +1,7 @@
 ﻿using PoultryHouseScada.Application.Interfaces;
 using PoultryHouseScada.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Extensions;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace PoultryHouseScada.API.Controllers
 {

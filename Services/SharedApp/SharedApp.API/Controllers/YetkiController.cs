@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using SharedApp.Application.Interfaces;
 using SharedApp.Infrastructure.Sender;
-using SharedKernel.Extensions;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using static SharedKernel.ViewModels.UserYetkiClaimViewModel;
+using static MatliOtomasyon.Shared.Application.ViewModels.UserPermissionClaimViewModel;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace SharedApp.API.Controllers
 {

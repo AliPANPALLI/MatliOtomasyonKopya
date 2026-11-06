@@ -1,11 +1,11 @@
 ﻿using DevExtreme.AspNet.Data.ResponseModel;
 using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Http;
-using SharedKernel.Core;
 using Ticket.Application.ViewModels;
 using Ticket.Domain.DbViewModels;
 using Ticket.Domain.Models;
 using Ticket.Domain.Models.ReportModels;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace Ticket.Application.Interfaces
 {

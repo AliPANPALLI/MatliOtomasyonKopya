@@ -14,7 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ProjectTracking.Application\ProjectTracking.Application.csproj" />
     <ProjectReference Include="..\ProjectTracking.Infrastructure\ProjectTracking.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Web\MatliOtomasyon.Shared.Web.csproj" />
   </ItemGroup>
 
 </Project>

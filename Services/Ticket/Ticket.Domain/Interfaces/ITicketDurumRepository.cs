@@ -1,5 +1,5 @@
-﻿using SharedKernel.Core;
-using Ticket.Domain.Models;
+﻿using Ticket.Domain.Models;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace Ticket.Domain.Interfaces
 {

@@ -4,7 +4,7 @@ using PoultryHouseScada.Application.RequestModels;
 using PoultryHouseScada.Application.ViewModels;
 using PoultryHouseScada.Domain.Interfaces;
 using PoultryHouseScada.Domain.Models;
-using SharedKernel;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace PoultryHouseScada.Application.Services
 {

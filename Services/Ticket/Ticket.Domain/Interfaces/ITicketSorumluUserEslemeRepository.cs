@@ -1,6 +1,6 @@
-﻿using SharedKernel.Core;
-using Ticket.Domain.DbViewModels;
+﻿using Ticket.Domain.DbViewModels;
 using Ticket.Domain.Models;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace Ticket.Domain.Interfaces
 {

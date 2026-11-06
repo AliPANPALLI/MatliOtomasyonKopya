@@ -2,7 +2,7 @@ using Authentication.Domain.Interfaces;
 using Authentication.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using OtpNet;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 
 namespace Authentication.Infrastructure.Repositories

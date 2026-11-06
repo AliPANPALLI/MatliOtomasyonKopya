@@ -7,7 +7,7 @@ using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
 using System.Data;
 using System.Text.Json;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 using AlarmLog = PoultryHouseScada.Domain.Models.AlarmLog;
 using VerimGidaYtk.Application.Models;
 using VerimGidaYtk.Infrastructure.Caching;

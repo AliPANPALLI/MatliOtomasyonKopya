@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace WaterLineScada.API.Controllers
 {

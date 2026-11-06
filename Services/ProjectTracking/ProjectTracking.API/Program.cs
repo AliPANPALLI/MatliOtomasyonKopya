@@ -4,8 +4,8 @@ using ProjectTracking.Infrastructure.Persistence;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using ProjectTracking.API.Security;
-using SharedKernel.Configurations;
-using SharedKernel.Extensions;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
+using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Infrastructure\MatliOtomasyon.Shared.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,9 +7,10 @@ using WeighbridgeTracking.Infrastructure.Repositories;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SharedKernel.Extensions;
 using System;
 using System.Net.Http;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Web.Security;
 
 namespace WeighbridgeTracking.Infrastructure
 {

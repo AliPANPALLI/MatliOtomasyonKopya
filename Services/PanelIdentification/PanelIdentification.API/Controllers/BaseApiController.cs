@@ -1,8 +1,8 @@
 ﻿using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Core;
-using SharedKernel.DevExpressModel;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Application.DataGrid;
 
 namespace PanelIdentification.API.Controllers
 {

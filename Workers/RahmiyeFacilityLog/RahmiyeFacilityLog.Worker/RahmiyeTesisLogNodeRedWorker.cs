@@ -10,6 +10,7 @@ using System.Text.Json;
 using RahmiyeFacilityLog.Application.Models;
 using RahmiyeFacilityLog.Infrastructure.Caching;
 using RahmiyeFacilityLog.Infrastructure.Sap;
+using MatliOtomasyon.Shared.Application.Constants;
 
 namespace RahmiyeFacilityLog.Worker
 {

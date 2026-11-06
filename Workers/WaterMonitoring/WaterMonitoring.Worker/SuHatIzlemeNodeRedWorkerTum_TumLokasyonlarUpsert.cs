@@ -2,17 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
-using SharedKernel;
 using WaterLineScada.Domain.Models;
 using WaterLineScada.Infrastructure;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 using AlarmLog = WaterLineScada.Domain.Models.AlarmLog;
 using WaterMonitoring.Application.Models;
 using WaterMonitoring.Infrastructure.Caching;
+using MatliOtomasyon.Shared.Application.Constants;
 
 namespace WaterMonitoring.Worker
 {

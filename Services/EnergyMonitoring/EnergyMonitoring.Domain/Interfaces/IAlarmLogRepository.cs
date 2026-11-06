@@ -1,6 +1,6 @@
 ﻿using EnergyMonitoring.Domain.DbViewModels;
 using EnergyMonitoring.Domain.Models;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace EnergyMonitoring.Domain.Interfaces
 {

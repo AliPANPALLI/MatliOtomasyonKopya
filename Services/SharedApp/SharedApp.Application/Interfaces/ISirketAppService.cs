@@ -2,7 +2,7 @@
 using SharedApp.Application.ViewModels.ReportViewModels;
 using SharedApp.Domain.Models;
 using SharedApp.Domain.Models.ReportModels;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace SharedApp.Application.Interfaces
 {

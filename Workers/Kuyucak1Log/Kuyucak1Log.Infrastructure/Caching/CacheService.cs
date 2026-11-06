@@ -3,7 +3,7 @@ using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace Kuyucak1Log.Infrastructure.Caching
 {

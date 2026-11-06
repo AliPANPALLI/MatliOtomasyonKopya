@@ -5,7 +5,6 @@ using EnergyMonitoring.Domain.Models.ReportModels;
 using Microsoft.AspNetCore.Http.Timeouts;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SharedKernel.Extensions;
 
 namespace EnergyMonitoring.API.Controllers
 {

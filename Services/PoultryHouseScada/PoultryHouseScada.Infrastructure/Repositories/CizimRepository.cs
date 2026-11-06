@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace PoultryHouseScada.Infrastructure.Repositories
 {

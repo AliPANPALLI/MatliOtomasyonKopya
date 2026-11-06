@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SharedApp\SharedApp.Domain\SharedApp.Domain.csproj" />
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Infrastructure\MatliOtomasyon.Shared.Infrastructure.csproj" />
     <ProjectReference Include="..\WaterLineScada.Domain\WaterLineScada.Domain.csproj" />
   </ItemGroup>
 

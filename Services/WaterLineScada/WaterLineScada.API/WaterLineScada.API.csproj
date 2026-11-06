@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Web\MatliOtomasyon.Shared.Web.csproj" />
     <ProjectReference Include="..\WaterLineScada.Application\WaterLineScada.Application.csproj" />
     <ProjectReference Include="..\WaterLineScada.Infrastructure\WaterLineScada.Infrastructure.csproj" />
   </ItemGroup>

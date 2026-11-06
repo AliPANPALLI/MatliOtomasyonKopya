@@ -25,8 +25,25 @@ MatliOtomasyon/
 │       ├── <Name>.Worker            Host: Program.cs, BackgroundService döngüleri, appsettings
 │       ├── <Name>.Application       Models/ (Node-RED/SAP veri modelleri)
 │       └── <Name>.Infrastructure    Caching/, Sap/, Persistence/; veri erişim paketleri ve diğer servislere referanslar
+├── BuildingBlocks/
+│   └── MatliOtomasyon.Shared/
+│       ├── MatliOtomasyon.Shared.Domain          Exceptions/ (BusinessException)
+│       ├── MatliOtomasyon.Shared.Application     Abstractions/, Constants/, DataGrid/, Menus/, ViewModels/
+│       ├── MatliOtomasyon.Shared.Infrastructure  Persistence/ (IRepository), Configuration/ (token ayarları, ApiUrls); EF, Mongo, Serilog
+│       └── MatliOtomasyon.Shared.Web             Security/ (JWT doğrulama, UserExtension), Errors/ (ExceptionMiddleware); ASP.NET Core
 └── tests/
 ```
+
+`MatliOtomasyon.Shared` katmanları tek yönlü bağımlıdır: `Domain` ← `Application` ← `Infrastructure` ← `Web`. Servis katmanları kendi eşleniğine bağlanmalıdır: `X.Domain` → `Shared.Domain`, `X.Application` → `Shared.Application`, `X.Infrastructure` → `Shared.Infrastructure`, `X.API` → `Shared.Web`.
+
+**Bilinen katman ihlalleri.** Aşağıdaki projeler bugün eşleniğinden daha üst bir Shared katmanına bağlı. Bunlar yeni değil; eskiden hepsi tek `SharedKernel` içinde gizliydi, bölünmeyle görünür oldu. Adım 1.9'daki mimari testlerde istisna olarak tutulacak, ilgili servis refactor edildikçe listeden düşecek:
+
+| İhlal | Projeler | Sebep |
+|---|---|---|
+| Domain → `Shared.Infrastructure` | PanelIdentification, PoultryHouseScada, SharedApp, Ticket, WaterLineScada | Repository arayüzleri EF tiplerini sızdıran `IRepository<T>`'den türüyor |
+| Application → `Shared.Infrastructure` | Authentication, PanelIdentification, PoultryHouseScada, SharedApp, Ticket, WaterLineScada | Uygulama servisleri `IRepository<T>`'yi doğrudan kullanıyor |
+| Infrastructure → `Shared.Web` | EnergyMonitoring, EnvironmentMonitoringScada, MachineMonitoring, ObjectMonitoring, PoultryHouseScada, SharedApp, Ticket, WeighbridgeTracking | DI kaydında web katmanındaki `UserExtension` kullanılıyor |
+| Domain/Application → ASP.NET Core | Authentication.Domain, PanelIdentification.Application | Domain/uygulama kodunda `HttpContext` ve `IFormFile` kullanılıyor |
 
 Worker katman kuralları:
 
@@ -76,7 +93,7 @@ Gateway route'ları (`/kumesscada/...` gibi) ve veritabanı adları (`OTM_KumesS
 
 Worker'ların DB'ye yazdığı servis durum adları (örneğin `"SuIzlemeWorker"`) ve `UserSecretsId` değerleri bilerek eski haliyle bırakıldı: servis izleme ekranı bu adlara bakıyor, yerel secret'lar da bu kimliklere bağlı.
 
-**Sıradaki taşıma:** `SharedKernel`, `BuildingBlocks/MatliOtomasyon.Shared` altında 4 katmana (Domain, Application, Infrastructure, Web) bölünecek (Adım 1.8).
+**Klasör dönüşümü tamamlandı.** Sıradaki adımlar: mimari testler (Adım 1.9) ve kod seviyesinde İngilizce isimlendirme (Adım 1.10).
 
 ## Güvenlik notları
 

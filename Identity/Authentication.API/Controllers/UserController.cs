@@ -3,7 +3,6 @@ using Authentication.API.Security;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using SharedKernel.Configurations;
 using Authentication.Application.ViewModels;
 using Authentication.Domain.Models;
 using Authentication.Domain.Interfaces;
@@ -16,6 +15,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace Authentication.API.Controllers
 {

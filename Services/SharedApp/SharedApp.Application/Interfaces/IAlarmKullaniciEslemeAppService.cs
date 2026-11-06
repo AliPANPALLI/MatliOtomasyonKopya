@@ -2,7 +2,7 @@
 using SharedApp.Application.ViewModels;
 using SharedApp.Domain.DbViewModels;
 using SharedApp.Domain.Models.ReportModels;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace SharedApp.Application.Interfaces
 {

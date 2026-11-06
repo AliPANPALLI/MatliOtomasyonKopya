@@ -2,7 +2,7 @@
 using SharedApp.Domain.DbViewModels;
 using SharedApp.Domain.Interfaces;
 using SharedApp.Domain.Models;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace SharedApp.Infrastructure.Repositories
 {

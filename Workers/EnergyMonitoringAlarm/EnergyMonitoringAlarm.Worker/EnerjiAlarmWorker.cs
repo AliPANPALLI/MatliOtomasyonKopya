@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 using AlarmLog = EnergyMonitoring.Domain.Models.AlarmLog;
 
 namespace EnergyMonitoringAlarm.Worker

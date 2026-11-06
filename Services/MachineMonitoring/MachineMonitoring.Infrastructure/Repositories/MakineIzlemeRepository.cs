@@ -1,7 +1,7 @@
 ﻿using MachineMonitoring.Domain.Interfaces;
 using MachineMonitoring.Domain.Models.ReportModels;
 using Microsoft.EntityFrameworkCore;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace MachineMonitoring.Infrastructure.Repositories
 {

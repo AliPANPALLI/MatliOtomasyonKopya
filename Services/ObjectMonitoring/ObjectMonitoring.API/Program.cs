@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ObjectMonitoring.Infrastructure;
-using SharedKernel.Middlewares;
+using MatliOtomasyon.Shared.Web.Errors;
 
 var builder = WebApplication.CreateBuilder(args);
 

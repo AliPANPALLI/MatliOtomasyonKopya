@@ -4,8 +4,6 @@ using DevExtreme.AspNet.Mvc;
 using MapsterMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using SharedKernel;
-using SharedKernel.Extensions;
 using System.Globalization;
 using System.Text.Json;
 using Ticket.Application.Interfaces;
@@ -15,7 +13,9 @@ using Ticket.Domain.DbViewModels;
 using Ticket.Domain.Interfaces;
 using Ticket.Domain.Models;
 using Ticket.Domain.Models.ReportModels;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
+using MatliOtomasyon.Shared.Domain.Exceptions;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace Ticket.Application.Services
 {

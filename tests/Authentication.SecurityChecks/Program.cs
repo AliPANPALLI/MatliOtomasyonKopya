@@ -12,12 +12,12 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using SharedKernel.Configurations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 var passed = 0;
 async Task Check(string name, Func<Task> test) { await test(); Console.WriteLine("PASS " + name); passed++; }

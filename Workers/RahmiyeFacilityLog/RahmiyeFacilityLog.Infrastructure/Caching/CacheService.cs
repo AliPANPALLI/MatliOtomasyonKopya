@@ -2,7 +2,7 @@
 using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace RahmiyeFacilityLog.Infrastructure.Caching
 {

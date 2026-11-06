@@ -2,8 +2,8 @@
 using SharedApp.Application.Interfaces;
 using SharedApp.Application.Services;
 using SharedApp.Application.ViewModels;
-using SharedKernel.Extensions;
 using System.Security.Claims;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace SharedApp.API.Controllers
 {

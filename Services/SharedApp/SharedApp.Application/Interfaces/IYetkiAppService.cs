@@ -1,7 +1,7 @@
 ﻿using SharedApp.Application.ViewModels;
 using SharedApp.Domain.DbViewModels;
 using SharedApp.Domain.Models;
-using static SharedKernel.ViewModels.UserYetkiClaimViewModel;
+using static MatliOtomasyon.Shared.Application.ViewModels.UserPermissionClaimViewModel;
 
 namespace SharedApp.Application.Interfaces
 {

@@ -7,9 +7,9 @@ using PanelIdentification.Application.ViewModels.ReportModels;
 using PanelIdentification.Domain.Models;
 using PanelIdentification.Domain.Models.ReportModels;
 using SharedApp.Domain.Models;
-using SharedKernel.Extensions;
 using System.Security.Claims;
 using System.Text.Json;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace PanelIdentification.API.Controllers
 {

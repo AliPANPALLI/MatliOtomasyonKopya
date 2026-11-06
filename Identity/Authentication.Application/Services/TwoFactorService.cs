@@ -3,8 +3,8 @@ using Authentication.Domain.Interfaces;
 using Authentication.Domain.Models;
 using SharedApp.Domain.Models;
 using System.Text.Json;
-using static SharedKernel.ApplicationConstants;
-using static SharedKernel.ApiUrls;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
+using static MatliOtomasyon.Shared.Infrastructure.Configuration.ApiUrls;
 
 namespace Authentication.Application.Services
 {

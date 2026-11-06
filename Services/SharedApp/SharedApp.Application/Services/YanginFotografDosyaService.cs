@@ -2,8 +2,9 @@
 using Microsoft.Extensions.Options;
 using SharedApp.Application.Interfaces;
 using SharedApp.Application.ViewModels.RequestModel;
-using SharedKernel;
 using System.Text;
+using MatliOtomasyon.Shared.Application.Constants;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace SharedApp.Application.Services
 {

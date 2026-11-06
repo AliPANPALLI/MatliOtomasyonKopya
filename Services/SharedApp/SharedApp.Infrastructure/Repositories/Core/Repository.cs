@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using SharedKernel.Core;
 using System.Linq.Expressions;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace SharedApp.Infrastructure.Repositories.Core
 {

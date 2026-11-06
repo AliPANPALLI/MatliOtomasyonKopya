@@ -1,6 +1,6 @@
 ﻿using PanelIdentification.Application.ViewModels;
 using PanelIdentification.Domain.Models;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace PanelIdentification.Application.Interfaces
 {

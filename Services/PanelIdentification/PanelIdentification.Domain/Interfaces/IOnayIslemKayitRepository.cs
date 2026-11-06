@@ -2,7 +2,7 @@
 using PanelIdentification.Domain.DbViewModels;
 using PanelIdentification.Domain.Models;
 using PanelIdentification.Domain.Models.ReportModels;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace PanelIdentification.Domain.Interfaces
 {

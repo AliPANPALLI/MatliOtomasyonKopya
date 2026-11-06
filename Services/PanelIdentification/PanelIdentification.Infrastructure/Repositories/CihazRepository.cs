@@ -2,7 +2,7 @@
 using PanelIdentification.Domain.Interfaces;
 using PanelIdentification.Domain.Models;
 using PanelIdentification.Infrastructure.Repositories.Core;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace PanelIdentification.Infrastructure.Repositories
 {

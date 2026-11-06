@@ -2,7 +2,7 @@
 using EnergyMonitoring.Domain.Models;
 using EnergyMonitoring.Domain.Models.ReportModels;
 using MongoDB.Bson;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace EnergyMonitoring.Domain.Interfaces
 {

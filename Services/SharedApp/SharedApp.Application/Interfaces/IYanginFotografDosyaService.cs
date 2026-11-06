@@ -1,6 +1,5 @@
 ﻿using SharedApp.Application.ViewModels;
 using SharedApp.Application.ViewModels.RequestModel;
-using SharedKernel.Core;
 
 namespace SharedApp.Application.Interfaces
 {

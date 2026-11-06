@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
 using System.Data;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 using RahmiyeYtk.Infrastructure.Caching;
 
 namespace RahmiyeYtk.Worker

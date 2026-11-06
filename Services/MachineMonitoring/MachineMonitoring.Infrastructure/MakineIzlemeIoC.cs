@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SharedKernel.Extensions;
 using Microsoft.AspNetCore.Http;
 using MachineMonitoring.Application.Services;
 using MachineMonitoring.Application.Interfaces;
 using MachineMonitoring.Domain.Interfaces;
 using MachineMonitoring.Infrastructure.Repositories;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Web.Security;
 
 namespace MachineMonitoring.Infrastructure
 {

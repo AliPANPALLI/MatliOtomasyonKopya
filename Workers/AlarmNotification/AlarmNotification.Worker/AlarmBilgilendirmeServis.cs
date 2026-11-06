@@ -6,7 +6,7 @@ using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using WaterLineScada.Infrastructure;
 using System.Text.RegularExpressions;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace AlarmNotification.Worker
 {

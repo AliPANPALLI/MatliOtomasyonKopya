@@ -3,7 +3,7 @@ using EnergyMonitoring.Domain.Interfaces;
 using EnergyMonitoring.Domain.Models;
 using EnergyMonitoring.Domain.Models.ReportModels;
 using Microsoft.EntityFrameworkCore;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace EnergyMonitoring.Infrastructure.Repositories
 {

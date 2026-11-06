@@ -4,7 +4,8 @@ using ObjectMonitoring.Application.Interfaces;
 using ObjectMonitoring.Application.Services;
 using ObjectMonitoring.Domain.Interfaces;
 using ObjectMonitoring.Infrastructure.Repositories;
-using SharedKernel.Extensions;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Web.Security;
 
 namespace ObjectMonitoring.Infrastructure
 {

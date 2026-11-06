@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Core;
 using DevExtreme.AspNet.Mvc;
 using DevExtreme.AspNet.Data;
-using SharedKernel.DevExpressModel;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Application.DataGrid;
 
 namespace SharedApp.API.Controllers
 {

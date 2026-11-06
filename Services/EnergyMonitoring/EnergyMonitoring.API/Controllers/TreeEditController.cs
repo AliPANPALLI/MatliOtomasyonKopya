@@ -2,9 +2,9 @@
 using EnergyMonitoring.Application.Interfaces;
 using EnergyMonitoring.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Extensions;
 using System.Security.Claims;
 using System.Text.Json;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace EnergyMonitoring.API.Controllers
 {

@@ -3,7 +3,7 @@ using SharedApp.Domain.DbViewModels;
 using SharedApp.Domain.Interfaces;
 using SharedApp.Domain.Models;
 using SharedApp.Infrastructure.Repositories.Core;
-using SharedKernel.Menus;
+using MatliOtomasyon.Shared.Application.Menus;
 
 namespace SharedApp.Infrastructure.Repositories
 {

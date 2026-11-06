@@ -19,7 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SiloTemperatureMonitoring.Application\SiloTemperatureMonitoring.Application.csproj" />
     <ProjectReference Include="..\SiloTemperatureMonitoring.Infrastructure\SiloTemperatureMonitoring.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Web\MatliOtomasyon.Shared.Web.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 using MobileUpdate.Application.Dtos;
 using MobileUpdate.Application.Interfaces;
 using MobileUpdate.Domain.Entities;
-using SharedKernel.Extensions;
+using MatliOtomasyon.Shared.Domain.Exceptions;
 
 namespace MobileUpdate.Application.Services
 {

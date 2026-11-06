@@ -1,6 +1,6 @@
 ﻿using PoultryHouseScada.Application.ViewModels;
 using PoultryHouseScada.Domain.Models;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace PoultryHouseScada.Application.Interfaces
 {

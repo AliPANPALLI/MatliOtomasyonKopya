@@ -1,6 +1,6 @@
 ﻿using SharedApp.Domain.Models;
 using SharedApp.Domain.Models.ReportModels;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace SharedApp.Domain.Interfaces
 {

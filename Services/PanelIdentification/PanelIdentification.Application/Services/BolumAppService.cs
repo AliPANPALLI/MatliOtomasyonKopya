@@ -5,7 +5,7 @@ using PanelIdentification.Application.ViewModels;
 using PanelIdentification.Domain.Interfaces;
 using PanelIdentification.Domain.Models;
 using System.Text.Json;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace PanelIdentification.Application.Services
 {

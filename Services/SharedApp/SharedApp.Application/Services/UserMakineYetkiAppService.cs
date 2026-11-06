@@ -7,7 +7,7 @@ using SharedApp.Application.ViewModels;
 using SharedApp.Domain.Interfaces;
 using SharedApp.Domain.Models;
 using System.Net.Http.Json;
-using static SharedKernel.ApiUrls;
+using static MatliOtomasyon.Shared.Infrastructure.Configuration.ApiUrls;
 using Bolum = PanelIdentification.Domain.Models.Bolum;
 
 namespace SharedApp.Application.Services

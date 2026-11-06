@@ -22,7 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SharedApp.Application\SharedApp.Application.csproj" />
     <ProjectReference Include="..\SharedApp.Domain\SharedApp.Domain.csproj" />
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Web\MatliOtomasyon.Shared.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>

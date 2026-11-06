@@ -11,7 +11,7 @@ using OfficeOpenXml.Drawing.Chart;
 using OfficeOpenXml.Style;
 using System.Drawing;
 using System.Text.Json;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace EnergyMonitoring.Infrastructure.Repositories
 {

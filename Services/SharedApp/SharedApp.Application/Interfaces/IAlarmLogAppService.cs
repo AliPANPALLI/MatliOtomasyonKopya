@@ -1,6 +1,6 @@
 ﻿using SharedApp.Application.ViewModels;
 using SharedApp.Application.ViewModels.RequestModel;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace SharedApp.Application.Interfaces
 {

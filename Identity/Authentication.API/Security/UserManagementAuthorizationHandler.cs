@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
-using SharedKernel.Configurations;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using static SharedKernel.ApiUrls;
+using static MatliOtomasyon.Shared.Infrastructure.Configuration.ApiUrls;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace Authentication.API.Security
 {

@@ -26,7 +26,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\EnergyMonitoring.Application\EnergyMonitoring.Application.csproj" />
-		<ProjectReference Include="..\EnergyMonitoring.Domain\EnergyMonitoring.Domain.csproj" />
+    <ProjectReference Include="..\EnergyMonitoring.Domain\EnergyMonitoring.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Web\MatliOtomasyon.Shared.Web.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

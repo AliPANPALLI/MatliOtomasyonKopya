@@ -8,11 +8,11 @@ using PanelIdentification.Domain.Interfaces;
 using PanelIdentification.Domain.Models;
 using PanelIdentification.Domain.Models.ReportModels;
 using SharedApp.Domain.Models;
-using SharedKernel;
 using System.Text.Json;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 using Bolum = PanelIdentification.Domain.Models.Bolum;
 using JsonSerializer = System.Text.Json.JsonSerializer;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace PanelIdentification.Application.Services
 {

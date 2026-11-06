@@ -1,7 +1,7 @@
 using MobileUpdate.API.Middlewares;
 using MobileUpdate.Infrastructure;
-using SharedKernel.Configurations;
-using SharedKernel.Extensions;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
+using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 

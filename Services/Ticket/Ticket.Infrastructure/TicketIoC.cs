@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using SharedKernel.Extensions;
 using Ticket.Application.Interfaces;
 using Ticket.Application.Services;
 using Ticket.Domain.Interfaces;
 using Ticket.Infrastructure.Repositories;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Web.Security;
 
 namespace Ticket.Infrastructure
 {

@@ -2,9 +2,9 @@
 using PanelIdentification.Application.Interfaces;
 using PanelIdentification.Application.Services;
 using PanelIdentification.Application.ViewModels;
-using SharedKernel.Extensions;
 using System.Security.Claims;
 using System.Text.Json;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace PanelIdentification.API.Controllers
 {

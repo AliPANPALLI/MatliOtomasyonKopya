@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MobileUpdate.Domain\MobileUpdate.Domain.csproj" />
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Application\MatliOtomasyon.Shared.Application.csproj" />
   </ItemGroup>
 
 </Project>

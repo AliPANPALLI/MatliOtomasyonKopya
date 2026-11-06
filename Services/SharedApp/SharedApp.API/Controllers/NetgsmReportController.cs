@@ -5,7 +5,8 @@ using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
 using System.Text;
 using System.Text.Json.Serialization;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
+using MatliOtomasyon.Shared.Application.Constants;
 
 namespace SharedApp.API.Controllers
 {

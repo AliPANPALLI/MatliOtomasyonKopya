@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Extensions;
 using Ticket.Application.Interfaces;
 using Ticket.Application.ViewModels;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace Ticket.API.Controllers
 {

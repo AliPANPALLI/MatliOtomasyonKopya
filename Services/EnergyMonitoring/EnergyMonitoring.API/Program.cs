@@ -6,7 +6,7 @@ using Mapster;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
-using SharedKernel.Middlewares;
+using MatliOtomasyon.Shared.Web.Errors;
 
 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 

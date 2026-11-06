@@ -3,7 +3,7 @@ using WeighbridgeTracking.Application.Interfaces;
 using WeighbridgeTracking.Application.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Extensions;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace WeighbridgeTracking.API.Controllers
 {

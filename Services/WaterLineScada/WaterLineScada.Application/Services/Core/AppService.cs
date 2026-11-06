@@ -1,8 +1,9 @@
 ﻿using Mapster;
 using MapsterMapper;
 using Newtonsoft.Json;
-using SharedKernel.Core;
 using System.Reflection;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace WaterLineScada.Application.Services.Core
 {

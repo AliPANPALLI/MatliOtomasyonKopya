@@ -1,8 +1,8 @@
 ﻿using EnergyMonitoring.Infrastructure.Mongo;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
-using SharedKernel.Core;
 using System.Linq.Expressions;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace EnergyMonitoring.Infrastructure.Repositories.Core
 {

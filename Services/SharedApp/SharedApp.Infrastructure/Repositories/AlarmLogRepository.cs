@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SharedApp.Domain.Interfaces;
 using SharedApp.Domain.Models;
 using SharedApp.Infrastructure.Repositories.Core;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace SharedApp.Infrastructure.Repositories
 {

@@ -3,8 +3,8 @@ using PoultryHouseScada.Application.ViewModels;
 using PoultryHouseScada.Domain.Models.ReportModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Extensions;
 using System.Security.Claims;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace PoultryHouseScada.API.Controllers
 {

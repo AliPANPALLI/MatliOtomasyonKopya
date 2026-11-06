@@ -4,7 +4,8 @@ using PanelIdentification.Application.Interfaces;
 using PanelIdentification.Application.Services;
 using PanelIdentification.Domain.Interfaces;
 using PanelIdentification.Infrastructure.Repositories;
-using SharedKernel.Extensions;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Web.Security;
 
 namespace PanelIdentification.Infrastructure
 {

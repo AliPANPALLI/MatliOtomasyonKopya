@@ -4,7 +4,7 @@ using PoultryHouseScada.Domain.Models.ReportModels;
 using PoultryHouseScada.Infrastructure.Repositories.Core;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 
 namespace PoultryHouseScada.Infrastructure.Repositories
 {

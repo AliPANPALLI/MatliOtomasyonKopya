@@ -21,7 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PanelIdentification.Application\PanelIdentification.Application.csproj" />
     <ProjectReference Include="..\PanelIdentification.Infrastructure\PanelIdentification.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Web\MatliOtomasyon.Shared.Web.csproj" />
   </ItemGroup>
 
 </Project>

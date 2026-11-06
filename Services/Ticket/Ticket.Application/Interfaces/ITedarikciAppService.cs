@@ -1,5 +1,5 @@
-﻿using SharedKernel.Core;
-using Ticket.Application.ViewModels;
+﻿using Ticket.Application.ViewModels;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace Ticket.Application.Interfaces
 {

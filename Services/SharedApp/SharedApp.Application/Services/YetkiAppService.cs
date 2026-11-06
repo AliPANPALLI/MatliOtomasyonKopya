@@ -4,9 +4,9 @@ using SharedApp.Domain.DbViewModels;
 using SharedApp.Domain.Interfaces;
 using SharedApp.Domain.Models;
 using System.Net.Http.Json;
-using static SharedKernel.ApiUrls;
-using static SharedKernel.ApplicationConstants;
-using static SharedKernel.ViewModels.UserYetkiClaimViewModel;
+using static MatliOtomasyon.Shared.Infrastructure.Configuration.ApiUrls;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.ViewModels.UserPermissionClaimViewModel;
 
 namespace SharedApp.Application.Services
 {

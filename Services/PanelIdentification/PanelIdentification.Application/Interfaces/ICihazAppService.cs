@@ -1,5 +1,5 @@
 ﻿using PanelIdentification.Application.ViewModels;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace PanelIdentification.Application.Interfaces
 {

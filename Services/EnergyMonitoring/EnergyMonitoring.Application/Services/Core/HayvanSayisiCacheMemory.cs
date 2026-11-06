@@ -1,8 +1,8 @@
 ﻿using PoultryHouseScada.Domain.Models.ReportModels;
 using Microsoft.Extensions.Caching.Memory;
-using SharedKernel;
 using System.Collections.Concurrent;
 using System.Net.Http.Json;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace EnergyMonitoring.Application.Services.Core
 {

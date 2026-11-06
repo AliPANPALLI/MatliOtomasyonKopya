@@ -9,13 +9,13 @@ using MapsterMapper;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using SharedApp.Domain.Models;
-using SharedKernel;
 using System.Globalization;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 using Bolum = EnergyMonitoring.Domain.Models.Bolum;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace EnergyMonitoring.Application.Services
 {

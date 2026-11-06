@@ -22,7 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PoultryHouseScada.Application\PoultryHouseScada.Application.csproj" />
     <ProjectReference Include="..\PoultryHouseScada.Domain\PoultryHouseScada.Domain.csproj" />
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Web\MatliOtomasyon.Shared.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>

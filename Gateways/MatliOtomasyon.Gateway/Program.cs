@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Serilog;
-using SharedKernel;
-using SharedKernel.Configurations;
-using SharedKernel.Extensions;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
+using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 

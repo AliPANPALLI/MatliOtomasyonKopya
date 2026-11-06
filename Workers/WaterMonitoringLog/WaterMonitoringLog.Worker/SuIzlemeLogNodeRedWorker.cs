@@ -7,7 +7,7 @@ using WaterLineScada.Domain.Models;
 using WaterLineScada.Infrastructure;
 using System.Data;
 using System.Text.Json;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 using WaterMonitoringLog.Application.Models;
 
 namespace WaterMonitoringLog.Worker

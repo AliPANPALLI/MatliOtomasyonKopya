@@ -1,6 +1,5 @@
 ﻿using MapsterMapper;
 using SharedApp.Domain.Models;
-using SharedKernel;
 using WaterLineScada.Application.Helpers;
 using WaterLineScada.Application.Interfaces;
 using WaterLineScada.Application.Services.Core;
@@ -12,8 +11,9 @@ using WaterLineScada.Domain.Models.ReportModels;
 using System.Globalization;
 using System.Net;
 using System.Text.Json;
-using static SharedKernel.ApiUrls;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Infrastructure.Configuration.ApiUrls;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace WaterLineScada.Application.Services
 {

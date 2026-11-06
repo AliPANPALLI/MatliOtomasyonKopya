@@ -3,10 +3,9 @@ using PoultryHouseScada.Domain.Models;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using PanelIdentification.Domain.Models;
-using SharedKernel;
-using SharedKernel.Configurations;
 using WaterLineScada.Domain.Models;
 using System.Text.Json;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace SharedApp.Application.Services.Core
 {

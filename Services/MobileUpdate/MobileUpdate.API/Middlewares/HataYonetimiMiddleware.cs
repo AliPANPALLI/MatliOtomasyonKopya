@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Diagnostics;
-using SharedKernel.Extensions;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using MatliOtomasyon.Shared.Domain.Exceptions;
+using MatliOtomasyon.Shared.Web.Errors;
 
 namespace MobileUpdate.API.Middlewares
 {
     /// <summary>
-    /// Bu API'nin hata cevabı. SharedKernel'deki ExceptionMiddleware istemciye stack trace döndürür
+    /// Bu API'nin hata cevabı. MatliOtomasyon.Shared.Web'deki ExceptionMiddleware istemciye stack trace döndürür
     /// ve BusinessException'ı 500 olarak işler; mobil güncelleme dokümanı production'da stack trace
     /// dönülmemesini istediği için burada ayrı tutulur:
     /// BusinessException / ValidationException → 400 + mesaj, diğerleri → 500 + yalnızca hata kimliği.

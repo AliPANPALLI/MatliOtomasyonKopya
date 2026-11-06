@@ -1,5 +1,5 @@
 ﻿using PanelIdentification.Domain.Models;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace PanelIdentification.Domain.Interfaces
 {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using MobileUpdate.Infrastructure.Depolama;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using static SharedKernel.ApiUrls;
+using static MatliOtomasyon.Shared.Infrastructure.Configuration.ApiUrls;
 
 namespace MobileUpdate.API.Yetki
 {

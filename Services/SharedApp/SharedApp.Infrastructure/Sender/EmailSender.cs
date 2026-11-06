@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Http;
 using SharedApp.Domain.Models;
 using SharedApp.Domain.Models.ReportModels;
-using SharedKernel;
 using System.Net;
 using System.Net.Mail;
 using System.Text.Json;
 using System.Threading;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace SharedApp.Infrastructure.Sender
 {

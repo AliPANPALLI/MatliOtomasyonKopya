@@ -5,9 +5,9 @@ using Mapster;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using SharedKernel.Configurations;
-using SharedKernel.Extensions;
-using SharedKernel.Middlewares;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
+using MatliOtomasyon.Shared.Web.Errors;
+using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 

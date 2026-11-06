@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SharedApp.Application.ViewModels;
 using SharedApp.Domain.Models;
-using SharedKernel.Core;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace SharedApp.Application.Interfaces
 {

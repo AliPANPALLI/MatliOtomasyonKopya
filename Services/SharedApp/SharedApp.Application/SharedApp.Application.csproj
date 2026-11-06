@@ -11,7 +11,7 @@
     <ProjectReference Include="..\..\PoultryHouseScada\PoultryHouseScada.Domain\PoultryHouseScada.Domain.csproj" />
     <ProjectReference Include="..\..\PanelIdentification\PanelIdentification.Domain\PanelIdentification.Domain.csproj" />
     <ProjectReference Include="..\SharedApp.Domain\SharedApp.Domain.csproj" />
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Infrastructure\MatliOtomasyon.Shared.Infrastructure.csproj" />
     <ProjectReference Include="..\..\WaterLineScada\WaterLineScada.Domain\WaterLineScada.Domain.csproj" />
   </ItemGroup>
 

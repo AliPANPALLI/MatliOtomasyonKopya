@@ -7,9 +7,8 @@ using SharedApp.Domain.Models;
 using SharedApp.Domain.Models.ReportModels;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
-using SharedKernel;
 using WaterLineScada.Infrastructure;
-using static SharedKernel.ApplicationConstants;
+using static MatliOtomasyon.Shared.Application.Constants.ApplicationConstants;
 using System.Text.Json;
 
 namespace AlarmNotification.Worker

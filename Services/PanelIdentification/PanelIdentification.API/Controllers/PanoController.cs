@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PanelIdentification.Application.Interfaces;
 using PanelIdentification.Application.ViewModels;
-using SharedKernel.Extensions;
 using System.Security.Claims;
+using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace PanelIdentification.API.Controllers
 {

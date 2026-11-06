@@ -22,7 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WeighbridgeTracking.Application\WeighbridgeTracking.Application.csproj" />
     <ProjectReference Include="..\WeighbridgeTracking.Infrastructure\WeighbridgeTracking.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Web\MatliOtomasyon.Shared.Web.csproj" />
   </ItemGroup>
 
 </Project>

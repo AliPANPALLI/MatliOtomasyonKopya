@@ -14,7 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Authentication.Domain\Authentication.Domain.csproj" />
     <ProjectReference Include="..\..\Services\SharedApp\SharedApp.Domain\SharedApp.Domain.csproj" />
-    <ProjectReference Include="..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Infrastructure\MatliOtomasyon.Shared.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
-﻿using SharedKernel.Core;
-using WaterLineScada.Domain.Models;
+﻿using WaterLineScada.Domain.Models;
+using MatliOtomasyon.Shared.Infrastructure.Persistence;
 
 namespace WaterLineScada.Domain.Interfaces
 {

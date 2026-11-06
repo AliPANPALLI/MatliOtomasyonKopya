@@ -3,7 +3,7 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using EnvironmentMonitoringScada.Application.Mapster;
 using EnvironmentMonitoringScada.Infrastructure;
-using SharedKernel.Middlewares;
+using MatliOtomasyon.Shared.Web.Errors;
 
 
 var builder = WebApplication.CreateBuilder(args);

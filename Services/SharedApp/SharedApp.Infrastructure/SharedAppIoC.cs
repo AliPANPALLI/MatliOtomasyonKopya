@@ -6,7 +6,8 @@ using SharedApp.Application.Services.Core;
 using SharedApp.Domain.Interfaces;
 using SharedApp.Infrastructure.Repositories;
 using SharedApp.Infrastructure.Sender;
-using SharedKernel.Extensions;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Web.Security;
 
 namespace SharedApp.Infrastructure
 {
