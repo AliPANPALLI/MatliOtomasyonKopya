@@ -5,17 +5,11 @@ using MatliOtomasyon.Shared.Web.Errors;
 using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
-
-var dbUser = Environment.GetEnvironmentVariable("DB_USER");
-var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-
-var connectionString = builder.Configuration.GetConnectionString("Postgres")
-    ?.Replace("{DB_USER}", dbUser)
-    .Replace("{DB_PASSWORD}", dbPassword);
+builder.Configuration.AddEnvironmentPlaceholders();
 
 builder.Services.AddDbContext<HegSogutmaScadaDbContext>(options =>
 {
-    options.UseNpgsql(connectionString);
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Postgres"));
 });
 
 // Add services to the container.
@@ -53,8 +47,11 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseCors("AllowSpecificOrigin");
 

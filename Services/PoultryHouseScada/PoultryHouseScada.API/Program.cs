@@ -11,12 +11,7 @@ using MatliOtomasyon.Shared.Web.Errors;
 using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
-var dbUser = Environment.GetEnvironmentVariable("DB_USER");
-var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-
-var connectionString = builder.Configuration.GetConnectionString("SqlServer")
-    .Replace("{DB_USER}", dbUser)
-    .Replace("{DB_PASSWORD}", dbPassword);
+builder.Configuration.AddEnvironmentPlaceholders();
 builder.Services.AddDbContext<KumesScadaDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"), sqlOptions =>
@@ -85,14 +80,8 @@ builder.Services.AddCors(options =>
 #endregion cors
 
 var app = builder.Build();
-using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
-{
-    var context = serviceScope.ServiceProvider.GetRequiredService<KumesScadaDbContext>();
-    //var result = context.Database.EnsureCreated();
-}
-
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

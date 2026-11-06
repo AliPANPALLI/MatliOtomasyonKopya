@@ -5,8 +5,10 @@ using WaterLineScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure.Sender;
 using EnergyMonitoring.Infrastructure;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
     .ConfigureLogging(logging =>
     {
         logging.ClearProviders();

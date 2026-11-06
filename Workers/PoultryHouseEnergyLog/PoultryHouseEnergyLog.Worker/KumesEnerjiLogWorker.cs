@@ -19,12 +19,14 @@ namespace PoultryHouseEnergyLog.Worker
         private readonly IServiceProvider _serviceProvider;
         private readonly IMongoClient _mongoClient;
         private readonly MongoDbSettings _mongoSettings;
-        public KumesEnerjiLogWorker(ILogger<KumesEnerjiLogWorker> logger, IServiceProvider serviceProvider, IMongoClient mongoClient, MongoDbSettings mongoSettings)
+        private readonly IConfiguration _configuration;
+        public KumesEnerjiLogWorker(ILogger<KumesEnerjiLogWorker> logger, IServiceProvider serviceProvider, IMongoClient mongoClient, MongoDbSettings mongoSettings, IConfiguration configuration)
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
             _mongoClient = mongoClient;
             _mongoSettings = mongoSettings;
+            _configuration = configuration;
         }
 
         public override async Task StartAsync(CancellationToken cancellationToken)
@@ -240,6 +242,10 @@ namespace PoultryHouseEnergyLog.Worker
             }
         }
 
+        /// <summary>
+        /// EPÝAÞ'tan TGT bileti alýr. Hesap bilgileri Epias:UserName / Epias:Password ayarlarýndan
+        /// (Epias__UserName / Epias__Password ortam deðiþkenleri) okunur.
+        /// </summary>
         public async Task<string> GetTGTFromEPIAS(CancellationToken cancellationToken)
         {
             using (HttpClient client = new HttpClient())
@@ -249,7 +255,7 @@ namespace PoultryHouseEnergyLog.Worker
                 string url = "https://giris.epias.com.tr/cas/v1/tickets";
 
                 // Form verisi (Body)
-                var formData = new Dictionary<string, string> { { "username", "beray.bayazit@matli.com.tr" }, { "password", "Bb.300521" } };
+                var formData = new Dictionary<string, string> { { "username", _configuration["Epias:UserName"] ?? string.Empty }, { "password", _configuration["Epias:Password"] ?? string.Empty } };
                 var content = new FormUrlEncodedContent(formData);
                 try
                 {

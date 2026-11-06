@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using MatliOtomasyon.Shared.Infrastructure.Configuration;
 using MatliOtomasyon.Shared.Web.Errors;
+using MatliOtomasyon.Shared.Web.Http;
 using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentPlaceholders();
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<Authentication.API.Security.AuthChallenges>();
 builder.Services.Configure<Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>(options =>
@@ -37,12 +39,6 @@ builder.Services.AddRateLimiter(options =>
         await context.HttpContext.Response.WriteAsJsonAsync(
             new { ErrorMessage = "Çok fazla istek. Lütfen daha sonra tekrar deneyin." }, cancellationToken);
 });
-var dbUser = Environment.GetEnvironmentVariable("DB_USER");
-var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-
-var connectionString = builder.Configuration.GetConnectionString("SqlServer")
-    .Replace("{DB_USER}", dbUser)
-    .Replace("{DB_PASSWORD}", dbPassword);
 builder.Services.AddDbContext<AuthDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"), sqlOptions =>
@@ -86,6 +82,7 @@ mapsterConfig.Compile();
 builder.Services.AddSingleton(mapsterConfig);
 builder.Services.AddScoped<MapsterMapper.IMapper, ServiceMapper>();
 #endregion Mapster
+builder.Services.AddResponseEncryption(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -101,7 +98,7 @@ builder.Services.AddCors(options =>
         name: "AllowOrigin",
         builder =>
         {
-            builder.AllowAnyOrigin()//domain yaziliyor
+            builder.WithOrigins("https://localhost:44313", "http://localhost:4200", "https://otomasyon.matli.com.tr", "https://otomasyontest.matli.com.tr")
                     .AllowAnyMethod()
                     .AllowAnyHeader();
         });
@@ -110,14 +107,8 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 app.UseForwardedHeaders();
-using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
-{
-    var context = serviceScope.ServiceProvider.GetRequiredService<AuthDbContext>();
-    var result = context.Database.EnsureCreated();
-}
-
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

@@ -5,9 +5,11 @@ using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using System.Data.SqlClient;
 using Osmancali1.Infrastructure.Caching;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
     .ConfigureLogging(logging =>
     {
         logging.ClearProviders();

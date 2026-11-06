@@ -10,6 +10,7 @@ using MatliOtomasyon.Shared.Web.Errors;
 using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentPlaceholders();
 
 builder.Services.AddDbContext<KantarTakipDbContext>(options =>
 {
@@ -94,7 +95,7 @@ var app = builder.Build();
 //}
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

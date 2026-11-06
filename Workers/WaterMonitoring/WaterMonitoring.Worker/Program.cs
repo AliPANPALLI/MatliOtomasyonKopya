@@ -6,8 +6,10 @@ using WaterLineScada.Infrastructure;
 using WaterMonitoring.Worker;
 using System.Data.SqlClient;
 using WaterMonitoring.Infrastructure.Caching;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
      .ConfigureWebHostDefaults(webBuilder =>
      {
          webBuilder.UseStartup<Startup>();

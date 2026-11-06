@@ -3,8 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using SapEmployeeSync.Worker;
 using SapEmployeeSync.Application.Models;
 using SapEmployeeSync.Infrastructure.Sap;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
     .ConfigureLogging(logging =>
     {
         logging.ClearProviders();

@@ -1,5 +1,6 @@
 using EnergyMonitoring.API.SignalR;
 using EnergyMonitoring.Application.Mapster;
+using EnergyMonitoring.Application.Options;
 using EnergyMonitoring.Infrastructure;
 using EnergyMonitoring.Infrastructure.Mongo;
 using Mapster;
@@ -7,10 +8,12 @@ using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using MatliOtomasyon.Shared.Web.Errors;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentPlaceholders();
 builder.Services.AddDbContext<EnerjiIzlemeDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"), sqlOptions =>
@@ -24,6 +27,7 @@ builder.Services.AddSingleton<MongoDbService>();
 var settings = builder.Configuration.GetSection("MongoDbSettings").Get<MongoDbSettings>();
 //// MongoDB Repository ekle
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
+builder.Services.Configure<EpiasOptions>(builder.Configuration.GetSection(EpiasOptions.SectionName));
 
 builder.Services.RegisterServices();
 
@@ -50,7 +54,7 @@ builder.Services.AddCors(options =>
         name: "AllowOrigin",
         builder =>
         {
-            builder.AllowAnyOrigin()//domain yaziliyor
+            builder.WithOrigins("https://localhost:44313", "http://localhost:4200", "https://otomasyon.matli.com.tr", "https://otomasyontest.matli.com.tr")
                     .AllowAnyMethod()
                     .AllowAnyHeader();
         });
@@ -58,7 +62,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-//if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

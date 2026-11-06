@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using ServiceHealthMonitor.Worker;
 using SharedApp.Infrastructure;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
     .ConfigureLogging(logging =>
     {
         logging.ClearProviders();

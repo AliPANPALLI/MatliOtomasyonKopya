@@ -119,14 +119,71 @@ Kullanıcı yönetimi uçları SharedApp'teki **Kullanıcı Yönetimi** formunun
 
 `GetUser` ile kullanıcı kendi kaydını her zaman görebilir. Başka bir kullanıcının kaydı için `UserManagement.Read` gerekir.
 
-### Gerekli ayarlar
+İç servis anahtarı (`InternalServices__AuthenticationApiKey`) geçici bir çözümdür; Faz 7'de OpenIddict `client_credentials` akışıyla değiştirilecek.
 
-| Ayar | Nerede | Açıklama |
+### Tüm API'lerde geçerli kurallar
+
+- **Swagger** sadece `Development` ortamında açıktır; production'da API yüzeyi listelenmez.
+- **CORS** sadece bilinen frontend adreslerine izin verir: `https://otomasyon.matli.com.tr`, `https://otomasyontest.matli.com.tr`, `http://localhost:4200`, `https://localhost:44313`. Bu liste Adım 3.1'de konfigürasyona taşınacak.
+- **Hata cevapları** hata kimliği (`Guid`), yol ve mesaj içerir; **stack trace istemciye gönderilmez**, sadece loga yazılır.
+- **Veritabanı şeması** uygulama açılışında oluşturulmaz (`EnsureCreated` kaldırıldı); şema sadece EF migration'larıyla yönetilir.
+
+### Ticket API
+
+- Ticket API'de de yetki işaretlenmemiş her uç kimlik doğrulaması ister. Kullanıcı kimliği sadece imzası doğrulanmış token'dan alınır.
+- Dosya indirme ve silme uçları sadece ticket dosyaları klasörünün içindeki yolları kabul eder; yüklenen dosyaların adındaki klasör kısmı atılır.
+
+### Cevap kodlama (geçici)
+
+Menü, lokasyon ve ticket listelerinin bir kısmı frontend'e AES ile kodlanmış olarak gider (`IResponseEncryptor`, `MatliOtomasyon.Shared.Web.Http`). Anahtar frontend'de de bulunduğu için bu bir güvenlik önlemi değildir. Format (sıfır IV, AES-CBC) frontend ile uyumlu kalmak zorunda olduğu için değiştirilmedi ve testle sabitlendi. Kodlama, frontend ile birlikte Adım 1.10'da tamamen kaldırılacak.
+
+### Bilinen açık konular
+
+- Authentication ve Ticket dışındaki API'lerde henüz varsayılan "kimlik doğrulaması zorunlu" politikası yok. Bu API'lerin bir kısmını SharedApp token'sız çağırdığı için, politika servisler arası kimlik doğrulama (Faz 7) ile birlikte eklenecek. O zamana kadar bu servislere sadece Gateway üzerinden erişilmeli; servis portları dışarıya kapatılmalıdır (Gateway'deki servis route'larının çoğu token ister, SignalR ve `/authentication` route'ları hariç).
+
+## Konfigürasyon ve secret'lar
+
+Repoda **hiçbir parola, anahtar veya hesap bilgisi tutulmaz.** `appsettings*.json` dosyalarında gizli değerlerin yerinde ya boş bir değer ya da `{ORTAM_DEGISKENI}` biçiminde bir placeholder bulunur. Gerçek değerler sunucuda ve geliştirici makinesinde ortam değişkeni olarak tanımlanır.
+
+İki yöntem kullanılır:
+
+1. **Placeholder (uygulamaya göre değişen değerler).** Connection string içindeki parolalar gibi değerler `Password={DB_PASSWORD}` şeklinde yazılır. Her host açılışta `AddEnvironmentPlaceholders()` (`MatliOtomasyon.Shared.Infrastructure.Configuration`) ile bütün konfigürasyondaki placeholder'ları aynı adlı ortam değişkeninden doldurur. Tanımlı olmayan bir değişken varsa uygulama **hangi değişkenlerin eksik olduğunu yazarak açılmayı reddeder.** Placeholder adı büyük harf ve en az bir alt çizgi içerir; Ocelot'un `{everything}` veya Serilog'un `{Timestamp}` gibi şablonları etkilenmez.
+2. **Standart .NET override'ı (tüm uygulamalarda aynı olan değerler).** JSON'daki anahtar boş bırakılır, değer `Bolum__Anahtar` biçimindeki ortam değişkeninden gelir (örneğin `TokenOption__SecurityKey`).
+
+### Placeholder ortam değişkenleri
+
+| Değişken | Ne | Kullanan uygulamalar |
 |---|---|---|
-| `UserManagement__FormLink` | Authentication API | Kullanıcı Yönetimi sayfasının Angular route'u (SharedApp'teki ModulLink + FormLink). Boşsa kullanıcı yönetimi uçları herkese kapalıdır. |
-| `InternalServices__AuthenticationApiKey` | Authentication API **ve** SharedApp API | Aynı değer iki serviste de tanımlı olmalı. SharedApp kullanıcı listesini bu anahtarla çeker. Boşsa iç servis erişimi kapalıdır. |
+| `DB_PASSWORD` | SQL Server `service.otm` kullanıcısının parolası | Tüm API'ler, Gateway ve SQL Server kullanan bütün worker'lar |
+| `DB_USER` | Bazı connection string'lerde kullanıcı adı | Gateway, HegCoolingAlarm ve bazı Development ayarları |
+| `EGGDB_PASSWORD` | EggDb (`10.45.12.27`) `vbap` kullanıcısının parolası | Kayislar1, Kayislar1Log, Kuyucak1, Kuyucak1Log, RahmiyeFacility, RahmiyeFacilityLog, VerimGidaPiPoultryHouse, VerimGidaPiPoultryHouseLog |
+| `POSTGRES_PASSWORD` | Postgres `postgres` kullanıcısının parolası | HegCoolingScada.API, SiloTemperatureMonitoring.API, HegCoolingAlarm, ItgTemperatureIngestion |
+| `MOBILEUPDATE_DB_PASSWORD` | MobileUpdate Postgres kullanıcısının parolası | MobileUpdate.API |
+| `MONGO_PASSWORD` | MongoDB `serviceotm` kullanıcısının parolası (**URL-encoded** yazılmalı, örn. `@` → `%40`) | EnergyMonitoring.API, EnergyMonitoringAlarm, PoultryHouseEnergyLog |
+| `ITG_RABBITMQ_PASSWORD` | ITG RabbitMQ kullanıcısının parolası | ItgTemperatureIngestion |
+| `SAP_KANTAR_PASSWORD` | SAP kantar web servisi parolası | RahmiyeFacilityLog |
+| `DB_SA_PASSWORD` | Sadece Development: yerel SQL Server `sa` parolası | PoultryHouseScada.API, SharedApp.API (Development) |
 
-İç servis anahtarı geçici bir çözümdür; Faz 7'de OpenIddict `client_credentials` akışıyla değiştirilecek.
+### Standart override ortam değişkenleri
+
+| Değişken | Ne | Kullanan uygulamalar |
+|---|---|---|
+| `TokenOption__SecurityKey` | JWT imzalama anahtarı; **tüm uygulamalarda aynı** olmalı, en az 32 karakter | Tüm API'ler, Gateway, Authentication API |
+| `InternalServices__AuthenticationApiKey` | Servisler arası geçici anahtar | Authentication API ve SharedApp API (aynı değer) |
+| `UserManagement__FormLink` | Kullanıcı Yönetimi sayfasının route'u (gizli değil, sunucuya özel ayar) | Authentication API |
+| `Smtp__UserName`, `Smtp__Password` | Office 365 e-posta hesabı (`UserName` boşsa gönderen adres kullanılır) | E-posta gönderen tüm uygulamalar (Authentication, SharedApp, EmailDispatch, alarm/tesis worker'ları) |
+| `Sms__UserName`, `Sms__Password` | innomobil SMS hesabı | Authentication, SharedApp, SmsDispatch, alarm worker'ları |
+| `Netgsm__UserCode`, `Netgsm__Password`, `Netgsm__AppKey` | Netgsm sesli mesaj hesabı | SharedApp, VoiceCallDispatch |
+| `Epias__UserName`, `Epias__Password` | EPİAŞ şeffaflık platformu hesabı | EnergyMonitoring.API, PoultryHouseEnergyLog |
+| `Sap__Username`, `Sap__Password` | SAP personel/kantar servisleri hesabı | SapEmployeeSync, WeighbridgeTracking.API |
+| `RabbitMQ__Password` | ITG Edge cihazının RabbitMQ parolası | ITG.Edge.Worker (sahadaki cihazda) |
+| `ResponseEncryption__Key` | Bazı liste cevaplarını frontend'in beklediği biçimde kodlayan AES anahtarı (32 karakter). Frontend'deki anahtarla aynı olmalı; anahtar eksik veya hatalı uzunluktaysa uygulama açılmaz | Authentication API, SharedApp API, Ticket API |
+
+### Ortam değişkeni tanımlama
+
+- **Geliştirici makinesi (yönetici yetkisi gerekmez):** `setx DB_PASSWORD "deger"` ile kullanıcı seviyesinde tanımlanır; ardından IDE ve terminal yeniden açılır.
+- **Sunucu:** Makine seviyesinde tanımlanır (yönetici yetkisi gerekir): `[Environment]::SetEnvironmentVariable('DB_PASSWORD', 'deger', 'Machine')`. IIS uygulamaları için `iisreset`, Windows servisleri için servisin yeniden başlatılması gerekir.
+- `dotnet ef` komutları da uygulamanın konfigürasyonunu kullandığı için aynı değişkenler tanımlı olmalıdır.
 
 ### Testler
 

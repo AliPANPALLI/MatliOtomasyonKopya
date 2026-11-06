@@ -3,8 +3,10 @@ using ItgTemperatureIngestion.Worker;
 using Microsoft.Extensions.Hosting.WindowsServices;
 using ItgTemperatureIngestion.Infrastructure.Caching;
 using ItgTemperatureIngestion.Infrastructure.Persistence;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentPlaceholders();
 
 builder.Services.AddWindowsService(options =>
 {

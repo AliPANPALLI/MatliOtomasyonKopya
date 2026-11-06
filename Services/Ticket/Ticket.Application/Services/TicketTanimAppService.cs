@@ -1310,6 +1310,11 @@ namespace Ticket.Application.Services
             return result;
         }
 
+        /// <summary>
+        /// Yüklenen dosyaları ticket'ın klasörüne kaydeder. İstemcinin gönderdiği dosya adındaki klasör kısmı atılır;
+        /// böylece "..\" içeren adlarla ticket klasörünün dışına dosya yazılamaz.
+        /// </summary>
+        /// <returns>Dosyaların kaydedildiği klasör.</returns>
         public async Task<string> SaveFiles(IFormFile[]? files, int ticketTanimId)
         {
             var uploadPath = Path.Combine(ApiUrls.TicketDosyalarPath, ticketTanimId.ToString());
@@ -1319,9 +1324,10 @@ namespace Ticket.Application.Services
 
             foreach (var file in files)
             {
-                if (file.Length > 0)
+                var safeFileName = Path.GetFileName(file.FileName);
+                if (file.Length > 0 && !string.IsNullOrWhiteSpace(safeFileName))
                 {
-                    var filePath = Path.Combine(uploadPath, file.FileName);
+                    var filePath = Path.Combine(uploadPath, safeFileName);
 
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
@@ -1402,42 +1408,56 @@ namespace Ticket.Application.Services
             return Task.FromResult(dosyaListesi);
         }
 
-        public async Task<(string contentType, FileStream file)> GetDocument(string fileName, string filePath)
+        /// <summary>
+        /// Ticket klasöründeki bir dosyayı okumak için açar.
+        /// </summary>
+        /// <exception cref="UnauthorizedAccessException">Yol ticket klasörünün dışındaysa.</exception>
+        /// <exception cref="Exception">Dosya yoksa.</exception>
+        public Task<(string contentType, FileStream file)> GetDocument(string fileName, string filePath)
         {
-            try
+            var safePath = ResolveTicketFilePath(filePath);
+            if (!File.Exists(safePath))
             {
-                //var path = Path.Combine(filePath, fileName);
-                if (!File.Exists(filePath))
-                {
-                    throw new Exception("Dosya bulunamadı");
-                }
-                string contentType = GetFileContentType(filePath);
-
-                var dokuman = File.OpenRead(filePath);
-
-                return (contentType, dokuman);
+                throw new Exception("Dosya bulunamadı");
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+            string contentType = GetFileContentType(safePath);
+            var dokuman = File.OpenRead(safePath);
+            return Task.FromResult((contentType, dokuman));
         }
 
+        /// <summary>
+        /// Ticket klasöründeki bir dosyayı siler.
+        /// </summary>
+        /// <exception cref="UnauthorizedAccessException">Yol ticket klasörünün dışındaysa.</exception>
+        /// <exception cref="Exception">Dosya yoksa.</exception>
         public void DeleteTicketFile(string filePath)
         {
-            try
+            var safePath = ResolveTicketFilePath(filePath);
+            if (!File.Exists(safePath))
             {
-                //var path = Path.Combine(filePath, fileName);
-                if (!File.Exists(filePath))
-                {
-                    throw new Exception("Dosya bulunamadı");
-                }
-                File.Delete(filePath);
+                throw new Exception("Dosya bulunamadı");
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+            File.Delete(safePath);
+        }
+
+        /// <summary>
+        /// İstemciden gelen dosya yolunu tam yola çevirir ve ticket dosyaları klasörünün içinde olduğunu doğrular.
+        /// Sunucudaki başka bir dosyanın okunmasını veya silinmesini engeller.
+        /// </summary>
+        /// <exception cref="UnauthorizedAccessException">Yol ticket klasörünün dışındaysa.</exception>
+        public static string ResolveTicketFilePath(string filePath)
+        {
+            if (string.IsNullOrWhiteSpace(filePath))
+                throw new UnauthorizedAccessException("Dosya yolu geçersiz.");
+
+            var root = Path.GetFullPath(ApiUrls.TicketDosyalarPath).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
+            var fullPath = Path.GetFullPath(filePath);
+            if (!fullPath.StartsWith(root, StringComparison.OrdinalIgnoreCase))
+                throw new UnauthorizedAccessException("Dosya yolu ticket klasörünün dışında.");
+
+            return fullPath;
         }
 
         public static string GetFileContentType(string url)

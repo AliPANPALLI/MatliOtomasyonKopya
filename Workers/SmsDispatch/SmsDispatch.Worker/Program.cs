@@ -2,8 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using SmsDispatch.Worker;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
     .ConfigureLogging(logging =>
     {
         logging.ClearProviders();

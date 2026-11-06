@@ -7,8 +7,10 @@ using SharedApp.Infrastructure;
 using RahmiyeFacilityLog.Application.Models;
 using RahmiyeFacilityLog.Infrastructure.Caching;
 using RahmiyeFacilityLog.Infrastructure.Sap;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
      //.ConfigureWebHostDefaults(webBuilder =>
      //{
      //    webBuilder.UseStartup<Startup>();

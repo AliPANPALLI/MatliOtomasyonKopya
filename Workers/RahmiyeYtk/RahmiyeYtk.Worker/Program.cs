@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using RahmiyeYtk.Worker;
 using SharedApp.Infrastructure;
 using RahmiyeYtk.Infrastructure.Caching;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
       .ConfigureLogging(logging =>
     {
         logging.ClearProviders();

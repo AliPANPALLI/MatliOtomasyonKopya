@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using EnvironmentMonitoringScada.Application.Mapster;
 using EnvironmentMonitoringScada.Infrastructure;
 using MatliOtomasyon.Shared.Web.Errors;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentPlaceholders();
 builder.Services.AddDbContext<OrtamIzlemeScadaDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"), sqlOptions =>
@@ -35,7 +37,7 @@ builder.Services.AddCors(options =>
         name: "AllowOrigin",
         builder =>
         {
-            builder.AllowAnyOrigin()//domain yaziliyor
+            builder.WithOrigins("https://localhost:44313", "http://localhost:4200", "https://otomasyon.matli.com.tr", "https://otomasyontest.matli.com.tr")
                     .AllowAnyMethod()
                     .AllowAnyHeader();
         });
@@ -43,7 +45,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-//if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
