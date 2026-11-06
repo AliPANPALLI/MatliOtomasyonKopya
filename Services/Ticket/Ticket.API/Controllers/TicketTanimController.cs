@@ -1,78 +1,48 @@
 ﻿using DevExtreme.AspNet.Mvc;
-using Microsoft.AspNetCore.Http.HttpResults;
+using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Web.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text.Json;
-using System.Security.Cryptography;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
 using Ticket.Application.Interfaces;
 using Ticket.Application.ViewModels;
-using MatliOtomasyon.Shared.Application.Abstractions;
 
 namespace Ticket.API.Controllers
 {
+    /// <summary>
+    /// Ticket (tedarikçi talep) süreçlerinin uçlarını sunar: ticket açma, takipçi/sorumlu güncellemeleri, teklif onayı, durum ve fiyat geçmişi, ek dosyalar.
+    /// Liste cevaplarının çoğu frontend'in beklediği kodlanmış biçimde döner.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class TicketTanimController : BaseApiController<TicketTanimViewModel>
     {
         private readonly ITicketTanimAppService _ticketTanimAppService;
         private readonly IUserExtension _userExtension;
+        private readonly IResponseEncryptor _responseEncryptor;
 
-        public TicketTanimController(ITicketTanimAppService ticketTanimAppService, IUserExtension userExtension) : base(ticketTanimAppService)
+        /// <summary>
+        /// Ticket uygulama servisini, oturumdaki kullanıcıya erişimi ve frontend'e giden cevapları kodlayan servisi alır.
+        /// </summary>
+        public TicketTanimController(ITicketTanimAppService ticketTanimAppService, IUserExtension userExtension, IResponseEncryptor responseEncryptor) : base(ticketTanimAppService)
         {
             _ticketTanimAppService = ticketTanimAppService;
             _userExtension = userExtension;
+            _responseEncryptor = responseEncryptor;
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının Id'sini, doğrulanmış token'ın claim'lerinden döner. Token doğrulanmamışsa boş döner;
+        /// imzası doğrulanmamış bir token'ın içeriği asla kullanılmaz.
+        /// </summary>
         private string GetUserIdFromContext()
         {
-            // Try normal claims principal first
-            var claim = _userExtension.GetClaimsIdentity()?.FirstOrDefault(s => s.Type == ClaimTypes.NameIdentifier || s.Type == "sub" || s.Type == "id" || s.Type == "userId" || s.Type == "nameid")?.Value;
-            if (!string.IsNullOrEmpty(claim)) return claim;
-
-            // Fallback: try to read Authorization header and decode token without validation
-            try
-            {
-                var auth = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
-                if (!string.IsNullOrEmpty(auth))
-                {
-                    var token = auth.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase) ? auth.Substring("Bearer ".Length).Trim() : auth;
-                    if (!string.IsNullOrEmpty(token))
-                    {
-                        // Manual payload decode to avoid dependency on Jwt libs at runtime
-                        var parts = token.Split('.');
-                        if (parts.Length >= 2)
-                        {
-                            var payload = parts[1];
-                            // Base64Url decode
-                            payload = payload.Replace('-', '+').Replace('_', '/');
-                            switch (payload.Length % 4)
-                            {
-                                case 2: payload += "=="; break;
-                                case 3: payload += "="; break;
-                            }
-                            var bytes = Convert.FromBase64String(payload);
-                            var json = System.Text.Encoding.UTF8.GetString(bytes);
-                            using var doc = JsonDocument.Parse(json);
-                            var root = doc.RootElement;
-                            string? val = null;
-                            if (root.TryGetProperty(ClaimTypes.NameIdentifier, out var p)) val = p.GetString();
-                            if (string.IsNullOrEmpty(val) && root.TryGetProperty("sub", out p)) val = p.GetString();
-                            if (string.IsNullOrEmpty(val) && root.TryGetProperty("nameid", out p)) val = p.GetString();
-                            if (string.IsNullOrEmpty(val) && root.TryGetProperty("id", out p)) val = p.GetString();
-                            if (string.IsNullOrEmpty(val) && root.TryGetProperty("userId", out p)) val = p.GetString();
-                            if (!string.IsNullOrEmpty(val)) return val;
-                        }
-                    }
-                }
-            }
-            catch { }
-
-            return string.Empty;
+            return _userExtension.GetClaimsIdentity()?.FirstOrDefault(s => s.Type == ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının erişebildiği ticket'ı detaylarıyla, frontend'in beklediği kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetTicketById")]
         public async Task<IActionResult> GetTicketById(int ticketTanimId)
         {
@@ -80,10 +50,13 @@ namespace Ticket.API.Controllers
             if (string.IsNullOrEmpty(userId)) { throw new Exception("Kullanıcı bulunamadı!"); }
             var result = await _ticketTanimAppService.GetTicketById(ticketTanimId, userId);
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının takipçi olarak kısıtlı yetkili olduğu kayıtları döner.
+        /// </summary>
         [HttpGet("GetTakipciUserKisitliYetki")]
         public async Task<IActionResult> GetTakipciUserKisitliYetki()
         {
@@ -94,6 +67,9 @@ namespace Ticket.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının takipçi olarak yetkisiz olduğu kayıtları döner.
+        /// </summary>
         [HttpGet("GetTakipciUserYetkisiz")]
         public async Task<IActionResult> GetTakipciUserYetkisiz()
         {
@@ -104,6 +80,9 @@ namespace Ticket.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının ticket sorumlusu olup olmadığını kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetUserSorumluMu")]
         public async Task<IActionResult> GetUserSorumluMu()
         {
@@ -112,28 +91,37 @@ namespace Ticket.API.Controllers
 
             var result = await _ticketTanimAppService.GetUserSorumluMu(userId);
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Ticket'a sorumluların yazdığı açıklamaları kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllSorumluAciklamalarByTicketId")]
         public async Task<IActionResult> GetAllSorumluAciklamalarByTicketId(int ticketTanimId)
         {
             var result = await _ticketTanimAppService.GetAllSorumluAciklamalarByTicketId(ticketTanimId);
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Ticket'a takipçilerin yazdığı açıklamaları kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllTakipciAciklamalarByTicketId")]
         public async Task<IActionResult> GetAllTakipciAciklamalarByTicketId(int ticketTanimId)
         {
             var result = await _ticketTanimAppService.GetAllTakipciAciklamalarByTicketId(ticketTanimId);
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının tarih aralığındaki ticket'larını kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllFilteredTicketTanims")]
         public async Task<IActionResult> GetAllFilteredTicketTanims(DateTime baslangicZamani, DateTime bitisZamani)
         {
@@ -141,10 +129,13 @@ namespace Ticket.API.Controllers
             if (string.IsNullOrEmpty(userId)) { throw new Exception("Kullanıcı bulunamadı!"); }
             var result = await _ticketTanimAppService.GetAllFilteredTicketTanims(baslangicZamani, bitisZamani, userId);
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının erişebildiği bütün ticket'ları kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllTicketTanims")]
         public async Task<IActionResult> GetAllTicketTanims()
         {
@@ -152,10 +143,13 @@ namespace Ticket.API.Controllers
             if (string.IsNullOrEmpty(userId)) { throw new Exception("Kullanıcı bulunamadı!"); }
             var result = await _ticketTanimAppService.GetAllTicketTanims(userId);
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Ticket listesini DevExtreme grid'inin sayfalama/filtre seçenekleriyle, kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllTicketTanimsDx")]
         public async Task<IActionResult> GetAllTicketTanimsDx(DataSourceLoadOptions loadOptions, DateTime? baslangicZamani, DateTime? bitisZamani)
         {
@@ -163,79 +157,84 @@ namespace Ticket.API.Controllers
             if (string.IsNullOrEmpty(userId)) { throw new Exception("Kullanıcı bulunamadı!"); }
             var result = await _ticketTanimAppService.GetAllTicketTanimsDx(loadOptions, baslangicZamani, bitisZamani, userId);
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Ticket açılırken seçilebilecek tedarikçileri kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllTedarikciForTicketTanim")]
         public async Task<IActionResult> GetAllTedarikciForTicketTanim()
         {
             var result = await _ticketTanimAppService.GetAllTedarikciForTicketTanim();
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Ticket durum tanımlarını kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllTicketDurums")]
         public async Task<IActionResult> GetAllTicketDurums()
         {
             var result = await _ticketTanimAppService.GetAllTicketDurums();
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Ticket'ın durum değişiklik geçmişini kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllvwTicketDurumLogs")]
         public async Task<IActionResult> GetAllvwTicketDurumLogs(int ticketTanimId)
         {
             var result = await _ticketTanimAppService.GetAllvwTicketDurumLogs(ticketTanimId);
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Ticket'ın teklif fiyatı geçmişini kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllvwTicketTeklifFiyatLogs")]
         public async Task<IActionResult> GetAllvwTicketTeklifFiyatLogs(int ticketTanimId)
         {
             var result = await _ticketTanimAppService.GetAllvwTicketTeklifFiyatLogs(ticketTanimId);
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
-
-        //[HttpGet("debug-claims")]
-        //public IActionResult DebugClaims()
-        //{
-        //    var headers = HttpContext.Request.Headers.ToDictionary(h => h.Key, h => h.Value.ToString());
-        //    var authenticated = HttpContext.User?.Identity?.IsAuthenticated ?? false;
-        //    var claimEnumerable = _userExtension.GetClaimsIdentity();
-        //    List<object> claims;
-        //    if (claimEnumerable != null)
-        //        claims = claimEnumerable.Select(c => (object)new { c.Type, c.Value }).ToList();
-        //    else
-        //        claims = new List<object>();
-
-        //    return Ok(new { headers, authenticated, claims });
-        //}
-
+        /// <summary>
+        /// Teklif fiyatında kullanılabilecek para birimlerini kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllParaBirimis")]
         public async Task<IActionResult> GetAllParaBirimis()
         {
             var result = await _ticketTanimAppService.GetAllParaBirimis();
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Tedarikçi kullanıcılarını kodlanmış biçimde döner.
+        /// </summary>
         [HttpGet("GetAllvwTedarikciUser")]
         public async Task<IActionResult> GetAllvwTedarikciUser()
         {
             var result = await _ticketTanimAppService.GetAllvwTedarikciUser();
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcı adına yeni ticket açar; ekleri ticket klasörüne kaydeder.
+        /// </summary>
         [HttpPost("AddTicketTanim")]
         public async Task<IActionResult> AddTicketTanim([FromForm] int formId, [FromForm] string kisaTanim, [FromForm] int tedarikciId, [FromForm] int lokasyonId, [FromForm] List<string> secilenMatliTakipciler, [FromForm] string tanim, [FromForm] IFormFile[]? files)
         {
@@ -245,6 +244,9 @@ namespace Ticket.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcı adına yeni ticket açar ve oluşan kaydı döner; ekleri ticket klasörüne kaydeder.
+        /// </summary>
         [HttpPost("AddTicketTanim2")]
         public async Task<IActionResult> AddTicketTanim2([FromForm] int formId, [FromForm] string kisaTanim, [FromForm] int tedarikciId, [FromForm] int lokasyonId, [FromForm] List<string> secilenMatliTakipciler, [FromForm] string tanim, [FromForm] IFormFile[]? files)
         {
@@ -254,6 +256,9 @@ namespace Ticket.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Ticket'ı takipçi olarak günceller: tanım, durum, takipçiler, teklif sabitleme, fatura bilgisi ve ekler.
+        /// </summary>
         [HttpPost("EditTicketByTakipci")]
         public async Task<IActionResult> EditTicketByTakipci([FromForm] int ticketTanimId, [FromForm] int formId, [FromForm] string kisaTanim, [FromForm] int durumId, [FromForm] List<string> secilenMatliTakipciler, [FromForm] string tanim, [FromForm] bool teklifSabitle, [FromForm] string? sasNo, [FromForm] string? aciklama, [FromForm] bool? faturaKesildi, [FromForm] IFormFile[]? files)
         {
@@ -265,6 +270,9 @@ namespace Ticket.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Ticket'ı sorumlu olarak günceller: sorumlular, teklif fiyatı, para birimi, açıklama ve durum.
+        /// </summary>
         [HttpPost("EditTicketBySorumlu")]
         public async Task<IActionResult> EditTicketBySorumlu([FromForm] int ticketTanimId, [FromForm] List<int> secilenSorumlular, [FromForm] decimal? teklifFiyat, [FromForm] int? paraBirimiId, [FromForm] string? aciklama, [FromForm] int durumId)
         {
@@ -276,6 +284,9 @@ namespace Ticket.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Ticket teklifini onaylar veya reddeder ve açıklamayı kaydeder.
+        /// </summary>
         [HttpPut("TeklifDurumDegistir")]
         public async Task<IActionResult> TeklifDurumDegistir(int ticketTanimId, byte teklifDurumId, string? aciklama)
         {
@@ -287,6 +298,9 @@ namespace Ticket.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Ticket'a ait yüklenmiş dosyaların listesini döner.
+        /// </summary>
         [HttpGet("GetAllFilesByTicketId")]
         public async Task<IActionResult> GetAllFilesByTicketId(int ticketTanimId)
         {
@@ -295,6 +309,9 @@ namespace Ticket.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Ticket klasöründeki bir dosyayı indirir. Ticket klasörü dışındaki yollar reddedilir.
+        /// </summary>
         [HttpGet("GetDocument")]
         public async Task<IActionResult> GetDocument(string fileName, string filePath)
         {
@@ -303,25 +320,14 @@ namespace Ticket.API.Controllers
             return File(result.file, result.contentType, result.file.Name.Split("\\").Last());
         }
 
+        /// <summary>
+        /// Ticket klasöründeki bir dosyayı siler. Ticket klasörü dışındaki yollar reddedilir.
+        /// </summary>
         [HttpPut("DeleteTicketFile")]
         public async Task<IActionResult> DeleteTicketFile(string filePath)
         {
             _ticketTanimAppService.DeleteTicketFile(filePath);
             return Ok();
-        }
-
-        private static string AesEncrypt(string plainText, string key)
-        {
-            using var aes = Aes.Create();
-            aes.Key = Encoding.UTF8.GetBytes(key);
-            aes.IV = new byte[16]; // 16 byte boş IV
-
-            using var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
-            using var ms = new MemoryStream();
-            using var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write);
-            using (var sw = new StreamWriter(cs)) sw.Write(plainText);
-
-            return Convert.ToBase64String(ms.ToArray());
         }
     }
 }

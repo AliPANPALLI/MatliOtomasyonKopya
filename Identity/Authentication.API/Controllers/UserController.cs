@@ -16,6 +16,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using MatliOtomasyon.Shared.Infrastructure.Configuration;
+using MatliOtomasyon.Shared.Web.Http;
 
 namespace Authentication.API.Controllers
 {
@@ -42,6 +43,7 @@ namespace Authentication.API.Controllers
         private readonly IUserRepository _authUsers;
         private readonly CustomTokenOption _tokenOptions;
         private readonly IAuthorizationService _authorizationService;
+        private readonly IResponseEncryptor _responseEncryptor;
 
         /// <summary>
         /// Controller'ın ihtiyaç duyduğu servisleri alır.
@@ -55,9 +57,11 @@ namespace Authentication.API.Controllers
             AuthChallenges challenges,
             IOptions<CustomTokenOption> tokenOptions,
             IUserRepository authUsers,
-            IAuthorizationService authorizationService
+            IAuthorizationService authorizationService,
+            IResponseEncryptor responseEncryptor
             )
         {
+            _responseEncryptor = responseEncryptor;
             _userService = userService;
             _tokenService = tokenService;
             _twoFactorService = twoFactorService;
@@ -296,7 +300,7 @@ namespace Authentication.API.Controllers
         {
             var users = (await _userService.GetAllUsers()).Where(x => x.UserName != "onder.matli" && x.UserName != "ozer.matli" && x.Tedarikci != true && x.Silindi != true).ToList();
             var json = System.Text.Json.JsonSerializer.Serialize(users);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
@@ -617,23 +621,6 @@ namespace Authentication.API.Controllers
                 return BadRequest(new { ErrorMessage = "Doğrulama başarısız. Yeni bir kod talep edin." });
             await _tokenService.RemoveUserHeartBeat(user.Id);
             return Ok(new { Message = "Şifreniz değiştirildi. Yeni şifrenizle giriş yapabilirsiniz." });
-        }
-
-        /// <summary>
-        /// Metni AES ile şifreleyip Base64 olarak döner. GetAllUsersForTicket cevabını şifrelemek için kullanılır.
-        /// </summary>
-        private static string AesEncrypt(string plainText, string key)
-        {
-            using var aes = Aes.Create();
-            aes.Key = Encoding.UTF8.GetBytes(key);
-            aes.IV = new byte[16]; // 16 byte boş IV
-
-            using var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
-            using var ms = new MemoryStream();
-            using var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write);
-            using (var sw = new StreamWriter(cs)) sw.Write(plainText);
-
-            return Convert.ToBase64String(ms.ToArray());
         }
 
         /// <summary>

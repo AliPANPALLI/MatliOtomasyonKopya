@@ -67,14 +67,8 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
-{
-    var context = serviceScope.ServiceProvider.GetRequiredService<SuHatScadaDbContext>();
-    var result = context.Database.EnsureCreated();
-}
-
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

@@ -44,7 +44,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowOrigin", policy =>
     {
         policy
-            .AllowAnyOrigin()
+            .WithOrigins("https://localhost:44313", "http://localhost:4200", "https://otomasyon.matli.com.tr", "https://otomasyontest.matli.com.tr")
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
@@ -55,17 +55,20 @@ var app = builder.Build();
 // Hata varsa tarayýcýda ve Visual Studio Output'ta açýkça görebilmek için
 app.UseDeveloperExceptionPage();
 
-// Swagger'ý ortamdan baðýmsýz olarak aç
-app.UseSwagger();
-
-app.UseSwaggerUI(options =>
+// Swagger sadece geliþtirme ortamýnda açýk; production'da API yüzeyi dýþarýya listelenmez.
+if (app.Environment.IsDevelopment())
 {
-    options.SwaggerEndpoint(
-        "/swagger/v1/swagger.json",
-        "Nesne Ýzleme API v1");
+    app.UseSwagger();
 
-    options.RoutePrefix = "swagger";
-});
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint(
+            "/swagger/v1/swagger.json",
+            "Nesne Ýzleme API v1");
+
+        options.RoutePrefix = "swagger";
+    });
+}
 
 // Þimdilik ExceptionMiddleware'i kapat.
 // Swagger çalýþtýktan sonra tekrar ekleriz.

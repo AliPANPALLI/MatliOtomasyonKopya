@@ -3,14 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using SharedApp.Application.Interfaces;
 using SharedApp.Infrastructure.Sender;
 using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
 using static MatliOtomasyon.Shared.Application.ViewModels.UserPermissionClaimViewModel;
 using MatliOtomasyon.Shared.Application.Abstractions;
+using MatliOtomasyon.Shared.Web.Http;
 
 namespace SharedApp.API.Controllers
 {
+    /// <summary>
+    /// Menü (top bar / side bar) tanımlarını ve oturumdaki kullanıcının form, link ve modül bazlı yetkilerini sunar.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class YetkiController : ControllerBase
@@ -18,34 +20,49 @@ namespace SharedApp.API.Controllers
         private readonly IYetkiAppService _yetkiAppService;
         private readonly IUserExtension _userExtension;
         private readonly EmailSender _emailSender;
+        private readonly IResponseEncryptor _responseEncryptor;
 
-        public YetkiController(IYetkiAppService yetkiAppService, IUserExtension userExtension, EmailSender emailSender)
+        /// <summary>
+        /// Yetki uygulama servisini, oturumdaki kullanıcıya erişimi, e-posta göndericiyi ve cevap kodlayıcıyı alır.
+        /// </summary>
+        public YetkiController(IYetkiAppService yetkiAppService, IUserExtension userExtension, EmailSender emailSender, IResponseEncryptor responseEncryptor)
         {
             _yetkiAppService = yetkiAppService;
             _userExtension = userExtension;
             _emailSender = emailSender;
+            _responseEncryptor = responseEncryptor;
         }
 
+        /// <summary>
+        /// Üst menü tanımlarını frontend'in beklediği kodlanmış biçimde döner. Giriş ekranında da gerektiği için anonimdir.
+        /// </summary>
         [HttpGet("GetAllTopBar")]
         [AllowAnonymous]
         public async Task<IActionResult> GetAllTopBar()
         {
             var result = await _yetkiAppService.GetAllTopBar();
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Yan menü tanımlarını frontend'in beklediği kodlanmış biçimde döner. Giriş ekranında da gerektiği için anonimdir.
+        /// </summary>
         [HttpGet("GetAllSideBar")]
         [AllowAnonymous]
         public async Task<IActionResult> GetAllSideBar()
         {
             var result = await _yetkiAppService.GetAllSideBar();
             var json = JsonSerializer.Serialize(result);
-            var encrypted = AesEncrypt(json, "mysecuritykeymysecuritykey123456");
+            var encrypted = _responseEncryptor.Encrypt(json);
             return Ok(encrypted);
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının verilen form linkine ait yetkisini (Okuma/Yazma) döner; yetki yoksa boş cevap döner.
+        /// Authentication ve MobileUpdate API'leri yetki kontrolü için bu ucu kullanır.
+        /// </summary>
         [HttpGet("GetUserFormYetkiByUserIdAndFormLink")]
         public async Task<IActionResult> GetUserFormYetkiByUserIdAndFormLink(string formLink)
         {
@@ -55,6 +72,9 @@ namespace SharedApp.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının verilen lokasyondaki enerji izleme yetkisini döner.
+        /// </summary>
         [HttpGet("GetvwUserEnerjiIzlemeYetkiByUserIdAndLokasyonId")]
         public async Task<IActionResult> GetvwUserEnerjiIzlemeYetkiByUserIdAndLokasyonId(int lokasyonId)
         {
@@ -64,6 +84,9 @@ namespace SharedApp.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının yetkili olduğu bütün formları döner.
+        /// </summary>
         [HttpGet("GetUserFormYetkiListByUserId")]
         [Authorize]
         public async Task<IActionResult> GetUserFormYetkiListByUserId()
@@ -74,6 +97,11 @@ namespace SharedApp.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının modül bazlı yetki detaylarını (pano kimliklendirme, kümes, su hattı, enerji, topoloji,
+        /// ticket/yönetim) tek modelde toplar; sadece kullanıcının yetkili olduğu formlar dahil edilir.
+        /// Frontend menü ve sayfa erişimini bu cevaba göre belirler.
+        /// </summary>
         [HttpGet("GetUserPermissions")]
         [Authorize]
         public async Task<UserPermissions> GetUserPermissions()
@@ -117,6 +145,9 @@ namespace SharedApp.API.Controllers
                 return kullaniciYetki;
         }
 
+        /// <summary>
+        /// Oturumdaki kullanıcının verilen linke ait yetkisini döner.
+        /// </summary>
         [HttpGet("GetUserLinkYetkiByLink")]
         [Authorize]
         public async Task<IActionResult> GetUserLinkYetkiByLink(string link)
@@ -127,6 +158,11 @@ namespace SharedApp.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Planlı bakım duyurusu e-postası gönderir. Alıcı listesi seçilen kullanıcı gruplarına göre hesaplanır,
+        /// ancak e-posta şu an sabit tek bir adrese gidiyor.
+        /// </summary>
+        [Authorize]
         [HttpPut("SendEmailForScheduledMaintenance")]
         public async Task<IActionResult> SendEmailForScheduledMaintenance([FromForm] string emailKonu, [FromForm] string emailGovde, [FromForm] bool panoKimlikKullanicisiMi, [FromForm] bool kumesScadaKullanicisiMi, [FromForm] bool suHatScadaKullanicisiMi, [FromForm] IFormFile[]? file)
         {
@@ -134,20 +170,6 @@ namespace SharedApp.API.Controllers
             _emailSender.SendScheduledMaintenanceMessage(emailKonu, emailGovde, new List<string>() { "beray.bayazit@matli.com.tr" }, file);
             var result = true;
             return Ok(result);
-        }
-
-        private static string AesEncrypt(string plainText, string key)
-        {
-            using var aes = Aes.Create();
-            aes.Key = Encoding.UTF8.GetBytes(key);
-            aes.IV = new byte[16]; // 16 byte boş IV
-
-            using var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
-            using var ms = new MemoryStream();
-            using var cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write);
-            using (var sw = new StreamWriter(cs)) sw.Write(plainText);
-
-            return Convert.ToBase64String(ms.ToArray());
         }
     }
 }

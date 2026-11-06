@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
@@ -20,6 +21,7 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using MatliOtomasyon.Shared.Infrastructure.Configuration;
+using MatliOtomasyon.Shared.Web.Http;
 
 var passed = 0;
 async Task Check(string name, Func<Task> test) { await test(); Console.WriteLine("PASS " + name); passed++; }
@@ -97,7 +99,8 @@ context.Connection.RemoteIpAddress = System.Net.IPAddress.Parse("203.0.113.5");
 var authorizationAllowed = false;
 var authorizationService = Stub<IAuthorizationService>((m, a) =>
     Task.FromResult(authorizationAllowed ? AuthorizationResult.Success() : AuthorizationResult.Failed()));
-var controller = new UserController(users, tokens, otp, null!, null!, new HttpContextAccessor { HttpContext = context }, challenges, options, repository, authorizationService) {
+var responseEncryptor = new ResponseEncryptor(Options.Create(new ResponseEncryptionOptions { Key = new string('r', 32) }));
+var controller = new UserController(users, tokens, otp, null!, null!, new HttpContextAccessor { HttpContext = context }, challenges, options, repository, authorizationService, responseEncryptor) {
     ControllerContext = new ControllerContext { HttpContext = context }
 };
 string Jwt(string issuer = "test-issuer", string audience = "test-audience", string? key = null, bool unsigned = false, bool legacyAlgorithm = false) =>
@@ -343,6 +346,46 @@ await Check("secret placeholders resolve in WebApplication and generic host buil
 
     Environment.SetEnvironmentVariable("MATLI_TEST_JWT_KEY", null);
     return Task.CompletedTask;
+});
+await Check("response encryptor stays byte-compatible with the frontend's legacy AES format", () => {
+    const string key = "0123456789abcdef0123456789abcdef";
+    static string LegacyAesEncrypt(string plainText, string key) {
+        using var aes = System.Security.Cryptography.Aes.Create();
+        aes.Key = Encoding.UTF8.GetBytes(key);
+        aes.IV = new byte[16];
+        using var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+        using var ms = new MemoryStream();
+        using var cs = new System.Security.Cryptography.CryptoStream(ms, encryptor, System.Security.Cryptography.CryptoStreamMode.Write);
+        using (var sw = new StreamWriter(cs)) sw.Write(plainText);
+        return Convert.ToBase64String(ms.ToArray());
+    }
+    var encryptor = new ResponseEncryptor(Options.Create(new ResponseEncryptionOptions { Key = key }));
+    foreach (var sample in new[] { "", "[]", "{\"Ad\":\"Kümes Şubesi\",\"Id\":42}", new string('x', 1000) })
+        Assert(encryptor.Encrypt(sample) == LegacyAesEncrypt(sample, key), "Output differs from legacy format for: " + sample);
+    return Task.CompletedTask;
+});
+await Check("response encryption key is validated at startup", () => {
+    foreach (var invalidKey in new[] { "", "too-short", new string('k', 33) }) {
+        var configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?> { ["ResponseEncryption:Key"] = invalidKey }).Build();
+        using var provider = new Microsoft.Extensions.DependencyInjection.ServiceCollection().AddResponseEncryption(configuration).BuildServiceProvider();
+        try { _ = ((IOptions<ResponseEncryptionOptions>)provider.GetService(typeof(IOptions<ResponseEncryptionOptions>))!).Value; throw new Exception("Invalid key accepted: '" + invalidKey + "'"); }
+        catch (OptionsValidationException) { }
+    }
+    return Task.CompletedTask;
+});
+await Check("error responses never contain stack traces", async () => {
+    var http = new DefaultHttpContext();
+    http.Request.Path = "/api/test";
+    http.Response.Body = new MemoryStream();
+    Exception thrown;
+    try { throw new InvalidOperationException("Kullanıcı bulunamadı"); } catch (Exception ex) { thrown = ex; }
+    http.Features.Set<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>(new Microsoft.AspNetCore.Diagnostics.ExceptionHandlerFeature { Error = thrown, Path = "/api/test" });
+    await new MatliOtomasyon.Shared.Web.Errors.ExceptionMiddleware(_ => Task.CompletedTask, NullLogger<MatliOtomasyon.Shared.Web.Errors.ExceptionMiddleware>.Instance).Invoke(http);
+    http.Response.Body.Position = 0;
+    var body = await new StreamReader(http.Response.Body).ReadToEndAsync();
+    Assert(http.Response.StatusCode == 500);
+    Assert(!body.Contains("StackTrace") && !body.Contains(" at "), "Stack trace leaked: " + body);
+    Assert(body.Contains("Kullanıcı bulunamadı") && body.Contains("\"Guid\""), "Error message or id missing: " + body);
 });
 Console.WriteLine($"{passed} security checks passed.");
 

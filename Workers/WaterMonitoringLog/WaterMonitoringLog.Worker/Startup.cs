@@ -11,7 +11,7 @@ public class Startup
         services.AddCors(options =>
         {
             options.AddPolicy("AllowAllOrigins", builder =>
-                builder.AllowAnyOrigin()
+                builder.WithOrigins("https://localhost:44313", "http://localhost:4200", "https://otomasyon.matli.com.tr", "https://otomasyontest.matli.com.tr")
                        .AllowAnyMethod()
                        .AllowAnyHeader());
         });

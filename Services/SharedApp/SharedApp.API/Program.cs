@@ -5,6 +5,7 @@ using SharedApp.Application.Mapster;
 using SharedApp.Infrastructure;
 using MatliOtomasyon.Shared.Infrastructure.Configuration;
 using MatliOtomasyon.Shared.Web.Errors;
+using MatliOtomasyon.Shared.Web.Http;
 using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +38,7 @@ mapsterConfig.Compile();
 builder.Services.AddSingleton(mapsterConfig);
 builder.Services.AddScoped<IMapper, ServiceMapper>();
 #endregion Mapster
+builder.Services.AddResponseEncryption(builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -52,7 +54,7 @@ builder.Services.AddCors(options =>
         name: "AllowOrigin",
         builder =>
         {
-            builder.AllowAnyOrigin()//domain yaziliyor
+            builder.WithOrigins("https://localhost:44313", "http://localhost:4200", "https://otomasyon.matli.com.tr", "https://otomasyontest.matli.com.tr")
                     .AllowAnyMethod()
                     .AllowAnyHeader();
         });
@@ -60,14 +62,8 @@ builder.Services.AddCors(options =>
 #endregion cors
 
 var app = builder.Build();
-using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
-{
-    var context = serviceScope.ServiceProvider.GetRequiredService<SharedDbContext>();
-    var result = context.Database.EnsureCreated();
-}
-
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
