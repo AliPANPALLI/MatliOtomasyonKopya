@@ -1,8 +1,8 @@
 using EnerjiIzlemeAlarmWorker;
-using EnerjiIzleme.Domain.Interfaces;
-using EnerjiIzleme.Infrastructure;
-using EnerjiIzleme.Infrastructure.Mongo;
-using EnerjiIzleme.Infrastructure.Repositories;
+using EnergyMonitoring.Domain.Interfaces;
+using EnergyMonitoring.Infrastructure;
+using EnergyMonitoring.Infrastructure.Mongo;
+using EnergyMonitoring.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using SharedApp.Infrastructure;

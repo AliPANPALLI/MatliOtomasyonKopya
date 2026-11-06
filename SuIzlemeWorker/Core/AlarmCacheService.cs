@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using SuHatScada.Domain.Models;
-using SuHatScada.Infrastructure;
+using WaterLineScada.Domain.Models;
+using WaterLineScada.Infrastructure;
 
 namespace SuIzlemeWorker.Core
 {

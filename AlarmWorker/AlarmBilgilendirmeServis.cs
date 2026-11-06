@@ -1,10 +1,10 @@
-using KumesScada.Infrastructure;
+using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Domain.DbViewModels;
 using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
-using SuHatScada.Infrastructure;
+using WaterLineScada.Infrastructure;
 using System.Text.RegularExpressions;
 using static SharedKernel.ApplicationConstants;
 
@@ -57,7 +57,7 @@ namespace AlarmWorker
                 }
             }
         }
-        public async Task KumesScadaAlarmGonderAsync(List<KumesScada.Domain.Models.AlarmLog> kumesAlarmLogs)
+        public async Task KumesScadaAlarmGonderAsync(List<PoultryHouseScada.Domain.Models.AlarmLog> kumesAlarmLogs)
         {
             try
             {
@@ -250,7 +250,7 @@ namespace AlarmWorker
             }
         }
 
-        public async Task SuHatScadaAlarmGonderAsync(List<SuHatScada.Domain.Models.AlarmLog> suHatAlarmLogs)
+        public async Task SuHatScadaAlarmGonderAsync(List<WaterLineScada.Domain.Models.AlarmLog> suHatAlarmLogs)
         {
             try
             {
@@ -535,7 +535,7 @@ namespace AlarmWorker
             // await _emailSender.SendAlarmMessage(mesaj, new List<string> { kullanici.Email });
         }
 
-        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlustur(List<KumesScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
+        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlustur(List<PoultryHouseScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
         {
             var mesajListesi = new List<(string Mesaj, List<int> AlarmLogIds)>();
 
@@ -614,7 +614,7 @@ namespace AlarmWorker
             return mesajListesi;
         }
 
-        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlusturSuHat(List<SuHatScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
+        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlusturSuHat(List<WaterLineScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
         {
             var mesajListesi = new List<(string Mesaj, List<int> AlarmLogIds)>();
 

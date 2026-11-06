@@ -1,6 +1,6 @@
 using FastMember;
-using KumesScada.Domain.Models;
-using KumesScada.Infrastructure;
+using PoultryHouseScada.Domain.Models;
+using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using RahmiyeTesisWorker.Core;
 using RahmiyeTesisWorker.Models;

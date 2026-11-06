@@ -1,6 +1,0 @@
-@ProjeTakip.API_HostAddress = http://localhost:5128
-
-GET {{ProjeTakip.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

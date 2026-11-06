@@ -1,4 +1,4 @@
-using KumesScada.Infrastructure;
+using PoultryHouseScada.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RahmiyeYTKWorker;

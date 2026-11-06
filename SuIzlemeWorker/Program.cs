@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
-using SuHatScada.Infrastructure;
+using WaterLineScada.Infrastructure;
 using SuIzlemeWorker;
 using SuIzlemeWorker.Core;
 using System.Data.SqlClient;

@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
 using SharedKernel;
-using SuHatScada.Domain.Models;
-using SuHatScada.Infrastructure;
+using WaterLineScada.Domain.Models;
+using WaterLineScada.Infrastructure;
 using SuIzlemeWorker.Core;
 using SuIzlemeWorker.Models;
 using System.ComponentModel;
@@ -12,7 +12,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json;
 using static SharedKernel.ApplicationConstants;
-using AlarmLog = SuHatScada.Domain.Models.AlarmLog;
+using AlarmLog = WaterLineScada.Domain.Models.AlarmLog;
 
 namespace SuIzlemeWorker
 {

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Identity\Authentication.Application\Authentication.Application.csproj" />
+    <ProjectReference Include="..\..\PoultryHouseScada\PoultryHouseScada.Domain\PoultryHouseScada.Domain.csproj" />
+    <ProjectReference Include="..\..\PanelIdentification\PanelIdentification.Domain\PanelIdentification.Domain.csproj" />
+    <ProjectReference Include="..\SharedApp.Domain\SharedApp.Domain.csproj" />
+    <ProjectReference Include="..\..\..\SharedKernel\SharedKernel.csproj" />
+    <ProjectReference Include="..\..\WaterLineScada\WaterLineScada.Domain\WaterLineScada.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

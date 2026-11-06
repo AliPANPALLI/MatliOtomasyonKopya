@@ -16,6 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\SharedApp\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

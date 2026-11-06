@@ -9,10 +9,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SharedKernel.Configurations;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text;
@@ -61,10 +63,11 @@ var options = Options.Create(new CustomTokenOption { SecurityKey = new string('k
 var user = new User { Id = "u", UserName = "alice", Name = "Alice", Surname = "Test", Email = "alice@example.invalid", PasswordHash = "hash", PhoneNumber = "5551234567" };
 var calls = new List<string>();
 var users = Stub<IUserService>((m, a) => m.Name switch {
-    "GetUserByName" => Task.FromResult((string)a![0]! == "alice" ? user : null!),
+    "GetUserByName" or "GetUserBySicilNo" => Task.FromResult((string)a![0]! == "alice" ? user : null!),
     "CheckPasswordAsync" => Task.FromResult(true),
     "AddConnectSiteLog" => Task.CompletedTask,
     "IncorrectLoginNumberUpdate" => Task.CompletedTask,
+    "AddPageExitMain" => RecordPageExit(a!),
     _ => throw new Exception("Unexpected user service call: " + m.Name)
 });
 var repository = Stub<IUserRepository>((m,a) => m.Name switch {
@@ -73,6 +76,8 @@ var repository = Stub<IUserRepository>((m,a) => m.Name switch {
     _ => throw new Exception("Unexpected user repository call: " + m.Name)
 });
 Task<bool> ResetPassword(object?[] a) { calls.Add("reset:" + a[0]); return Task.FromResult(true); }
+/// <summary>Sekme kapanışı kaydını, kaydın hangi kullanıcı adına atıldığını doğrulamak için not eder.</summary>
+Task RecordPageExit(object?[] a) { calls.Add("page-exit:" + a[0]); return Task.CompletedTask; }
 var tokens = Stub<ITokenService>((m,a) => {
     calls.Add(m.Name + ":" + (a?[0] is User u ? u.Id : a?[0]));
     return m.Name switch {
@@ -87,7 +92,10 @@ var otp = Stub<ITwoFactorService>((m,a) => {
 });
 var context = new DefaultHttpContext();
 context.Connection.RemoteIpAddress = System.Net.IPAddress.Parse("203.0.113.5");
-var controller = new UserController(users, tokens, otp, null!, null!, new HttpContextAccessor { HttpContext = context }, null!, null!, challenges, options, repository) {
+var authorizationAllowed = false;
+var authorizationService = Stub<IAuthorizationService>((m, a) =>
+    Task.FromResult(authorizationAllowed ? AuthorizationResult.Success() : AuthorizationResult.Failed()));
+var controller = new UserController(users, tokens, otp, null!, null!, new HttpContextAccessor { HttpContext = context }, challenges, options, repository, authorizationService) {
     ControllerContext = new ControllerContext { HttpContext = context }
 };
 string Jwt(string issuer = "test-issuer", string audience = "test-audience", string? key = null, bool unsigned = false, bool legacyAlgorithm = false) =>
@@ -201,6 +209,94 @@ await Check("password reset enforces 6-24 character boundaries", async () => {
             "Unexpected result for password length " + length);
     }
 });
+await Check("only allowlisted endpoints are anonymous", () => {
+    var expected = new[] { "SignIn", "CheckTwoFactorAuth", "NewToken", "ResetPassword", "CompletePasswordReset", "TabClose", "LogHeartbeat", "LogPageVisit" }
+        .OrderBy(x => x).ToList();
+    var actual = typeof(UserController).GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly)
+        .Where(x => x.GetCustomAttribute<AllowAnonymousAttribute>() != null).Select(x => x.Name).OrderBy(x => x).ToList();
+    Assert(expected.SequenceEqual(actual), "Anonymous endpoints: " + string.Join(", ", actual));
+    return Task.CompletedTask;
+});
+await Check("user management endpoints require user management policies", () => {
+    var expected = new Dictionary<string, string> {
+        ["CreateUser"] = UserManagementPolicies.Write,
+        ["EditUser"] = UserManagementPolicies.Write,
+        ["DeleteUser"] = UserManagementPolicies.Write,
+        ["SendEmailForNewUser"] = UserManagementPolicies.Write,
+        ["SendSmsForNewUser"] = UserManagementPolicies.Write,
+        ["GetAllUserConnectSiteLogs"] = UserManagementPolicies.Read,
+        ["GetAllvwPageVisits"] = UserManagementPolicies.Read,
+        ["GetAllUsers"] = UserManagementPolicies.ReadOrInternalService,
+    };
+    foreach (var (name, policy) in expected)
+        Assert(typeof(UserController).GetMethod(name)!.GetCustomAttribute<AuthorizeAttribute>()?.Policy == policy, name + " must require " + policy);
+    return Task.CompletedTask;
+});
+await Check("test SMS and dead OTP endpoints are removed", () => {
+    Assert(typeof(UserController).GetMethod("PostSms") == null && typeof(UserController).GetMethod("GetUserForOtp") == null);
+    Assert(typeof(IUserService).GetMethod("PostSms") == null);
+    return Task.CompletedTask;
+});
+await Check("users can read only their own record without user management permission", async () => {
+    authorizationAllowed = false;
+    context.User = new ClaimsPrincipal(new ClaimsIdentity([new Claim(ClaimTypes.NameIdentifier, "u"), new Claim(ClaimTypes.GivenName, "ALICE")], "test"));
+    Assert(await controller.GetUser("alice") is OkObjectResult);
+    Assert(await controller.GetUser("bob") is ForbidResult);
+    context.User = new ClaimsPrincipal(new ClaimsIdentity([new Claim(ClaimTypes.NameIdentifier, "admin"), new Claim(ClaimTypes.GivenName, "admin")], "test"));
+    Assert(await controller.GetUser("alice") is ForbidResult);
+    authorizationAllowed = true;
+    Assert(await controller.GetUser("alice") is OkObjectResult);
+    authorizationAllowed = false;
+    context.User = new ClaimsPrincipal(new ClaimsIdentity());
+});
+await Check("tab-close records exits only for validly signed tokens", async () => {
+    async Task TabClose(string token) {
+        var body = System.Text.Json.JsonSerializer.Serialize(new { TabId = "t", CurrentPage = "/kumes/rapor", Token = token });
+        context.Request.Body = new MemoryStream(Encoding.UTF8.GetBytes(body));
+        Assert(await controller.TabClose() is OkResult);
+    }
+    calls.Clear();
+    foreach (var forged in new[] { Jwt(key: new string('x', 64)), Jwt(issuer: "wrong"), Jwt(unsigned: true), "garbage" })
+        await TabClose(forged);
+    Assert(!calls.Any(x => x.StartsWith("page-exit:")), "Forged token produced a page exit record");
+    await TabClose(Jwt());
+    Assert(calls.Contains("page-exit:u"));
+});
+UserManagementAuthorizationHandler PermissionHandler(string apiKey, Func<HttpResponseMessage>? sharedAppResponse) =>
+    new(new HttpContextAccessor(), new StubHttpClientFactory(sharedAppResponse), new MemoryCache(new MemoryCacheOptions()),
+        Options.Create(new UserManagementOptions { FormLink = "/yonetim/kullanici-yonetimi" }),
+        Options.Create(new InternalServiceOptions { AuthenticationApiKey = apiKey }),
+        NullLogger<UserManagementAuthorizationHandler>.Instance);
+async Task<bool> Evaluate(UserManagementAuthorizationHandler handler, bool requiresWrite, bool allowInternalService, ClaimsPrincipal principal, HttpContext http) {
+    var authorizationContext = new AuthorizationHandlerContext([new UserManagementRequirement(requiresWrite, allowInternalService)], principal, http);
+    await handler.HandleAsync(authorizationContext);
+    return authorizationContext.HasSucceeded;
+}
+HttpContext InternalRequest(string? key) {
+    var http = new DefaultHttpContext();
+    if (key != null) http.Request.Headers[InternalServiceOptions.ApiKeyHeaderName] = key;
+    return http;
+}
+await Check("internal service key is accepted only when configured, matching and allowed", async () => {
+    var anonymous = new ClaimsPrincipal(new ClaimsIdentity());
+    Assert(await Evaluate(PermissionHandler("internal-key", null), false, true, anonymous, InternalRequest("internal-key")));
+    Assert(!await Evaluate(PermissionHandler("internal-key", null), false, true, anonymous, InternalRequest("wrong-key")));
+    Assert(!await Evaluate(PermissionHandler("internal-key", null), false, true, anonymous, InternalRequest(null)));
+    Assert(!await Evaluate(PermissionHandler("", null), false, true, anonymous, InternalRequest("")));
+    Assert(!await Evaluate(PermissionHandler("internal-key", null), false, false, anonymous, InternalRequest("internal-key")));
+});
+await Check("form permission decides read and write access", async () => {
+    var signedIn = new ClaimsPrincipal(new ClaimsIdentity([new Claim(ClaimTypes.NameIdentifier, "u")], "test"));
+    HttpContext UserRequest() { var http = new DefaultHttpContext(); http.Request.Headers.Authorization = "Bearer token"; return http; }
+    Func<HttpResponseMessage> Respond(HttpStatusCode status, string body = "") => () => new HttpResponseMessage(status) { Content = new StringContent(body) };
+    var writer = Respond(HttpStatusCode.OK, "{\"yazma\":true}");
+    var reader = Respond(HttpStatusCode.OK, "{\"yazma\":false}");
+    Assert(await Evaluate(PermissionHandler("", writer), true, false, signedIn, UserRequest()));
+    Assert(await Evaluate(PermissionHandler("", reader), false, false, signedIn, UserRequest()));
+    Assert(!await Evaluate(PermissionHandler("", reader), true, false, signedIn, UserRequest()));
+    Assert(!await Evaluate(PermissionHandler("", Respond(HttpStatusCode.NoContent)), false, false, signedIn, UserRequest()));
+    Assert(!await Evaluate(PermissionHandler("", Respond(HttpStatusCode.InternalServerError)), false, false, signedIn, UserRequest()));
+});
 Console.WriteLine($"{passed} security checks passed.");
 
 static T Stub<T>(Func<MethodInfo, object?[]?, object?> invoke) where T:class {
@@ -209,4 +305,20 @@ static T Stub<T>(Func<MethodInfo, object?[]?, object?> invoke) where T:class {
 public class CallProxy : DispatchProxy {
     public Func<MethodInfo, object?[]?, object?> Handler = null!;
     protected override object? Invoke(MethodInfo? targetMethod, object?[]? args) => Handler(targetMethod!, args);
+}
+
+/// <summary>
+/// SharedApp'in form yetkisi cevabını taklit eden HttpClient üretir. Cevap verilmemişse SharedApp'e
+/// hiç gidilmemesi beklenir; gidilirse test hata verir.
+/// </summary>
+public sealed class StubHttpClientFactory(Func<HttpResponseMessage>? response) : IHttpClientFactory {
+    /// <summary>Her çağrıda sahte cevap dönen yeni bir HttpClient oluşturur.</summary>
+    public HttpClient CreateClient(string name) => new(new StubHttpMessageHandler(response));
+}
+
+/// <summary>Verilen fonksiyonun ürettiği cevabı dönen, ağa çıkmayan HTTP handler'ı.</summary>
+public sealed class StubHttpMessageHandler(Func<HttpResponseMessage>? response) : HttpMessageHandler {
+    /// <summary>İsteği ağa göndermeden sahte cevabı döner.</summary>
+    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) =>
+        response == null ? throw new InvalidOperationException("SharedApp must not be called for this request.") : Task.FromResult(response());
 }

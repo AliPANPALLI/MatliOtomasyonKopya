@@ -15,9 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EnerjiIzleme.Domain\EnerjiIzleme.Domain.csproj" />
-    <ProjectReference Include="..\EnerjiIzleme.Infrastructure\EnerjiIzleme.Infrastructure.csproj" />
-    <ProjectReference Include="..\KumesScada.Infrastructure\KumesScada.Infrastructure.csproj" />
-    <ProjectReference Include="..\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\EnergyMonitoring\EnergyMonitoring.Domain\EnergyMonitoring.Domain.csproj" />
+    <ProjectReference Include="..\Services\EnergyMonitoring\EnergyMonitoring.Infrastructure\EnergyMonitoring.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\PoultryHouseScada\PoultryHouseScada.Infrastructure\PoultryHouseScada.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\SharedApp\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

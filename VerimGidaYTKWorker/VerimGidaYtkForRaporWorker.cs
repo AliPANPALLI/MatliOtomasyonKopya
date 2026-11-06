@@ -1,6 +1,6 @@
 using FastMember;
-using KumesScada.Domain.Models;
-using KumesScada.Infrastructure;
+using PoultryHouseScada.Domain.Models;
+using PoultryHouseScada.Infrastructure;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Domain.Models;
@@ -10,7 +10,7 @@ using System.Text.Json;
 using VerimGidaYTKWorker.Core;
 using VerimGidaYTKWorker.Models;
 using static SharedKernel.ApplicationConstants;
-using AlarmLog = KumesScada.Domain.Models.AlarmLog;
+using AlarmLog = PoultryHouseScada.Domain.Models.AlarmLog;
 
 namespace VerimGidaYTKWorker
 {

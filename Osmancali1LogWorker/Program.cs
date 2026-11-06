@@ -1,6 +1,6 @@
 using Osmancali1LogWorker;
 using Osmancali1LogWorker.Core;
-using KumesScada.Infrastructure;
+using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;

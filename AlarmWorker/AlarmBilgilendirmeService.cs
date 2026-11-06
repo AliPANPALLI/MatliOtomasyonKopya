@@ -1,5 +1,5 @@
-﻿using EnerjiIzleme.Infrastructure;
-using KumesScada.Infrastructure;
+﻿using EnergyMonitoring.Infrastructure;
+using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SharedApp.Domain.DbViewModels;
@@ -8,7 +8,7 @@ using SharedApp.Domain.Models.ReportModels;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using SharedKernel;
-using SuHatScada.Infrastructure;
+using WaterLineScada.Infrastructure;
 using static SharedKernel.ApplicationConstants;
 using System.Text.Json;
 
@@ -90,7 +90,7 @@ namespace AlarmWorker
             }
         }
 
-        public async Task KumesScadaAlarmGonderAsync(List<KumesScada.Domain.Models.AlarmLog> kumesAlarmLogs)
+        public async Task KumesScadaAlarmGonderAsync(List<PoultryHouseScada.Domain.Models.AlarmLog> kumesAlarmLogs)
         {
             try
             {
@@ -375,7 +375,7 @@ namespace AlarmWorker
             }
         }
 
-        public async Task SuHatScadaAlarmGonderAsync(List<SuHatScada.Domain.Models.AlarmLog> suHatAlarmLogs)
+        public async Task SuHatScadaAlarmGonderAsync(List<WaterLineScada.Domain.Models.AlarmLog> suHatAlarmLogs)
         {
             try
             {
@@ -666,7 +666,7 @@ namespace AlarmWorker
             }
         }
 
-        public async Task EnerjiIzlemeAlarmGonderAsync(List<EnerjiIzleme.Domain.Models.AlarmLog> enerjiIzlemeAlarmLogs)
+        public async Task EnerjiIzlemeAlarmGonderAsync(List<EnergyMonitoring.Domain.Models.AlarmLog> enerjiIzlemeAlarmLogs)
         {
             try
             {
@@ -958,7 +958,7 @@ namespace AlarmWorker
             }
         }
 
-        public async Task YTKAlarmGonderAsync(List<KumesScada.Domain.Models.AlarmLog> ytkAlarmLogs)
+        public async Task YTKAlarmGonderAsync(List<PoultryHouseScada.Domain.Models.AlarmLog> ytkAlarmLogs)
         {
             try
             {
@@ -2132,7 +2132,7 @@ namespace AlarmWorker
             }
         }
 
-        private static string GetSesliMesajMetniForKumes(KumesScada.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
+        private static string GetSesliMesajMetniForKumes(PoultryHouseScada.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
         {
             vwAlarmlar? vw = null;
 
@@ -2151,7 +2151,7 @@ namespace AlarmWorker
             return text;
         }
 
-        private static string GetSesliMesajMetniForSuHat(SuHatScada.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
+        private static string GetSesliMesajMetniForSuHat(WaterLineScada.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
         {
             vwAlarmlar? vw = null;
             if (log.AlarmId.HasValue)
@@ -2168,7 +2168,7 @@ namespace AlarmWorker
             return text;
         }
 
-        private static string GetSesliMesajMetniForEnerjiIzleme(EnerjiIzleme.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
+        private static string GetSesliMesajMetniForEnerjiIzleme(EnergyMonitoring.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
         {
             vwAlarmlar? vw = null;
             if (log.AlarmId.HasValue)
@@ -2202,7 +2202,7 @@ namespace AlarmWorker
             return text;
         }
 
-        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlustur(List<KumesScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
+        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlustur(List<PoultryHouseScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
         {
             var mesajListesi = new List<(string Mesaj, List<int> AlarmLogIds)>();
 
@@ -2285,7 +2285,7 @@ namespace AlarmWorker
             }
             return mesajListesi;
         }
-        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlusturSuHat(List<SuHatScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
+        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlusturSuHat(List<WaterLineScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
         {
             var mesajListesi = new List<(string Mesaj, List<int> AlarmLogIds)>();
 
@@ -2326,7 +2326,7 @@ namespace AlarmWorker
             }
             return mesajListesi;
         }
-        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlusturYTK(List<KumesScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
+        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlusturYTK(List<PoultryHouseScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
         {
             var mesajListesi = new List<(string Mesaj, List<int> AlarmLogIds)>();
 
@@ -2368,7 +2368,7 @@ namespace AlarmWorker
             }
             return mesajListesi;
         }
-        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlusturEnerjiIzleme(List<EnerjiIzleme.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
+        private List<(string Mesaj, List<int> AlarmLogIds)> SesliMesajMetinleriOlusturEnerjiIzleme(List<EnergyMonitoring.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
         {
             var mesajListesi = new List<(string Mesaj, List<int> AlarmLogIds)>();
 
@@ -2560,7 +2560,7 @@ namespace AlarmWorker
             }
         }
 
-        private List<(string Mesaj, List<int> AlarmLogIds)> SmsMetinleriOlusturForKumes(List<KumesScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
+        private List<(string Mesaj, List<int> AlarmLogIds)> SmsMetinleriOlusturForKumes(List<PoultryHouseScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
         {
             var mesajListesi = new List<(string Mesaj, List<int> AlarmLogIds)>();
 
@@ -2631,7 +2631,7 @@ namespace AlarmWorker
 
             return mesajListesi;
         }
-        private List<(string Mesaj, List<int> AlarmLogIds)> SmsMetinleriOlusturSuHat(List<SuHatScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
+        private List<(string Mesaj, List<int> AlarmLogIds)> SmsMetinleriOlusturSuHat(List<WaterLineScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
         {
             var mesajListesi = new List<(string Mesaj, List<int> AlarmLogIds)>();
 
@@ -2672,7 +2672,7 @@ namespace AlarmWorker
             }
             return mesajListesi;
         }
-        private List<(string Mesaj, List<int> AlarmLogIds)> SmsMetinleriOlusturYTK(List<KumesScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
+        private List<(string Mesaj, List<int> AlarmLogIds)> SmsMetinleriOlusturYTK(List<PoultryHouseScada.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
         {
             var mesajListesi = new List<(string Mesaj, List<int> AlarmLogIds)>();
 
@@ -2714,7 +2714,7 @@ namespace AlarmWorker
             }
             return mesajListesi;
         }
-        private List<(string Mesaj, List<int> AlarmLogIds)> SmsMetinleriOlusturEnerjiIzleme(List<EnerjiIzleme.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
+        private List<(string Mesaj, List<int> AlarmLogIds)> SmsMetinleriOlusturEnerjiIzleme(List<EnergyMonitoring.Domain.Models.AlarmLog> logs, Dictionary<int, vwAlarmlar> alarmlar)
         {
             var mesajListesi = new List<(string Mesaj, List<int> AlarmLogIds)>();
 
@@ -2783,7 +2783,7 @@ namespace AlarmWorker
             mesajListesi.Add((mesaj, validLogs.Select(x => x.Id).ToList()));
             return mesajListesi;
         }
-        private static string GetSmsMetniForKumes(KumesScada.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
+        private static string GetSmsMetniForKumes(PoultryHouseScada.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
         {
             vwAlarmlar? vw = null;
 
@@ -2801,7 +2801,7 @@ namespace AlarmWorker
             text = System.Text.RegularExpressions.Regex.Replace(text, "piyelsi", "PLC", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             return text;
         }
-        private static string GetSmsMetniForSuHat(SuHatScada.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
+        private static string GetSmsMetniForSuHat(WaterLineScada.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
         {
             vwAlarmlar? vw = null;
             if (log.AlarmId.HasValue)
@@ -2818,7 +2818,7 @@ namespace AlarmWorker
             text = System.Text.RegularExpressions.Regex.Replace(text, "piyelsi", "PLC", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             return text;
         }
-        private static string GetSmsMetniForEnerjiIzleme(EnerjiIzleme.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
+        private static string GetSmsMetniForEnerjiIzleme(EnergyMonitoring.Domain.Models.AlarmLog log, Dictionary<int, vwAlarmlar> alarmlar)
         {
             vwAlarmlar? vw = null;
             if (log.AlarmId.HasValue)

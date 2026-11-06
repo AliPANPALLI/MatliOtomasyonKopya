@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure;
-using SuHatScada.Infrastructure;
+using WaterLineScada.Infrastructure;
 using SuIzlemeLogWorker;
 
 IHost host = Host.CreateDefaultBuilder(args) 

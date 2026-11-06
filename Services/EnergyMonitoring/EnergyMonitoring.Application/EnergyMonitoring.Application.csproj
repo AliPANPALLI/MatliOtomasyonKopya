@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="10.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EnergyMonitoring.Domain\EnergyMonitoring.Domain.csproj" />
+    <ProjectReference Include="..\..\PoultryHouseScada\PoultryHouseScada.Domain\PoultryHouseScada.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj" />
-    <ProjectReference Include="..\SuHatScada.Infrastructure\SuHatScada.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\SharedApp\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\Services\WaterLineScada\WaterLineScada.Infrastructure\WaterLineScada.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

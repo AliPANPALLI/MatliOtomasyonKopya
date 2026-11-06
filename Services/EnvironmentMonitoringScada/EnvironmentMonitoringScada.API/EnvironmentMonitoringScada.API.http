@@ -1,0 +1,6 @@
+@EnvironmentMonitoringScada.API_HostAddress = http://localhost:5221
+
+GET {{EnvironmentMonitoringScada.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

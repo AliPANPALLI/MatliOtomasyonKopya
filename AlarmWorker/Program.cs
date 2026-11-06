@@ -1,10 +1,10 @@
 using AlarmWorker;
-using KumesScada.Infrastructure;
+using PoultryHouseScada.Infrastructure;
 using SharedApp.Infrastructure;
-using SuHatScada.Infrastructure;
+using WaterLineScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure.Sender;
-using EnerjiIzleme.Infrastructure;
+using EnergyMonitoring.Infrastructure;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureLogging(logging =>

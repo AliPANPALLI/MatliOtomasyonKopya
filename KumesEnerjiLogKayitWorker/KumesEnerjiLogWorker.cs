@@ -1,10 +1,10 @@
-using EnerjiIzleme.Domain.Interfaces;
-using EnerjiIzleme.Domain.Models;
-using EnerjiIzleme.Domain.Models.ReportModels;
-using EnerjiIzleme.Infrastructure;
-using EnerjiIzleme.Infrastructure.Mongo;
-using KumesScada.Domain.Models;
-using KumesScada.Infrastructure;
+using EnergyMonitoring.Domain.Interfaces;
+using EnergyMonitoring.Domain.Models;
+using EnergyMonitoring.Domain.Models.ReportModels;
+using EnergyMonitoring.Infrastructure;
+using EnergyMonitoring.Infrastructure.Mongo;
+using PoultryHouseScada.Domain.Models;
+using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 using SharedApp.Domain.Models;

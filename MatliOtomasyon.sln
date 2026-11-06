@@ -3,223 +3,227 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.10.12217.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{2F815853-F673-462E-B19F-DC60D6C1A44C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{D6745DED-681E-A33A-8015-C3134B4CFA51}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.API", "Authentication.API\Authentication.API.csproj", "{64A1D783-CFD4-4171-9781-2220DD2A3D42}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{12A77041-6750-4B49-F146-15E8A176B6F9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.Application", "Authentication.Application\Authentication.Application.csproj", "{D34C5C8B-A800-4D09-B07C-1878F58C2AC0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EnergyMonitoring", "EnergyMonitoring", "{4D9021DD-3801-DF08-5B23-5559243120AF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.Domain", "Authentication.Domain\Authentication.Domain.csproj", "{6ABA9387-8C80-449D-A582-CE26030B1D2A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EnvironmentMonitoringScada", "EnvironmentMonitoringScada", "{62467473-54C4-5AAD-C6A5-7DDA9A709233}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.Infrastructure", "Authentication.Infrastructure\Authentication.Infrastructure.csproj", "{CA3875DA-58E5-4144-809C-27B55A0B2A67}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HegCoolingScada", "HegCoolingScada", "{73D853F0-E7E7-458F-8077-2BA2EC4281D6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PanoKimliklendirme", "PanoKimliklendirme", "{B24F022F-CDA1-44C6-9AC8-354650886B6B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ITG", "ITG", "{9D6E3BE5-D412-D9D0-4F05-F27F1B07E809}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanoKimliklendirme.API", "PanoKimliklendirme.API\PanoKimliklendirme.API.csproj", "{3C85BBC1-38BB-4237-AA84-1C59FB94EA7C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MachineMonitoring", "MachineMonitoring", "{A67648A8-2A61-5776-58B1-4CE7C344228A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanoKimliklendirme.Application", "PanoKimliklendirme.Application\PanoKimliklendirme.Application.csproj", "{B870E646-8D43-401A-BF7E-585B3DD8490C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MobileUpdate", "MobileUpdate", "{BA9DE142-7BC8-81DB-3927-345804A09290}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanoKimliklendirme.Domain", "PanoKimliklendirme.Domain\PanoKimliklendirme.Domain.csproj", "{54BBE6C3-6876-4169-9705-60238DC04594}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ObjectMonitoring", "ObjectMonitoring", "{750C73A4-8DFD-C7F1-26DD-0E7F48785983}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanoKimliklendirme.Infrastructure", "PanoKimliklendirme.Infrastructure\PanoKimliklendirme.Infrastructure.csproj", "{F4F9910F-B108-40AB-9D76-80DF5DF397CA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PanelIdentification", "PanelIdentification", "{6CC32C4E-FB59-F34F-D3FB-BF10B960C513}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KumesScada", "KumesScada", "{715F0527-E9C6-4EC6-9C35-7AADB7E5845F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PoultryHouseScada", "PoultryHouseScada", "{C50DA365-202B-CA17-BB72-CDD10B2F85AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KumesScada.API", "KumesScada.API\KumesScada.API.csproj", "{5C727D7A-421D-4273-9C04-1F6DD97D97FF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectTracking", "ProjectTracking", "{5B83896C-FC3F-90DD-AB9A-D0182A8ED59F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KumesScada.Application", "KumesScada.Application\KumesScada.Application.csproj", "{F5D35CAA-ED43-4FCF-866A-3C3469ADD098}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedApp", "SharedApp", "{3BC2B5B8-923B-2763-DD47-A65F4610094C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KumesScada.Domain", "KumesScada.Domain\KumesScada.Domain.csproj", "{F2214E4A-4ADF-4DC6-811B-4DE47A55EC05}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SiloTemperatureMonitoring", "SiloTemperatureMonitoring", "{A95761E8-FA74-621B-E099-864229FF6D06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KumesScada.Infrastructure", "KumesScada.Infrastructure\KumesScada.Infrastructure.csproj", "{74451EEF-473E-49B5-BEC9-282C605799D0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ticket", "Ticket", "{3B3E5AF3-CC38-1C43-62A8-C9622429EAE7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedApp", "SharedApp", "{38D0839F-1AF3-4F55-92D4-733A857D297A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WaterLineScada", "WaterLineScada", "{2D7DBC1C-4852-E30B-FFCB-70484D8AB3E7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedApp.API", "SharedApp.API\SharedApp.API.csproj", "{08CCF74F-C510-4B3E-9073-B6FF0632B089}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WeighbridgeTracking", "WeighbridgeTracking", "{3AAA1DCD-6A3F-61FA-48E7-74435AB3A156}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedApp.Application", "SharedApp.Application\SharedApp.Application.csproj", "{A1D6F3BD-7D59-4E07-9E44-8072879F9B00}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servisler", "Servisler", "{318C07C6-F3CB-7F8C-1227-A16BCC2DF377}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedApp.Domain", "SharedApp.Domain\SharedApp.Domain.csproj", "{47386925-9256-4CF7-8D0A-F18E387A236A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedApp.Infrastructure", "SharedApp.Infrastructure\SharedApp.Infrastructure.csproj", "{1ABD90F2-DF04-474A-A83A-82F389073AC0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{99EA1B56-1BD0-471C-844A-6101A140BB8C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{72F07902-DC6D-46E6-A009-C47AB4D69C5A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.API", "Gateway.API\Gateway.API.csproj", "{470CB8AA-3A38-4FF5-BA41-140BBA7B241B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SuHatScada", "SuHatScada", "{0F6ECA64-9F80-44D0-82C3-EB51A0C0C477}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuHatScada.API", "SuHatScada.API\SuHatScada.API.csproj", "{F5C472A8-05DF-4924-8C66-27C02D0B20B7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuHatScada.Application", "SuHatScada.Application\SuHatScada.Application.csproj", "{7F34B469-4F33-48C6-BF1E-D49BBAD02DDE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuHatScada.Domain", "SuHatScada.Domain\SuHatScada.Domain.csproj", "{67F0D7A1-5D04-4560-B04F-45B0CDE87627}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuHatScada.Infrastructure", "SuHatScada.Infrastructure\SuHatScada.Infrastructure.csproj", "{4A605831-84C5-4A98-8CB4-77752EB3F13A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servisler", "Servisler", "{0B4B274B-EE25-4442-91EF-847E15126F82}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RahmiyeTesisWorker", "RahmiyeTesisWorker\RahmiyeTesisWorker.csproj", "{64020BC6-0766-42E6-9C08-174C1B7643A8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuIzlemeWorker", "SuIzlemeWorker\SuIzlemeWorker.csproj", "{F4E5A274-3BA7-4D52-B0FF-448ADEF5EAD1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EnerjiIzleme", "EnerjiIzleme", "{650B3B4B-782E-44DE-B342-6DA8D3C48795}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnerjiIzleme.Infrastructure", "EnerjiIzleme.Infrastructure\EnerjiIzleme.Infrastructure.csproj", "{B4D1D29B-1CD6-4904-B222-B2317F3836B7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnerjiIzleme.Domain", "EnerjiIzleme.Domain\EnerjiIzleme.Domain.csproj", "{E8711762-4C8F-40DD-89BF-7859F24B50DE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnerjiIzleme.Application", "EnerjiIzleme.Application\EnerjiIzleme.Application.csproj", "{04F7D58F-37D6-49B4-B063-7056428A79EC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnerjiIzleme.API", "EnerjiIzleme.API\EnerjiIzleme.API.csproj", "{EA4735E4-C742-4F95-80F2-0FB87E47300F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RahmiyeYTKWorker", "RahmiyeYTKWorker\RahmiyeYTKWorker.csproj", "{C439AD4E-0B18-44AF-B18F-EC800680E27B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailGonderimWorker", "MailGonderimWorker\MailGonderimWorker.csproj", "{FDB3D689-34F1-499D-838E-7973BD06C7EF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B6B8B008-BC3B-EDE5-5501-AED8072F1DE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmWorker", "AlarmWorker\AlarmWorker.csproj", "{16833BAB-8BCE-41D0-B6B2-5BCF6C46D5D7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ticket", "Ticket", "{9481B317-7115-42E4-98ED-AC2401CC200B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket.Application", "Ticket.Application\Ticket.Application.csproj", "{839842F2-0D13-478A-AEC6-5EB150BCB69A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket.Infrastructure", "Ticket.Infrastructure\Ticket.Infrastructure.csproj", "{B7255968-DA45-4F61-A534-92FE1518021E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket.Domain", "Ticket.Domain\Ticket.Domain.csproj", "{A1738802-342D-41B7-B0D5-3D3C9CC91208}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket.API", "Ticket.API\Ticket.API.csproj", "{6BF2D9D3-6447-4F9A-A359-2DAB929B480D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MesajGonderimWorker", "MesajGonderimWorker\MesajGonderimWorker.csproj", "{F07DB39B-FF72-4538-AC62-58B68BD0BCBB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerimGidaYTKWorker", "VerimGidaYTKWorker\VerimGidaYTKWorker.csproj", "{918E6B85-F0F3-4EC4-96A5-C2AD55F03836}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrtamIzlemeScada", "OrtamIzlemeScada", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrtamIzlemeScada.API", "OrtamIzlemeScada.API\OrtamIzlemeScada.API.csproj", "{A890627B-36A9-4A21-AAC7-7F94B07036C7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrtamIzlemeScada.Application", "OrtamIzlemeScada.Application\OrtamIzlemeScada.Application.csproj", "{FB01C881-8E8C-4416-86A9-15F6DEF4D6BD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrtamIzlemeScada.Domain", "OrtamIzlemeScada.Domain\OrtamIzlemeScada.Domain.csproj", "{A15E34C4-89F2-495F-8642-E858DD4B2A08}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrtamIzlemeScada.Infrastructure", "OrtamIzlemeScada.Infrastructure\OrtamIzlemeScada.Infrastructure.csproj", "{E16FD5AA-4D90-4BFB-8D36-2EE4FBC177AF}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MakineIzleme", "MakineIzleme", "{EACA62D7-78BE-47D8-8D36-2DE93490C8AA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HegSogutmaScada", "HegSogutmaScada", "{A28A088E-950F-4B94-B8B7-0C9D9055C9A0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HegSogutmaScada.API", "HegSogutmaScada.API\HegSogutmaScada.API.csproj", "{0C29EFEA-7E1C-4061-8824-EC2311C9BAEE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HegSogutmaScada.Application", "HegSogutmaScada.Application\HegSogutmaScada.Application.csproj", "{D5BD0CDA-081E-4064-975A-4525379D519D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HegSogutmaScada.Domain", "HegSogutmaScada.Domain\HegSogutmaScada.Domain.csproj", "{231CFA8A-0371-4EBB-B715-8F87A30327C2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HegSogutmaScada.Infrastructure", "HegSogutmaScada.Infrastructure\HegSogutmaScada.Infrastructure.csproj", "{45BA99FD-7B9C-4FC7-A503-21CA1AA54CF3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SiloSicaklikIzleme", "SiloSicaklikIzleme", "{DB581379-DCC0-4A8A-A44B-1B95DB42F6A6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiloSicaklikIzleme.API", "SiloSicaklikIzleme.API\SiloSicaklikIzleme.API.csproj", "{CA77416A-0477-4816-8429-21134B92A5B3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiloSicaklikIzleme.Application", "SiloSicaklikIzleme.Application\SiloSicaklikIzleme.Application.csproj", "{C2A0D80A-2F19-4A19-9745-39D1792BA758}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiloSicaklikIzleme.Domain", "SiloSicaklikIzleme.Domain\SiloSicaklikIzleme.Domain.csproj", "{D5D16C8C-61EE-4029-ADB5-3BA9AA2C9F95}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiloSicaklikIzleme.Infrastructure", "SiloSicaklikIzleme.Infrastructure\SiloSicaklikIzleme.Infrastructure.csproj", "{B6FA16AE-C4E8-46AF-BA3B-D9A2A3F7BD7E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakineIzleme.API", "MakineIzleme.API\MakineIzleme.API.csproj", "{0D127D53-55AA-498B-948C-208011DF96C6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakineIzleme.Application", "MakineIzleme.Application\MakineIzleme.Application.csproj", "{0CA401E6-4347-4CB6-8C38-A561A74F0A17}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakineIzleme.Domain", "MakineIzleme.Domain\MakineIzleme.Domain.csproj", "{082B0974-AA01-4963-802A-BD1D7A0667BF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakineIzleme.Infrastructure", "MakineIzleme.Infrastructure\MakineIzleme.Infrastructure.csproj", "{B0022138-BF02-4EAB-8336-F0C6FCAE380D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RahmiyeTesisLogWorker", "RahmiyeTesisLogWorker\RahmiyeTesisLogWorker.csproj", "{5D01AB73-332D-497F-B4DA-A8F12E9C9AC2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuIzlemeLogWorker", "SuIzlemeLogWorker\SuIzlemeLogWorker.csproj", "{46F04DC5-8DAA-4C95-895B-D3DFFD7AD7FE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnerjiIzlemeAlarmWorker", "EnerjiIzlemeAlarmWorker\EnerjiIzlemeAlarmWorker.csproj", "{6594F973-4C17-4DC0-AF5D-E80F767527DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KumesEnerjiLogKayitWorker", "KumesEnerjiLogKayitWorker\KumesEnerjiLogKayitWorker.csproj", "{2D92776C-45BE-46A6-9C53-554AB82D624A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.API", "Gateway.API\Gateway.API.csproj", "{470CB8AA-3A38-4FF5-BA41-140BBA7B241B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsGonderimWorker", "SmsGonderimWorker\SmsGonderimWorker.csproj", "{A1BD2701-50F9-4904-99B9-9448160D54A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HegSogutmaAlarmWorker", "HegSogutmaAlarmWorker\HegSogutmaAlarmWorker.csproj", "{4182A640-1972-44BD-AB08-F1373D546BAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServisKontrolWorker", "ServisKontrolWorker\ServisKontrolWorker.csproj", "{769E9D2D-9531-4C2B-924D-6197D28D3FA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.API", "Identity\Authentication.API\Authentication.API.csproj", "{64A1D783-CFD4-4171-9781-2220DD2A3D42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerimGidaPiKumesWorker", "VerimGidaPiKumesWorker\VerimGidaPiKumesWorker.csproj", "{41200A86-835B-417F-B929-738D2993E0DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.Application", "Identity\Authentication.Application\Authentication.Application.csproj", "{D34C5C8B-A800-4D09-B07C-1878F58C2AC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerimGidaPiKumesLogWorker", "VerimGidaPiKumesLogWorker\VerimGidaPiKumesLogWorker.csproj", "{6AA5E670-FAC5-499A-BA2F-27A373212DE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.Domain", "Identity\Authentication.Domain\Authentication.Domain.csproj", "{6ABA9387-8C80-449D-A582-CE26030B1D2A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NesneIzleme", "NesneIzleme", "{44613BE8-F80C-43EC-B61A-C1624A6A3C86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.Infrastructure", "Identity\Authentication.Infrastructure\Authentication.Infrastructure.csproj", "{CA3875DA-58E5-4144-809C-27B55A0B2A67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NesneIzleme.API", "NesneIzleme.API\NesneIzleme.API.csproj", "{D82B7F0A-FDA2-4932-95F9-1D3CFAA1D203}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NesneIzleme.Application", "NesneIzleme.Application\NesneIzleme.Application.csproj", "{C67FA970-E126-48EA-ACB2-B547B4516E98}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NesneIzleme.Domain", "NesneIzleme.Domain\NesneIzleme.Domain.csproj", "{B76F621F-63C0-438F-874A-5FD388215B88}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NesneIzleme.Infrastructure", "NesneIzleme.Infrastructure\NesneIzleme.Infrastructure.csproj", "{331CA7DD-B912-4586-BD0B-74F7F8A829BF}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjeTakip", "ProjeTakip", "{1C829A2E-B2BD-4A50-932D-879846716B56}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjeTakip.API", "ProjeTakip.API\ProjeTakip.API.csproj", "{1D755E62-E72C-45AA-8C8C-BD4FC329DD96}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjeTakip.Application", "ProjeTakip.Application\ProjeTakip.Application.csproj", "{2317295E-86AD-40BE-8F90-98A067186A82}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjeTakip.Domain", "ProjeTakip.Domain\ProjeTakip.Domain.csproj", "{FD25337C-ECD8-454E-AB9A-6710AC42011E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjeTakip.Infrastructure", "ProjeTakip.Infrastructure\ProjeTakip.Infrastructure.csproj", "{8FB3F62E-1C93-4907-B902-F3B07858E7FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kayislar1LogWorker", "Kayislar1LogWorker\Kayislar1LogWorker.csproj", "{4B2F3700-9785-416B-99DB-2F8C34C7DA6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kayislar1Worker", "Kayislar1Worker\Kayislar1Worker.csproj", "{54E896CD-C64C-413E-B9D9-AB826B0811B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kayislar1LogWorker", "Kayislar1LogWorker\Kayislar1LogWorker.csproj", "{4B2F3700-9785-416B-99DB-2F8C34C7DA6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KumesEnerjiLogKayitWorker", "KumesEnerjiLogKayitWorker\KumesEnerjiLogKayitWorker.csproj", "{2D92776C-45BE-46A6-9C53-554AB82D624A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuyucak1LogWorker", "Kuyucak1LogWorker\Kuyucak1LogWorker.csproj", "{C38DE61B-C347-3849-741A-67DE097AB608}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kuyucak1Worker", "Kuyucak1Worker\Kuyucak1Worker.csproj", "{B90A0850-8FCC-DB03-1EAF-D347A9DA8015}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItgTemperatureIngestionWorker", "Servisler\ItgTemperatureIngestionWorker\ItgTemperatureIngestionWorker.csproj", "{75B178DB-221D-4C3D-AF09-689BA1ED1077}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailGonderimWorker", "MailGonderimWorker\MailGonderimWorker.csproj", "{FDB3D689-34F1-499D-838E-7973BD06C7EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SapPersonelWorker", "SapPersonelWorker\SapPersonelWorker.csproj", "{3D5F023F-83E3-4E82-9972-D585A5885711}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KantarTakip.API", "KantarTakip.API\KantarTakip.API.csproj", "{BB35BDE2-F4F3-4945-84F0-2BC0A5EF8528}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KantarTakip", "KantarTakip", "{619C6B2F-B34E-4768-8BF1-974DDC7F5D75}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KantarTakip.Application", "KantarTakip.Application\KantarTakip.Application.csproj", "{EDD7879C-CFED-4783-B610-43E7CAF71C1B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KantarTakip.Domain", "KantarTakip.Domain\KantarTakip.Domain.csproj", "{1C435CB9-892A-44C3-8892-F2D9356EEC6B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KantarTakip.Infrastructure", "KantarTakip.Infrastructure\KantarTakip.Infrastructure.csproj", "{03A316C4-97AF-4DE8-A493-EE560274C8B1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ITG", "ITG", "{E941B788-6DE1-45BD-96D9-97E7230C8234}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITG.Edge.Worker", "ITG\ITG.Edge.Worker\ITG.Edge.Worker.csproj", "{B9F41B23-8234-4332-86CD-A37C27E44531}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITG.Edge.Application", "ITG\ITG.Edge.Application\ITG.Edge.Application.csproj", "{FAC31661-7210-47C0-BEB0-FC04737BC99A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITG.Edge.Protocol", "ITG\ITG.Edge.Protocol\ITG.Edge.Protocol.csproj", "{147AE351-914F-4E56-852F-B8A366CBD652}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITG.Edge.Infrastructure", "ITG\ITG.Edge.Infrastructure\ITG.Edge.Infrastructure.csproj", "{78153AA2-3FAC-41E8-9A88-8B776F200BCA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITG.Edge.Contracts", "ITG\ITG.Edge.Contracts\ITG.Edge.Contracts.csproj", "{044A6575-A87C-4B9D-8333-43D274370418}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Osmancali1Worker", "Osmancali1Worker\Osmancali1Worker.csproj", "{3545032A-30EE-43FA-AACB-D917FB6B9747}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MesajGonderimWorker", "MesajGonderimWorker\MesajGonderimWorker.csproj", "{F07DB39B-FF72-4538-AC62-58B68BD0BCBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Osmancali1LogWorker", "Osmancali1LogWorker\Osmancali1LogWorker.csproj", "{DC34120D-9F85-40A4-B4B0-4338E65BCB1C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MobilGuncelleme", "MobilGuncelleme", "{F32710CF-2D0C-4A20-A680-CE7BCA22E728}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Osmancali1Worker", "Osmancali1Worker\Osmancali1Worker.csproj", "{3545032A-30EE-43FA-AACB-D917FB6B9747}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilGuncelleme.Domain", "MobilGuncelleme\MobilGuncelleme.Domain\MobilGuncelleme.Domain.csproj", "{47E97CDE-074C-4671-B5DF-3BF0762177C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RahmiyeTesisLogWorker", "RahmiyeTesisLogWorker\RahmiyeTesisLogWorker.csproj", "{5D01AB73-332D-497F-B4DA-A8F12E9C9AC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilGuncelleme.Application", "MobilGuncelleme\MobilGuncelleme.Application\MobilGuncelleme.Application.csproj", "{C63EFBF6-4420-486F-9D69-C7E90444F7FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RahmiyeTesisWorker", "RahmiyeTesisWorker\RahmiyeTesisWorker.csproj", "{64020BC6-0766-42E6-9C08-174C1B7643A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilGuncelleme.Infrastructure", "MobilGuncelleme\MobilGuncelleme.Infrastructure\MobilGuncelleme.Infrastructure.csproj", "{F44F259F-6288-4466-85C3-58B8C395F170}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RahmiyeYTKWorker", "RahmiyeYTKWorker\RahmiyeYTKWorker.csproj", "{C439AD4E-0B18-44AF-B18F-EC800680E27B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilGuncelleme.API", "MobilGuncelleme\MobilGuncelleme.API\MobilGuncelleme.API.csproj", "{A9480C4A-6A08-477D-AB04-FE4A08E13707}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SapPersonelWorker", "SapPersonelWorker\SapPersonelWorker.csproj", "{3D5F023F-83E3-4E82-9972-D585A5885711}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HegSogutmaAlarmWorker", "HegSogutmaAlarmWorker\HegSogutmaAlarmWorker.csproj", "{4182A640-1972-44BD-AB08-F1373D546BAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyMonitoring.API", "Services\EnergyMonitoring\EnergyMonitoring.API\EnergyMonitoring.API.csproj", "{EA4735E4-C742-4F95-80F2-0FB87E47300F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyMonitoring.Application", "Services\EnergyMonitoring\EnergyMonitoring.Application\EnergyMonitoring.Application.csproj", "{04F7D58F-37D6-49B4-B063-7056428A79EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyMonitoring.Domain", "Services\EnergyMonitoring\EnergyMonitoring.Domain\EnergyMonitoring.Domain.csproj", "{E8711762-4C8F-40DD-89BF-7859F24B50DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyMonitoring.Infrastructure", "Services\EnergyMonitoring\EnergyMonitoring.Infrastructure\EnergyMonitoring.Infrastructure.csproj", "{B4D1D29B-1CD6-4904-B222-B2317F3836B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentMonitoringScada.API", "Services\EnvironmentMonitoringScada\EnvironmentMonitoringScada.API\EnvironmentMonitoringScada.API.csproj", "{A890627B-36A9-4A21-AAC7-7F94B07036C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentMonitoringScada.Application", "Services\EnvironmentMonitoringScada\EnvironmentMonitoringScada.Application\EnvironmentMonitoringScada.Application.csproj", "{FB01C881-8E8C-4416-86A9-15F6DEF4D6BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentMonitoringScada.Domain", "Services\EnvironmentMonitoringScada\EnvironmentMonitoringScada.Domain\EnvironmentMonitoringScada.Domain.csproj", "{A15E34C4-89F2-495F-8642-E858DD4B2A08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmentMonitoringScada.Infrastructure", "Services\EnvironmentMonitoringScada\EnvironmentMonitoringScada.Infrastructure\EnvironmentMonitoringScada.Infrastructure.csproj", "{E16FD5AA-4D90-4BFB-8D36-2EE4FBC177AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HegCoolingScada.API", "Services\HegCoolingScada\HegCoolingScada.API\HegCoolingScada.API.csproj", "{0C29EFEA-7E1C-4061-8824-EC2311C9BAEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HegCoolingScada.Application", "Services\HegCoolingScada\HegCoolingScada.Application\HegCoolingScada.Application.csproj", "{D5BD0CDA-081E-4064-975A-4525379D519D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HegCoolingScada.Domain", "Services\HegCoolingScada\HegCoolingScada.Domain\HegCoolingScada.Domain.csproj", "{231CFA8A-0371-4EBB-B715-8F87A30327C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HegCoolingScada.Infrastructure", "Services\HegCoolingScada\HegCoolingScada.Infrastructure\HegCoolingScada.Infrastructure.csproj", "{45BA99FD-7B9C-4FC7-A503-21CA1AA54CF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITG.Edge.Application", "Services\ITG\ITG.Edge.Application\ITG.Edge.Application.csproj", "{FAC31661-7210-47C0-BEB0-FC04737BC99A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITG.Edge.Contracts", "Services\ITG\ITG.Edge.Contracts\ITG.Edge.Contracts.csproj", "{044A6575-A87C-4B9D-8333-43D274370418}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITG.Edge.Infrastructure", "Services\ITG\ITG.Edge.Infrastructure\ITG.Edge.Infrastructure.csproj", "{78153AA2-3FAC-41E8-9A88-8B776F200BCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITG.Edge.Protocol", "Services\ITG\ITG.Edge.Protocol\ITG.Edge.Protocol.csproj", "{147AE351-914F-4E56-852F-B8A366CBD652}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITG.Edge.Worker", "Services\ITG\ITG.Edge.Worker\ITG.Edge.Worker.csproj", "{B9F41B23-8234-4332-86CD-A37C27E44531}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineMonitoring.API", "Services\MachineMonitoring\MachineMonitoring.API\MachineMonitoring.API.csproj", "{0D127D53-55AA-498B-948C-208011DF96C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineMonitoring.Application", "Services\MachineMonitoring\MachineMonitoring.Application\MachineMonitoring.Application.csproj", "{0CA401E6-4347-4CB6-8C38-A561A74F0A17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineMonitoring.Domain", "Services\MachineMonitoring\MachineMonitoring.Domain\MachineMonitoring.Domain.csproj", "{082B0974-AA01-4963-802A-BD1D7A0667BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineMonitoring.Infrastructure", "Services\MachineMonitoring\MachineMonitoring.Infrastructure\MachineMonitoring.Infrastructure.csproj", "{B0022138-BF02-4EAB-8336-F0C6FCAE380D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileUpdate.API", "Services\MobileUpdate\MobileUpdate.API\MobileUpdate.API.csproj", "{A9480C4A-6A08-477D-AB04-FE4A08E13707}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileUpdate.Application", "Services\MobileUpdate\MobileUpdate.Application\MobileUpdate.Application.csproj", "{C63EFBF6-4420-486F-9D69-C7E90444F7FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileUpdate.Domain", "Services\MobileUpdate\MobileUpdate.Domain\MobileUpdate.Domain.csproj", "{47E97CDE-074C-4671-B5DF-3BF0762177C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileUpdate.Infrastructure", "Services\MobileUpdate\MobileUpdate.Infrastructure\MobileUpdate.Infrastructure.csproj", "{F44F259F-6288-4466-85C3-58B8C395F170}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectMonitoring.API", "Services\ObjectMonitoring\ObjectMonitoring.API\ObjectMonitoring.API.csproj", "{D82B7F0A-FDA2-4932-95F9-1D3CFAA1D203}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectMonitoring.Application", "Services\ObjectMonitoring\ObjectMonitoring.Application\ObjectMonitoring.Application.csproj", "{C67FA970-E126-48EA-ACB2-B547B4516E98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectMonitoring.Domain", "Services\ObjectMonitoring\ObjectMonitoring.Domain\ObjectMonitoring.Domain.csproj", "{B76F621F-63C0-438F-874A-5FD388215B88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectMonitoring.Infrastructure", "Services\ObjectMonitoring\ObjectMonitoring.Infrastructure\ObjectMonitoring.Infrastructure.csproj", "{331CA7DD-B912-4586-BD0B-74F7F8A829BF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanelIdentification.API", "Services\PanelIdentification\PanelIdentification.API\PanelIdentification.API.csproj", "{3C85BBC1-38BB-4237-AA84-1C59FB94EA7C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanelIdentification.Application", "Services\PanelIdentification\PanelIdentification.Application\PanelIdentification.Application.csproj", "{B870E646-8D43-401A-BF7E-585B3DD8490C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanelIdentification.Domain", "Services\PanelIdentification\PanelIdentification.Domain\PanelIdentification.Domain.csproj", "{54BBE6C3-6876-4169-9705-60238DC04594}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanelIdentification.Infrastructure", "Services\PanelIdentification\PanelIdentification.Infrastructure\PanelIdentification.Infrastructure.csproj", "{F4F9910F-B108-40AB-9D76-80DF5DF397CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoultryHouseScada.API", "Services\PoultryHouseScada\PoultryHouseScada.API\PoultryHouseScada.API.csproj", "{5C727D7A-421D-4273-9C04-1F6DD97D97FF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoultryHouseScada.Application", "Services\PoultryHouseScada\PoultryHouseScada.Application\PoultryHouseScada.Application.csproj", "{F5D35CAA-ED43-4FCF-866A-3C3469ADD098}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoultryHouseScada.Domain", "Services\PoultryHouseScada\PoultryHouseScada.Domain\PoultryHouseScada.Domain.csproj", "{F2214E4A-4ADF-4DC6-811B-4DE47A55EC05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PoultryHouseScada.Infrastructure", "Services\PoultryHouseScada\PoultryHouseScada.Infrastructure\PoultryHouseScada.Infrastructure.csproj", "{74451EEF-473E-49B5-BEC9-282C605799D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTracking.API", "Services\ProjectTracking\ProjectTracking.API\ProjectTracking.API.csproj", "{1D755E62-E72C-45AA-8C8C-BD4FC329DD96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTracking.Application", "Services\ProjectTracking\ProjectTracking.Application\ProjectTracking.Application.csproj", "{2317295E-86AD-40BE-8F90-98A067186A82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTracking.Domain", "Services\ProjectTracking\ProjectTracking.Domain\ProjectTracking.Domain.csproj", "{FD25337C-ECD8-454E-AB9A-6710AC42011E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectTracking.Infrastructure", "Services\ProjectTracking\ProjectTracking.Infrastructure\ProjectTracking.Infrastructure.csproj", "{8FB3F62E-1C93-4907-B902-F3B07858E7FC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedApp.API", "Services\SharedApp\SharedApp.API\SharedApp.API.csproj", "{08CCF74F-C510-4B3E-9073-B6FF0632B089}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedApp.Application", "Services\SharedApp\SharedApp.Application\SharedApp.Application.csproj", "{A1D6F3BD-7D59-4E07-9E44-8072879F9B00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedApp.Domain", "Services\SharedApp\SharedApp.Domain\SharedApp.Domain.csproj", "{47386925-9256-4CF7-8D0A-F18E387A236A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedApp.Infrastructure", "Services\SharedApp\SharedApp.Infrastructure\SharedApp.Infrastructure.csproj", "{1ABD90F2-DF04-474A-A83A-82F389073AC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiloTemperatureMonitoring.API", "Services\SiloTemperatureMonitoring\SiloTemperatureMonitoring.API\SiloTemperatureMonitoring.API.csproj", "{CA77416A-0477-4816-8429-21134B92A5B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiloTemperatureMonitoring.Application", "Services\SiloTemperatureMonitoring\SiloTemperatureMonitoring.Application\SiloTemperatureMonitoring.Application.csproj", "{C2A0D80A-2F19-4A19-9745-39D1792BA758}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiloTemperatureMonitoring.Domain", "Services\SiloTemperatureMonitoring\SiloTemperatureMonitoring.Domain\SiloTemperatureMonitoring.Domain.csproj", "{D5D16C8C-61EE-4029-ADB5-3BA9AA2C9F95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SiloTemperatureMonitoring.Infrastructure", "Services\SiloTemperatureMonitoring\SiloTemperatureMonitoring.Infrastructure\SiloTemperatureMonitoring.Infrastructure.csproj", "{B6FA16AE-C4E8-46AF-BA3B-D9A2A3F7BD7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket.API", "Services\Ticket\Ticket.API\Ticket.API.csproj", "{6BF2D9D3-6447-4F9A-A359-2DAB929B480D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket.Application", "Services\Ticket\Ticket.Application\Ticket.Application.csproj", "{839842F2-0D13-478A-AEC6-5EB150BCB69A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket.Domain", "Services\Ticket\Ticket.Domain\Ticket.Domain.csproj", "{A1738802-342D-41B7-B0D5-3D3C9CC91208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket.Infrastructure", "Services\Ticket\Ticket.Infrastructure\Ticket.Infrastructure.csproj", "{B7255968-DA45-4F61-A534-92FE1518021E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterLineScada.API", "Services\WaterLineScada\WaterLineScada.API\WaterLineScada.API.csproj", "{F5C472A8-05DF-4924-8C66-27C02D0B20B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterLineScada.Application", "Services\WaterLineScada\WaterLineScada.Application\WaterLineScada.Application.csproj", "{7F34B469-4F33-48C6-BF1E-D49BBAD02DDE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterLineScada.Domain", "Services\WaterLineScada\WaterLineScada.Domain\WaterLineScada.Domain.csproj", "{67F0D7A1-5D04-4560-B04F-45B0CDE87627}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WaterLineScada.Infrastructure", "Services\WaterLineScada\WaterLineScada.Infrastructure\WaterLineScada.Infrastructure.csproj", "{4A605831-84C5-4A98-8CB4-77752EB3F13A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeighbridgeTracking.API", "Services\WeighbridgeTracking\WeighbridgeTracking.API\WeighbridgeTracking.API.csproj", "{BB35BDE2-F4F3-4945-84F0-2BC0A5EF8528}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeighbridgeTracking.Application", "Services\WeighbridgeTracking\WeighbridgeTracking.Application\WeighbridgeTracking.Application.csproj", "{EDD7879C-CFED-4783-B610-43E7CAF71C1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeighbridgeTracking.Domain", "Services\WeighbridgeTracking\WeighbridgeTracking.Domain\WeighbridgeTracking.Domain.csproj", "{1C435CB9-892A-44C3-8892-F2D9356EEC6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeighbridgeTracking.Infrastructure", "Services\WeighbridgeTracking\WeighbridgeTracking.Infrastructure\WeighbridgeTracking.Infrastructure.csproj", "{03A316C4-97AF-4DE8-A493-EE560274C8B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServisKontrolWorker", "ServisKontrolWorker\ServisKontrolWorker.csproj", "{769E9D2D-9531-4C2B-924D-6197D28D3FA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItgTemperatureIngestionWorker", "Servisler\ItgTemperatureIngestionWorker\ItgTemperatureIngestionWorker.csproj", "{75B178DB-221D-4C3D-AF09-689BA1ED1077}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{99EA1B56-1BD0-471C-844A-6101A140BB8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmsGonderimWorker", "SmsGonderimWorker\SmsGonderimWorker.csproj", "{A1BD2701-50F9-4904-99B9-9448160D54A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuIzlemeLogWorker", "SuIzlemeLogWorker\SuIzlemeLogWorker.csproj", "{46F04DC5-8DAA-4C95-895B-D3DFFD7AD7FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuIzlemeWorker", "SuIzlemeWorker\SuIzlemeWorker.csproj", "{F4E5A274-3BA7-4D52-B0FF-448ADEF5EAD1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.SecurityChecks", "tests\Authentication.SecurityChecks\Authentication.SecurityChecks.csproj", "{2CB42199-48B1-47A6-8E0B-7D6B267F7514}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerimGidaPiKumesLogWorker", "VerimGidaPiKumesLogWorker\VerimGidaPiKumesLogWorker.csproj", "{6AA5E670-FAC5-499A-BA2F-27A373212DE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerimGidaPiKumesWorker", "VerimGidaPiKumesWorker\VerimGidaPiKumesWorker.csproj", "{41200A86-835B-417F-B929-738D2993E0DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VerimGidaYTKWorker", "VerimGidaYTKWorker\VerimGidaYTKWorker.csproj", "{918E6B85-F0F3-4EC4-96A5-C2AD55F03836}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1323,101 +1327,105 @@ Global
 		{4182A640-1972-44BD-AB08-F1373D546BAF}.Release|x64.Build.0 = Release|Any CPU
 		{4182A640-1972-44BD-AB08-F1373D546BAF}.Release|x86.ActiveCfg = Release|Any CPU
 		{4182A640-1972-44BD-AB08-F1373D546BAF}.Release|x86.Build.0 = Release|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Debug|x64.Build.0 = Debug|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Debug|x86.Build.0 = Debug|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Release|x64.ActiveCfg = Release|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Release|x64.Build.0 = Release|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Release|x86.ActiveCfg = Release|Any CPU
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{64A1D783-CFD4-4171-9781-2220DD2A3D42} = {2F815853-F673-462E-B19F-DC60D6C1A44C}
-		{D34C5C8B-A800-4D09-B07C-1878F58C2AC0} = {2F815853-F673-462E-B19F-DC60D6C1A44C}
-		{6ABA9387-8C80-449D-A582-CE26030B1D2A} = {2F815853-F673-462E-B19F-DC60D6C1A44C}
-		{CA3875DA-58E5-4144-809C-27B55A0B2A67} = {2F815853-F673-462E-B19F-DC60D6C1A44C}
-		{3C85BBC1-38BB-4237-AA84-1C59FB94EA7C} = {B24F022F-CDA1-44C6-9AC8-354650886B6B}
-		{B870E646-8D43-401A-BF7E-585B3DD8490C} = {B24F022F-CDA1-44C6-9AC8-354650886B6B}
-		{54BBE6C3-6876-4169-9705-60238DC04594} = {B24F022F-CDA1-44C6-9AC8-354650886B6B}
-		{F4F9910F-B108-40AB-9D76-80DF5DF397CA} = {B24F022F-CDA1-44C6-9AC8-354650886B6B}
-		{5C727D7A-421D-4273-9C04-1F6DD97D97FF} = {715F0527-E9C6-4EC6-9C35-7AADB7E5845F}
-		{F5D35CAA-ED43-4FCF-866A-3C3469ADD098} = {715F0527-E9C6-4EC6-9C35-7AADB7E5845F}
-		{F2214E4A-4ADF-4DC6-811B-4DE47A55EC05} = {715F0527-E9C6-4EC6-9C35-7AADB7E5845F}
-		{74451EEF-473E-49B5-BEC9-282C605799D0} = {715F0527-E9C6-4EC6-9C35-7AADB7E5845F}
-		{08CCF74F-C510-4B3E-9073-B6FF0632B089} = {38D0839F-1AF3-4F55-92D4-733A857D297A}
-		{A1D6F3BD-7D59-4E07-9E44-8072879F9B00} = {38D0839F-1AF3-4F55-92D4-733A857D297A}
-		{47386925-9256-4CF7-8D0A-F18E387A236A} = {38D0839F-1AF3-4F55-92D4-733A857D297A}
-		{1ABD90F2-DF04-474A-A83A-82F389073AC0} = {38D0839F-1AF3-4F55-92D4-733A857D297A}
-		{470CB8AA-3A38-4FF5-BA41-140BBA7B241B} = {72F07902-DC6D-46E6-A009-C47AB4D69C5A}
-		{F5C472A8-05DF-4924-8C66-27C02D0B20B7} = {0F6ECA64-9F80-44D0-82C3-EB51A0C0C477}
-		{7F34B469-4F33-48C6-BF1E-D49BBAD02DDE} = {0F6ECA64-9F80-44D0-82C3-EB51A0C0C477}
-		{67F0D7A1-5D04-4560-B04F-45B0CDE87627} = {0F6ECA64-9F80-44D0-82C3-EB51A0C0C477}
-		{4A605831-84C5-4A98-8CB4-77752EB3F13A} = {0F6ECA64-9F80-44D0-82C3-EB51A0C0C477}
-		{64020BC6-0766-42E6-9C08-174C1B7643A8} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{F4E5A274-3BA7-4D52-B0FF-448ADEF5EAD1} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{B4D1D29B-1CD6-4904-B222-B2317F3836B7} = {650B3B4B-782E-44DE-B342-6DA8D3C48795}
-		{E8711762-4C8F-40DD-89BF-7859F24B50DE} = {650B3B4B-782E-44DE-B342-6DA8D3C48795}
-		{04F7D58F-37D6-49B4-B063-7056428A79EC} = {650B3B4B-782E-44DE-B342-6DA8D3C48795}
-		{EA4735E4-C742-4F95-80F2-0FB87E47300F} = {650B3B4B-782E-44DE-B342-6DA8D3C48795}
-		{C439AD4E-0B18-44AF-B18F-EC800680E27B} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{FDB3D689-34F1-499D-838E-7973BD06C7EF} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{16833BAB-8BCE-41D0-B6B2-5BCF6C46D5D7} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{839842F2-0D13-478A-AEC6-5EB150BCB69A} = {9481B317-7115-42E4-98ED-AC2401CC200B}
-		{B7255968-DA45-4F61-A534-92FE1518021E} = {9481B317-7115-42E4-98ED-AC2401CC200B}
-		{A1738802-342D-41B7-B0D5-3D3C9CC91208} = {9481B317-7115-42E4-98ED-AC2401CC200B}
-		{6BF2D9D3-6447-4F9A-A359-2DAB929B480D} = {9481B317-7115-42E4-98ED-AC2401CC200B}
-		{F07DB39B-FF72-4538-AC62-58B68BD0BCBB} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{918E6B85-F0F3-4EC4-96A5-C2AD55F03836} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{A890627B-36A9-4A21-AAC7-7F94B07036C7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{FB01C881-8E8C-4416-86A9-15F6DEF4D6BD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{A15E34C4-89F2-495F-8642-E858DD4B2A08} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{E16FD5AA-4D90-4BFB-8D36-2EE4FBC177AF} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{0C29EFEA-7E1C-4061-8824-EC2311C9BAEE} = {A28A088E-950F-4B94-B8B7-0C9D9055C9A0}
-		{D5BD0CDA-081E-4064-975A-4525379D519D} = {A28A088E-950F-4B94-B8B7-0C9D9055C9A0}
-		{231CFA8A-0371-4EBB-B715-8F87A30327C2} = {A28A088E-950F-4B94-B8B7-0C9D9055C9A0}
-		{45BA99FD-7B9C-4FC7-A503-21CA1AA54CF3} = {A28A088E-950F-4B94-B8B7-0C9D9055C9A0}
-		{CA77416A-0477-4816-8429-21134B92A5B3} = {DB581379-DCC0-4A8A-A44B-1B95DB42F6A6}
-		{C2A0D80A-2F19-4A19-9745-39D1792BA758} = {DB581379-DCC0-4A8A-A44B-1B95DB42F6A6}
-		{D5D16C8C-61EE-4029-ADB5-3BA9AA2C9F95} = {DB581379-DCC0-4A8A-A44B-1B95DB42F6A6}
-		{B6FA16AE-C4E8-46AF-BA3B-D9A2A3F7BD7E} = {DB581379-DCC0-4A8A-A44B-1B95DB42F6A6}
-		{0D127D53-55AA-498B-948C-208011DF96C6} = {EACA62D7-78BE-47D8-8D36-2DE93490C8AA}
-		{0CA401E6-4347-4CB6-8C38-A561A74F0A17} = {EACA62D7-78BE-47D8-8D36-2DE93490C8AA}
-		{082B0974-AA01-4963-802A-BD1D7A0667BF} = {EACA62D7-78BE-47D8-8D36-2DE93490C8AA}
-		{B0022138-BF02-4EAB-8336-F0C6FCAE380D} = {EACA62D7-78BE-47D8-8D36-2DE93490C8AA}
-		{5D01AB73-332D-497F-B4DA-A8F12E9C9AC2} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{46F04DC5-8DAA-4C95-895B-D3DFFD7AD7FE} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{6594F973-4C17-4DC0-AF5D-E80F767527DC} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{2D92776C-45BE-46A6-9C53-554AB82D624A} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{A1BD2701-50F9-4904-99B9-9448160D54A0} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{769E9D2D-9531-4C2B-924D-6197D28D3FA4} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{41200A86-835B-417F-B929-738D2993E0DE} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{6AA5E670-FAC5-499A-BA2F-27A373212DE1} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{D82B7F0A-FDA2-4932-95F9-1D3CFAA1D203} = {44613BE8-F80C-43EC-B61A-C1624A6A3C86}
-		{C67FA970-E126-48EA-ACB2-B547B4516E98} = {44613BE8-F80C-43EC-B61A-C1624A6A3C86}
-		{B76F621F-63C0-438F-874A-5FD388215B88} = {44613BE8-F80C-43EC-B61A-C1624A6A3C86}
-		{331CA7DD-B912-4586-BD0B-74F7F8A829BF} = {44613BE8-F80C-43EC-B61A-C1624A6A3C86}
-		{1D755E62-E72C-45AA-8C8C-BD4FC329DD96} = {1C829A2E-B2BD-4A50-932D-879846716B56}
-		{2317295E-86AD-40BE-8F90-98A067186A82} = {1C829A2E-B2BD-4A50-932D-879846716B56}
-		{FD25337C-ECD8-454E-AB9A-6710AC42011E} = {1C829A2E-B2BD-4A50-932D-879846716B56}
-		{8FB3F62E-1C93-4907-B902-F3B07858E7FC} = {1C829A2E-B2BD-4A50-932D-879846716B56}
-		{54E896CD-C64C-413E-B9D9-AB826B0811B3} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{4B2F3700-9785-416B-99DB-2F8C34C7DA6A} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{C38DE61B-C347-3849-741A-67DE097AB608} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{B90A0850-8FCC-DB03-1EAF-D347A9DA8015} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{75B178DB-221D-4C3D-AF09-689BA1ED1077} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{3D5F023F-83E3-4E82-9972-D585A5885711} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{BB35BDE2-F4F3-4945-84F0-2BC0A5EF8528} = {619C6B2F-B34E-4768-8BF1-974DDC7F5D75}
-		{EDD7879C-CFED-4783-B610-43E7CAF71C1B} = {619C6B2F-B34E-4768-8BF1-974DDC7F5D75}
-		{1C435CB9-892A-44C3-8892-F2D9356EEC6B} = {619C6B2F-B34E-4768-8BF1-974DDC7F5D75}
-		{03A316C4-97AF-4DE8-A493-EE560274C8B1} = {619C6B2F-B34E-4768-8BF1-974DDC7F5D75}
-		{B9F41B23-8234-4332-86CD-A37C27E44531} = {E941B788-6DE1-45BD-96D9-97E7230C8234}
-		{FAC31661-7210-47C0-BEB0-FC04737BC99A} = {E941B788-6DE1-45BD-96D9-97E7230C8234}
-		{147AE351-914F-4E56-852F-B8A366CBD652} = {E941B788-6DE1-45BD-96D9-97E7230C8234}
-		{78153AA2-3FAC-41E8-9A88-8B776F200BCA} = {E941B788-6DE1-45BD-96D9-97E7230C8234}
-		{044A6575-A87C-4B9D-8333-43D274370418} = {E941B788-6DE1-45BD-96D9-97E7230C8234}
-		{3545032A-30EE-43FA-AACB-D917FB6B9747} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{DC34120D-9F85-40A4-B4B0-4338E65BCB1C} = {0B4B274B-EE25-4442-91EF-847E15126F82}
-		{47E97CDE-074C-4671-B5DF-3BF0762177C5} = {F32710CF-2D0C-4A20-A680-CE7BCA22E728}
-		{C63EFBF6-4420-486F-9D69-C7E90444F7FA} = {F32710CF-2D0C-4A20-A680-CE7BCA22E728}
-		{F44F259F-6288-4466-85C3-58B8C395F170} = {F32710CF-2D0C-4A20-A680-CE7BCA22E728}
-		{A9480C4A-6A08-477D-AB04-FE4A08E13707} = {F32710CF-2D0C-4A20-A680-CE7BCA22E728}
-		{4182A640-1972-44BD-AB08-F1373D546BAF} = {A28A088E-950F-4B94-B8B7-0C9D9055C9A0}
+		{3AAA1DCD-6A3F-61FA-48E7-74435AB3A156} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{2D7DBC1C-4852-E30B-FFCB-70484D8AB3E7} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{3B3E5AF3-CC38-1C43-62A8-C9622429EAE7} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{A95761E8-FA74-621B-E099-864229FF6D06} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{3BC2B5B8-923B-2763-DD47-A65F4610094C} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{5B83896C-FC3F-90DD-AB9A-D0182A8ED59F} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{C50DA365-202B-CA17-BB72-CDD10B2F85AB} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{6CC32C4E-FB59-F34F-D3FB-BF10B960C513} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{750C73A4-8DFD-C7F1-26DD-0E7F48785983} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{BA9DE142-7BC8-81DB-3927-345804A09290} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{A67648A8-2A61-5776-58B1-4CE7C344228A} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{9D6E3BE5-D412-D9D0-4F05-F27F1B07E809} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{73D853F0-E7E7-458F-8077-2BA2EC4281D6} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{62467473-54C4-5AAD-C6A5-7DDA9A709233} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{4D9021DD-3801-DF08-5B23-5559243120AF} = {12A77041-6750-4B49-F146-15E8A176B6F9}
+		{64A1D783-CFD4-4171-9781-2220DD2A3D42} = {D6745DED-681E-A33A-8015-C3134B4CFA51}
+		{D34C5C8B-A800-4D09-B07C-1878F58C2AC0} = {D6745DED-681E-A33A-8015-C3134B4CFA51}
+		{6ABA9387-8C80-449D-A582-CE26030B1D2A} = {D6745DED-681E-A33A-8015-C3134B4CFA51}
+		{CA3875DA-58E5-4144-809C-27B55A0B2A67} = {D6745DED-681E-A33A-8015-C3134B4CFA51}
+		{EA4735E4-C742-4F95-80F2-0FB87E47300F} = {4D9021DD-3801-DF08-5B23-5559243120AF}
+		{04F7D58F-37D6-49B4-B063-7056428A79EC} = {4D9021DD-3801-DF08-5B23-5559243120AF}
+		{E8711762-4C8F-40DD-89BF-7859F24B50DE} = {4D9021DD-3801-DF08-5B23-5559243120AF}
+		{B4D1D29B-1CD6-4904-B222-B2317F3836B7} = {4D9021DD-3801-DF08-5B23-5559243120AF}
+		{A890627B-36A9-4A21-AAC7-7F94B07036C7} = {62467473-54C4-5AAD-C6A5-7DDA9A709233}
+		{FB01C881-8E8C-4416-86A9-15F6DEF4D6BD} = {62467473-54C4-5AAD-C6A5-7DDA9A709233}
+		{A15E34C4-89F2-495F-8642-E858DD4B2A08} = {62467473-54C4-5AAD-C6A5-7DDA9A709233}
+		{E16FD5AA-4D90-4BFB-8D36-2EE4FBC177AF} = {62467473-54C4-5AAD-C6A5-7DDA9A709233}
+		{0C29EFEA-7E1C-4061-8824-EC2311C9BAEE} = {73D853F0-E7E7-458F-8077-2BA2EC4281D6}
+		{D5BD0CDA-081E-4064-975A-4525379D519D} = {73D853F0-E7E7-458F-8077-2BA2EC4281D6}
+		{231CFA8A-0371-4EBB-B715-8F87A30327C2} = {73D853F0-E7E7-458F-8077-2BA2EC4281D6}
+		{45BA99FD-7B9C-4FC7-A503-21CA1AA54CF3} = {73D853F0-E7E7-458F-8077-2BA2EC4281D6}
+		{FAC31661-7210-47C0-BEB0-FC04737BC99A} = {9D6E3BE5-D412-D9D0-4F05-F27F1B07E809}
+		{044A6575-A87C-4B9D-8333-43D274370418} = {9D6E3BE5-D412-D9D0-4F05-F27F1B07E809}
+		{78153AA2-3FAC-41E8-9A88-8B776F200BCA} = {9D6E3BE5-D412-D9D0-4F05-F27F1B07E809}
+		{147AE351-914F-4E56-852F-B8A366CBD652} = {9D6E3BE5-D412-D9D0-4F05-F27F1B07E809}
+		{B9F41B23-8234-4332-86CD-A37C27E44531} = {9D6E3BE5-D412-D9D0-4F05-F27F1B07E809}
+		{0D127D53-55AA-498B-948C-208011DF96C6} = {A67648A8-2A61-5776-58B1-4CE7C344228A}
+		{0CA401E6-4347-4CB6-8C38-A561A74F0A17} = {A67648A8-2A61-5776-58B1-4CE7C344228A}
+		{082B0974-AA01-4963-802A-BD1D7A0667BF} = {A67648A8-2A61-5776-58B1-4CE7C344228A}
+		{B0022138-BF02-4EAB-8336-F0C6FCAE380D} = {A67648A8-2A61-5776-58B1-4CE7C344228A}
+		{A9480C4A-6A08-477D-AB04-FE4A08E13707} = {BA9DE142-7BC8-81DB-3927-345804A09290}
+		{C63EFBF6-4420-486F-9D69-C7E90444F7FA} = {BA9DE142-7BC8-81DB-3927-345804A09290}
+		{47E97CDE-074C-4671-B5DF-3BF0762177C5} = {BA9DE142-7BC8-81DB-3927-345804A09290}
+		{F44F259F-6288-4466-85C3-58B8C395F170} = {BA9DE142-7BC8-81DB-3927-345804A09290}
+		{D82B7F0A-FDA2-4932-95F9-1D3CFAA1D203} = {750C73A4-8DFD-C7F1-26DD-0E7F48785983}
+		{C67FA970-E126-48EA-ACB2-B547B4516E98} = {750C73A4-8DFD-C7F1-26DD-0E7F48785983}
+		{B76F621F-63C0-438F-874A-5FD388215B88} = {750C73A4-8DFD-C7F1-26DD-0E7F48785983}
+		{331CA7DD-B912-4586-BD0B-74F7F8A829BF} = {750C73A4-8DFD-C7F1-26DD-0E7F48785983}
+		{3C85BBC1-38BB-4237-AA84-1C59FB94EA7C} = {6CC32C4E-FB59-F34F-D3FB-BF10B960C513}
+		{B870E646-8D43-401A-BF7E-585B3DD8490C} = {6CC32C4E-FB59-F34F-D3FB-BF10B960C513}
+		{54BBE6C3-6876-4169-9705-60238DC04594} = {6CC32C4E-FB59-F34F-D3FB-BF10B960C513}
+		{F4F9910F-B108-40AB-9D76-80DF5DF397CA} = {6CC32C4E-FB59-F34F-D3FB-BF10B960C513}
+		{5C727D7A-421D-4273-9C04-1F6DD97D97FF} = {C50DA365-202B-CA17-BB72-CDD10B2F85AB}
+		{F5D35CAA-ED43-4FCF-866A-3C3469ADD098} = {C50DA365-202B-CA17-BB72-CDD10B2F85AB}
+		{F2214E4A-4ADF-4DC6-811B-4DE47A55EC05} = {C50DA365-202B-CA17-BB72-CDD10B2F85AB}
+		{74451EEF-473E-49B5-BEC9-282C605799D0} = {C50DA365-202B-CA17-BB72-CDD10B2F85AB}
+		{1D755E62-E72C-45AA-8C8C-BD4FC329DD96} = {5B83896C-FC3F-90DD-AB9A-D0182A8ED59F}
+		{2317295E-86AD-40BE-8F90-98A067186A82} = {5B83896C-FC3F-90DD-AB9A-D0182A8ED59F}
+		{FD25337C-ECD8-454E-AB9A-6710AC42011E} = {5B83896C-FC3F-90DD-AB9A-D0182A8ED59F}
+		{8FB3F62E-1C93-4907-B902-F3B07858E7FC} = {5B83896C-FC3F-90DD-AB9A-D0182A8ED59F}
+		{08CCF74F-C510-4B3E-9073-B6FF0632B089} = {3BC2B5B8-923B-2763-DD47-A65F4610094C}
+		{A1D6F3BD-7D59-4E07-9E44-8072879F9B00} = {3BC2B5B8-923B-2763-DD47-A65F4610094C}
+		{47386925-9256-4CF7-8D0A-F18E387A236A} = {3BC2B5B8-923B-2763-DD47-A65F4610094C}
+		{1ABD90F2-DF04-474A-A83A-82F389073AC0} = {3BC2B5B8-923B-2763-DD47-A65F4610094C}
+		{CA77416A-0477-4816-8429-21134B92A5B3} = {A95761E8-FA74-621B-E099-864229FF6D06}
+		{C2A0D80A-2F19-4A19-9745-39D1792BA758} = {A95761E8-FA74-621B-E099-864229FF6D06}
+		{D5D16C8C-61EE-4029-ADB5-3BA9AA2C9F95} = {A95761E8-FA74-621B-E099-864229FF6D06}
+		{B6FA16AE-C4E8-46AF-BA3B-D9A2A3F7BD7E} = {A95761E8-FA74-621B-E099-864229FF6D06}
+		{6BF2D9D3-6447-4F9A-A359-2DAB929B480D} = {3B3E5AF3-CC38-1C43-62A8-C9622429EAE7}
+		{839842F2-0D13-478A-AEC6-5EB150BCB69A} = {3B3E5AF3-CC38-1C43-62A8-C9622429EAE7}
+		{A1738802-342D-41B7-B0D5-3D3C9CC91208} = {3B3E5AF3-CC38-1C43-62A8-C9622429EAE7}
+		{B7255968-DA45-4F61-A534-92FE1518021E} = {3B3E5AF3-CC38-1C43-62A8-C9622429EAE7}
+		{F5C472A8-05DF-4924-8C66-27C02D0B20B7} = {2D7DBC1C-4852-E30B-FFCB-70484D8AB3E7}
+		{7F34B469-4F33-48C6-BF1E-D49BBAD02DDE} = {2D7DBC1C-4852-E30B-FFCB-70484D8AB3E7}
+		{67F0D7A1-5D04-4560-B04F-45B0CDE87627} = {2D7DBC1C-4852-E30B-FFCB-70484D8AB3E7}
+		{4A605831-84C5-4A98-8CB4-77752EB3F13A} = {2D7DBC1C-4852-E30B-FFCB-70484D8AB3E7}
+		{BB35BDE2-F4F3-4945-84F0-2BC0A5EF8528} = {3AAA1DCD-6A3F-61FA-48E7-74435AB3A156}
+		{EDD7879C-CFED-4783-B610-43E7CAF71C1B} = {3AAA1DCD-6A3F-61FA-48E7-74435AB3A156}
+		{1C435CB9-892A-44C3-8892-F2D9356EEC6B} = {3AAA1DCD-6A3F-61FA-48E7-74435AB3A156}
+		{03A316C4-97AF-4DE8-A493-EE560274C8B1} = {3AAA1DCD-6A3F-61FA-48E7-74435AB3A156}
+		{75B178DB-221D-4C3D-AF09-689BA1ED1077} = {318C07C6-F3CB-7F8C-1227-A16BCC2DF377}
+		{2CB42199-48B1-47A6-8E0B-7D6B267F7514} = {B6B8B008-BC3B-EDE5-5501-AED8072F1DE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95DAA43C-FE0A-486C-BDEC-5EC3A1EB69FE}

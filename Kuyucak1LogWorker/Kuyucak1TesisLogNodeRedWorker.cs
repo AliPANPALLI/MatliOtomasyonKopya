@@ -1,8 +1,8 @@
 using FastMember;
 using Kuyucak1LogWorker.Core;
 using Kuyucak1LogWorker.Models;
-using KumesScada.Domain.Models;
-using KumesScada.Infrastructure;
+using PoultryHouseScada.Domain.Models;
+using PoultryHouseScada.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Domain.Models;
 using SharedApp.Infrastructure;
