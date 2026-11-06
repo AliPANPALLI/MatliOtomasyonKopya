@@ -2,8 +2,10 @@ using VoiceCallDispatch.Worker;
 using SharedApp.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure.Sender;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
     .ConfigureLogging(logging =>
     {
         logging.ClearProviders();

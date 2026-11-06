@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Repositories;
 using SharedApp.Infrastructure.Sender;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
     .ConfigureLogging(logging =>
     {
         logging.ClearProviders();

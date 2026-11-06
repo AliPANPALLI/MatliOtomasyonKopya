@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using SharedApp.Domain.Models;
 using SharedApp.Domain.Models.ReportModels;
 using System.Net;
@@ -9,6 +10,10 @@ using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 namespace SharedApp.Infrastructure.Sender
 {
+    /// <summary>
+    /// Sistemin gönderdiği bütün e-postaları (alarm, OTP, yeni kullanıcı şifresi, planlı bakım duyurusu,
+    /// kuyruktaki e-postalar) Office 365 SMTP üzerinden gönderir.
+    /// </summary>
     public class EmailSender
     {
         private const string fromAddress = "matliotomasyon@matli.com.tr";
@@ -23,18 +28,35 @@ namespace SharedApp.Infrastructure.Sender
             //public string Name { get; set; }
             //public string MediaType { get; set; }
         }
-        public EmailSender(/*SharedDbContext context*/)
+        private readonly string _smtpUserName;
+        private readonly string _smtpPassword;
+
+        /// <summary>
+        /// SMTP hesabını konfigürasyondan okur ve paylaşılan SMTP istemcisini hazırlar.
+        /// Kullanıcı adı ve parola koda gömülmez; <c>Smtp__UserName</c> ve <c>Smtp__Password</c>
+        /// ortam değişkenlerinden gelir. Kullanıcı adı verilmezse gönderen adres kullanılır.
+        /// </summary>
+        public EmailSender(IConfiguration configuration)
         {
-            _smtpClient = new SmtpClient
-            {
-                Port = 587,
-                Host = "smtp.office365.com",
-                EnableSsl = true,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("matliotomasyon@matli.com.tr", "TNx+/f(m#o'{j3LK")
-            };
-            //_context = context;
+            _smtpUserName = configuration["Smtp:UserName"] is { Length: > 0 } userName ? userName : fromAddress;
+            _smtpPassword = configuration["Smtp:Password"] ?? string.Empty;
+            _smtpClient = CreateSmtpClient();
         }
+
+        /// <summary>
+        /// Office 365 SMTP sunucusuna kimlik bilgileriyle bağlanan yeni bir istemci oluşturur.
+        /// </summary>
+        private SmtpClient CreateSmtpClient() => new()
+        {
+            Port = 587,
+            Host = "smtp.office365.com",
+            EnableSsl = true,
+            UseDefaultCredentials = false,
+            Credentials = new NetworkCredential(_smtpUserName, _smtpPassword)
+        };
+        /// <summary>
+        /// Alarm mesajını verilen e-posta adreslerine gönderir. Gönderim hatası alarm akışını durdurmasın diye yutulur.
+        /// </summary>
         public async Task SendAlarmMessage(string alarmMesaj, List<string> emailAdresler)
         {
             try
@@ -57,6 +79,9 @@ namespace SharedApp.Infrastructure.Sender
             }
         }
 
+        /// <summary>
+        /// Planlı bakım duyurusunu ekleriyle birlikte verilen adreslere gönderir.
+        /// </summary>
         public async void SendScheduledMaintenanceMessage(string emailKonu, string emailGovde, List<string> emailAdresler, IFormFile[] files)
         {
             try
@@ -79,6 +104,9 @@ namespace SharedApp.Infrastructure.Sender
             }
         }
 
+        /// <summary>
+        /// Kullanıcıya şifresinin sıfırlandığını ve yeni şifresini e-postayla bildirir.
+        /// </summary>
         public async void SendNewPassword(string newPassword, string email, string userFullName, string sicilNo)
         {
             try
@@ -102,6 +130,9 @@ namespace SharedApp.Infrastructure.Sender
             }
         }
 
+        /// <summary>
+        /// Giriş veya şifre sıfırlama için doğrulama kodunu e-postayla gönderir.
+        /// </summary>
         public async Task SendOtp(string otpCode, string email, bool isPasswordReset = false)
         {
             try
@@ -125,6 +156,9 @@ namespace SharedApp.Infrastructure.Sender
             }
         }
 
+        /// <summary>
+        /// Yeni oluşturulan kullanıcıya giriş bilgilerini e-postayla gönderir.
+        /// </summary>
         public async void SendNewUserEmail(string newPassword, string email, string userFullName, string sicilNo)
         {
             try
@@ -171,6 +205,9 @@ namespace SharedApp.Infrastructure.Sender
         //    }
         //}
 
+        /// <summary>
+        /// Doğrulama kodu e-postasını hazırlayıp gönderir; sonucu başarı bilgisi ve mesajla döner.
+        /// </summary>
         private async Task<Tuple<bool, string>> SendEmailForOtp(string email, string verifyCode, bool isPasswordReset = false)
         {
             try
@@ -203,18 +240,14 @@ namespace SharedApp.Infrastructure.Sender
             }
         }
 
+        /// <summary>
+        /// Şifre sıfırlama e-postasını hazırlayıp gönderir; sonucu başarı bilgisi ve mesajla döner.
+        /// </summary>
         private async Task<Tuple<bool, string>> SendEmailForResetPassword(string email, string newPassword, string userFullName, string sicilNo)
         {
             try
             {
-                var _smtpClient = new SmtpClient
-                {
-                    Port = 587,
-                    Host = "smtp.office365.com",
-                    EnableSsl = true,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("matliotomasyon@matli.com.tr", "TNx+/f(m#o'{j3LK")
-                };
+                var _smtpClient = CreateSmtpClient();
 
                 if (string.IsNullOrEmpty(email))
                 {
@@ -246,18 +279,14 @@ namespace SharedApp.Infrastructure.Sender
             }
         }
 
+        /// <summary>
+        /// Yeni kullanıcı e-postasını hazırlayıp gönderir; sonucu başarı bilgisi ve mesajla döner.
+        /// </summary>
         private async Task<Tuple<bool, string>> SendEmailForNewUser(string email, string newPassword, string userFullName, string sicilNo)
         {
             try
             {
-                var _smtpClient = new SmtpClient
-                {
-                    Port = 587,
-                    Host = "smtp.office365.com",
-                    EnableSsl = true,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("matliotomasyon@matli.com.tr", "TNx+/f(m#o'{j3LK")
-                };
+                var _smtpClient = CreateSmtpClient();
 
                 if (string.IsNullOrEmpty(email))
                 {
@@ -293,18 +322,14 @@ namespace SharedApp.Infrastructure.Sender
             }
         }
 
+        /// <summary>
+        /// Alarm e-postasını hazırlayıp gönderir; sonucu başarı bilgisi ve mesajla döner.
+        /// </summary>
         private async Task<Tuple<bool, string>> SendEmailForAlarm(List<string> emailAdresler, string alarmMessage)
         {
             try
             {
-                var _smtpClient = new SmtpClient
-                {
-                    Port = 587,
-                    Host = "smtp.office365.com",
-                    EnableSsl = true,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("matliotomasyon@matli.com.tr", "TNx+/f(m#o'{j3LK")
-                };
+                var _smtpClient = CreateSmtpClient();
 
                 var message = $"<h2>Alarm: </h2><h3><b>{alarmMessage}</b></h3>";
                 using MailMessage mailMessage = new MailMessage()
@@ -333,18 +358,14 @@ namespace SharedApp.Infrastructure.Sender
             }
         }
 
+        /// <summary>
+        /// Planlı bakım e-postasını ekleriyle hazırlayıp gönderir; sonucu başarı bilgisi ve mesajla döner.
+        /// </summary>
         private async Task<Tuple<bool, string>> SendSEmailForScheduledMaintenance(string emailKonu, string mesaj, List<string> emailAdresler, IFormFile[] files)
         {
             try
             {
-                var _smtpClient = new SmtpClient
-                {
-                    Port = 587,
-                    Host = "smtp.office365.com",
-                    EnableSsl = true,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("matliotomasyon@matli.com.tr", "TNx+/f(m#o'{j3LK")
-                };
+                var _smtpClient = CreateSmtpClient();
 
                 var message = $"{mesaj}";
                 using MailMessage mailMessage = new MailMessage()
@@ -468,6 +489,9 @@ namespace SharedApp.Infrastructure.Sender
             }
         }
 
+        /// <summary>
+        /// Düz metni HTML gövdesine çevirir: satır sonlarını &lt;br&gt;, çift boşlukları &amp;nbsp; yapar.
+        /// </summary>
         private string ConvertToHtmlFormat(string message)
         {
             // Replace newlines with <br> tags
@@ -479,6 +503,9 @@ namespace SharedApp.Infrastructure.Sender
             return htmlMessage;
         }
 
+        /// <summary>
+        /// Kuyruktaki (MailGonderimTakip) bir e-postayı alıcıları, CC listesi ve ekleriyle gönderir. Bulunamayan ekler atlanır, e-posta yine gönderilir.
+        /// </summary>
         public async Task SendEmailAsync(MailGonderimTakip gonderilecekMail, CancellationToken cancellationToken = default /*string subject, string body, List<string> receivers, List<string> ccReceivers = null, List<MailAttachment> attachments = null*/)
         {
             try
@@ -566,6 +593,9 @@ namespace SharedApp.Infrastructure.Sender
                 throw;
             }
         }
+        /// <summary>
+        /// Dosya uzantısına göre e-posta eki için MIME türünü döner.
+        /// </summary>
         private static string GetContentType(string dosyaYolu)
         {
             return Path.GetExtension(dosyaYolu).ToLowerInvariant() switch
@@ -577,6 +607,9 @@ namespace SharedApp.Infrastructure.Sender
                 _ => "application/octet-stream"
             };
         }
+        /// <summary>
+        /// Kuyruktaki e-postanın eklerini hem eski EkYolu alanından hem JSON ek bilgisinden toplar; aynı dosyayı bir kez ekler.
+        /// </summary>
         private List<MailAttachment> MailEkleriniHazirla(MailGonderimTakip gonderilecekMail)
         {
             var attachments = new List<MailAttachment>();
@@ -605,6 +638,9 @@ namespace SharedApp.Infrastructure.Sender
                 .ToList();
         }
 
+        /// <summary>
+        /// EkYolu alanındaki dosyayı ya da klasördeki tüm dosyaları eke dönüştürür.
+        /// </summary>
         private static void EskiEkYolunuEkle(MailGonderimTakip gonderilecekMail, ICollection<MailAttachment> attachments)
         {
             if (string.IsNullOrWhiteSpace(gonderilecekMail.EkYolu))
@@ -642,6 +678,9 @@ namespace SharedApp.Infrastructure.Sender
                 });
             }
         }
+        /// <summary>
+        /// EkBilgileriJson içindeki yangın algılama fotoğraflarını eke dönüştürür. JSON bozuksa ek eklenmez, e-posta yine gönderilir.
+        /// </summary>
         private void JsonEkleriniEkle(MailGonderimTakip gonderilecekMail, ICollection<MailAttachment> attachments)
         {
             if (string.IsNullOrWhiteSpace(gonderilecekMail.EkBilgileriJson))
@@ -709,6 +748,9 @@ namespace SharedApp.Infrastructure.Sender
             }
         }
 
+        /// <summary>
+        /// Göreli fotoğraf yolunu yangın fotoğrafları klasörüne göre tam yola çevirir; klasör dışına çıkan yolları reddeder.
+        /// </summary>
         private static string YanginFotografTamYolunuOlustur(string goreliDosyaYolu)
         {
             if (string.IsNullOrWhiteSpace(goreliDosyaYolu))

@@ -2,8 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ObjectMonitoring.Infrastructure;
 using MatliOtomasyon.Shared.Web.Errors;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentPlaceholders();
 
 var connectionString = builder.Configuration
     .GetConnectionString("SqlServer")

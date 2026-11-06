@@ -4,6 +4,7 @@ using MatliOtomasyon.Shared.Infrastructure.Configuration;
 using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentPlaceholders();
 
 // Connection string "MobilGuncellemePostgres", APK klasörü "MobilGuncelleme:ApkKlasoru" ayarından okunur.
 builder.Services.RegisterServices(builder.Configuration);

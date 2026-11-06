@@ -8,6 +8,7 @@ using MatliOtomasyon.Shared.Infrastructure.Configuration;
 using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentPlaceholders();
 
 builder.Services.AddResponseCompression(options =>
 {

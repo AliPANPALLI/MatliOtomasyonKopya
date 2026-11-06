@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using EnvironmentMonitoringScada.Application.Mapster;
 using EnvironmentMonitoringScada.Infrastructure;
 using MatliOtomasyon.Shared.Web.Errors;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentPlaceholders();
 builder.Services.AddDbContext<OrtamIzlemeScadaDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"), sqlOptions =>

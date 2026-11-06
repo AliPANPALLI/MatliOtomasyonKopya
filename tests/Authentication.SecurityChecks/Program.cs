@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -296,6 +298,51 @@ await Check("form permission decides read and write access", async () => {
     Assert(!await Evaluate(PermissionHandler("", reader), true, false, signedIn, UserRequest()));
     Assert(!await Evaluate(PermissionHandler("", Respond(HttpStatusCode.NoContent)), false, false, signedIn, UserRequest()));
     Assert(!await Evaluate(PermissionHandler("", Respond(HttpStatusCode.InternalServerError)), false, false, signedIn, UserRequest()));
+});
+await Check("secret placeholders resolve from environment and fail fast when missing", () => {
+    Environment.SetEnvironmentVariable("MATLI_TEST_DB_PASSWORD", "s3cr3t;=value");
+    var configuration = new ConfigurationBuilder()
+        .AddInMemoryCollection(new Dictionary<string, string?> {
+            ["ConnectionStrings:SqlServer"] = "Server=db;User Id=app;Password={MATLI_TEST_DB_PASSWORD};",
+            ["Routes:0:UpstreamPathTemplate"] = "/kumesscada/{everything}",
+            ["Serilog:OutputTemplate"] = "{Timestamp} {Level:u3} {ID}",
+        })
+        .AddEnvironmentPlaceholders()
+        .Build();
+    Assert(configuration.GetConnectionString("SqlServer") == "Server=db;User Id=app;Password=s3cr3t;=value;");
+    Assert(configuration["Routes:0:UpstreamPathTemplate"] == "/kumesscada/{everything}", "Ocelot template must stay untouched");
+    Assert(configuration["Serilog:OutputTemplate"] == "{Timestamp} {Level:u3} {ID}", "Serilog template must stay untouched");
+
+    Environment.SetEnvironmentVariable("MATLI_TEST_DB_PASSWORD", null);
+    try {
+        new ConfigurationBuilder()
+            .AddInMemoryCollection(new Dictionary<string, string?> { ["ConnectionStrings:SqlServer"] = "Password={MATLI_TEST_DB_PASSWORD};" })
+            .AddEnvironmentPlaceholders()
+            .Build();
+        throw new Exception("Missing environment variable was not reported");
+    } catch (InvalidOperationException ex) {
+        Assert(ex.Message.Contains("MATLI_TEST_DB_PASSWORD"), "Error must name the missing variable");
+    }
+    return Task.CompletedTask;
+});
+await Check("secret placeholders resolve in WebApplication and generic host builders", () => {
+    Environment.SetEnvironmentVariable("MATLI_TEST_JWT_KEY", "host-value");
+    var values = new Dictionary<string, string?> { ["TokenOption:SecurityKey"] = "{MATLI_TEST_JWT_KEY}" };
+
+    var webBuilder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder();
+    webBuilder.Configuration.AddInMemoryCollection(values);
+    webBuilder.Configuration.AddEnvironmentPlaceholders();
+    Assert(webBuilder.Configuration["TokenOption:SecurityKey"] == "host-value", "WebApplication builder did not resolve");
+
+    using var host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
+        .ConfigureAppConfiguration(configuration => configuration.AddInMemoryCollection(values))
+        .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
+        .Build();
+    var hostConfiguration = (IConfiguration)host.Services.GetService(typeof(IConfiguration))!;
+    Assert(hostConfiguration["TokenOption:SecurityKey"] == "host-value", "Generic host builder did not resolve");
+
+    Environment.SetEnvironmentVariable("MATLI_TEST_JWT_KEY", null);
+    return Task.CompletedTask;
 });
 Console.WriteLine($"{passed} security checks passed.");
 

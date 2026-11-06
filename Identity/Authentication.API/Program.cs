@@ -11,6 +11,7 @@ using MatliOtomasyon.Shared.Web.Errors;
 using MatliOtomasyon.Shared.Web.Security;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentPlaceholders();
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<Authentication.API.Security.AuthChallenges>();
 builder.Services.Configure<Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>(options =>
@@ -37,12 +38,6 @@ builder.Services.AddRateLimiter(options =>
         await context.HttpContext.Response.WriteAsJsonAsync(
             new { ErrorMessage = "Çok fazla istek. Lütfen daha sonra tekrar deneyin." }, cancellationToken);
 });
-var dbUser = Environment.GetEnvironmentVariable("DB_USER");
-var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-
-var connectionString = builder.Configuration.GetConnectionString("SqlServer")
-    .Replace("{DB_USER}", dbUser)
-    .Replace("{DB_PASSWORD}", dbPassword);
 builder.Services.AddDbContext<AuthDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"), sqlOptions =>

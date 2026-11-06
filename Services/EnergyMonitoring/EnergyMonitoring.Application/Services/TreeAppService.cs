@@ -1,4 +1,5 @@
 ﻿using EnergyMonitoring.Application.Interfaces;
+using EnergyMonitoring.Application.Options;
 using EnergyMonitoring.Application.Services.Core;
 using EnergyMonitoring.Application.ViewModels;
 using EnergyMonitoring.Domain.DbViewModels;
@@ -6,6 +7,7 @@ using EnergyMonitoring.Domain.Interfaces;
 using EnergyMonitoring.Domain.Models;
 using EnergyMonitoring.Domain.Models.ReportModels;
 using MapsterMapper;
+using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using SharedApp.Domain.Models;
@@ -29,15 +31,20 @@ namespace EnergyMonitoring.Application.Services
         private readonly IMakineRepository _makineRepository;
         private readonly IHayvanSayisiCacheMemory _hayvanSayisiCacheMemory;
         private readonly IMapper _mapper;
+        private readonly EpiasOptions _epiasOptions;
 
+        /// <summary>
+        /// Servisin ihtiyaç duyduğu repository'leri, cache'i, mapper'ı ve EPİAŞ hesap ayarlarını alır.
+        /// </summary>
         public TreeAppService(ITreeRepository treeRepository,
             //IAnalizorDegerlerTempRepository analizorDegerlerTempRepository,
             IBolumRepository bolumRepository,
             ICihazRepository cihazRepository,
             IMakineRepository makineRepository,
             ILogsRepository logsRepository,
-           IHayvanSayisiCacheMemory hayvanSayisiCacheMemory, IMapper mapper)
+           IHayvanSayisiCacheMemory hayvanSayisiCacheMemory, IMapper mapper, IOptions<EpiasOptions> epiasOptions)
         {
+            _epiasOptions = epiasOptions.Value;
             _treeRepository = treeRepository;
             //_analizorDegerlerTempRepository = analizorDegerlerTempRepository;
             _bolumRepository = bolumRepository;
@@ -3135,6 +3142,11 @@ namespace EnergyMonitoring.Application.Services
             }
         }
 
+        /// <summary>
+        /// EPİAŞ'tan, diğer EPİAŞ servis çağrılarında kullanılacak TGT (ticket granting ticket) bileti alır.
+        /// Hesap bilgileri <see cref="EpiasOptions"/>'tan okunur.
+        /// </summary>
+        /// <returns>TGT bileti; istek başarısızsa null.</returns>
         public async Task<string> GetTGTFromEPIAS(CancellationToken cancellationToken)
         {
             using (HttpClient client = new HttpClient())
@@ -3144,7 +3156,7 @@ namespace EnergyMonitoring.Application.Services
                 string url = "https://giris.epias.com.tr/cas/v1/tickets";
 
                 // Form verisi (Body)
-                var formData = new Dictionary<string, string> { { "username", "beray.bayazit@matli.com.tr" }, { "password", "Bb.300521" } };
+                var formData = new Dictionary<string, string> { { "username", _epiasOptions.UserName }, { "password", _epiasOptions.Password } };
                 var content = new FormUrlEncodedContent(formData);
                 try
                 {

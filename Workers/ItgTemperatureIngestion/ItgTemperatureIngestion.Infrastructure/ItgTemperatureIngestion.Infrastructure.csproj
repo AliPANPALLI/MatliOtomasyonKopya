@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ItgTemperatureIngestion.Application\ItgTemperatureIngestion.Application.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\MatliOtomasyon.Shared\MatliOtomasyon.Shared.Infrastructure\MatliOtomasyon.Shared.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

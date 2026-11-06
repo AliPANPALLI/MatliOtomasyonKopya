@@ -5,8 +5,10 @@ using SharedApp.Infrastructure.Sender;
 using System.Data.SqlClient;
 using VerimGidaPiPoultryHouseLog.Worker;
 using VerimGidaPiPoultryHouseLog.Infrastructure.Caching;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
     .ConfigureLogging(logging =>
     {
         logging.ClearProviders();

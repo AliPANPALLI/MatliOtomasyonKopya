@@ -7,8 +7,10 @@ using SharedApp.Infrastructure;
 using SharedApp.Infrastructure.Sender;
 using System.Data.SqlClient;
 using RahmiyeFacility.Infrastructure.Caching;
+using MatliOtomasyon.Shared.Infrastructure.Configuration;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureAppConfiguration(configuration => configuration.AddEnvironmentPlaceholders())
      .ConfigureWebHostDefaults(webBuilder =>
      {
          webBuilder.UseStartup<Startup>();

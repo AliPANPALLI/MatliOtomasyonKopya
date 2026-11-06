@@ -6,6 +6,7 @@ using Authentication.Domain.Models;
 using Authentication.Domain.Models.ReportModels;
 using MapsterMapper;
 using Microsoft.AspNetCore.Http;
+using System.Security.Cryptography;
 
 namespace Authentication.Application.Services
 {
@@ -52,10 +53,16 @@ namespace Authentication.Application.Services
                 Tedarikci = userViewModel.Tedarikci,
                 Silindi = userViewModel.Silindi,
             };
-            await _userRepository.CreateUser(user, "VZ3!_g73");
+            await _userRepository.CreateUser(user, GenerateInitialPassword());
 
             return _mapper.Map<UserViewModel>(user);
         }
+
+        /// <summary>
+        /// Yeni kullanıcı için kimsenin bilmediği rastgele bir başlangıç şifresi üretir. Kullanıcı bu şifreyle
+        /// giriş yapamaz; yönetici "yeni kullanıcıya e-posta/SMS gönder" ile şifreyi sıfırlatıp kullanıcıya iletir.
+        /// </summary>
+        private static string GenerateInitialPassword() => Convert.ToBase64String(RandomNumberGenerator.GetBytes(24));
 
         /// <inheritdoc />
         public async Task EditUser(UserViewModel userViewModel)
